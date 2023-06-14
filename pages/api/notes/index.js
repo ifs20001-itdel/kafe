@@ -17,7 +17,7 @@ export default async (req, res) => {
       break;
     case "POST":
       try {
-        const data = JSON.parse(req.body); // Mengurai data dari string menjadi objek
+        const data = req.body; // Tidak perlu menguraikan data, langsung gunakan req.body sebagai objek
         const note = await Note.create(data);
         res.status(201).json({ success: true, data: note });
       } catch (error) {

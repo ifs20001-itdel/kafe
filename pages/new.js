@@ -61,10 +61,10 @@ const NewNote = () => {
   }
 
   return (
-    <section class="text-gray-600 body-font">
-      <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
-        <div class="text-center lg:w-2/3 w-full">
-          <h1 class="title-font sm:text-4xl text-3xl mb-20 font-medium text-gray-900">Create Menu</h1>
+    <section className="text-gray-600 body-font">
+      <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+        <div className="text-center lg:w-2/3 w-full">
+          <h1 className="title-font sm:text-4xl text-3xl mb-20 font-medium text-gray-900">Create Menu</h1>
           <div>
             {isSubmitting ? (
               <Loader active inline="centered" />

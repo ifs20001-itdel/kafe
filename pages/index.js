@@ -23,6 +23,9 @@ const Index = ({ notes }) => {
                     </Link>
                   </Card.Header>
                 </Card.Content>
+                <Card.Content>
+                  <span>{note.description}</span>
+                </Card.Content>
                 <Card.Content extra>
                   <Link href={`/${note._id}`}>
                     <Button primary>
