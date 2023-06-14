@@ -1,0 +1,43 @@
+h1 {
+    text-align: center;
+}
+
+.wrapper {
+    max-width: 1200px;
+    padding: 0 16px;
+    margin: auto;
+}
+
+.navbar {
+    padding: 20px;
+    margin-bottom: 20px;
+    background: blue;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar .crete {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.navbar .navbar-brand {
+    color: aliceblue;
+    font-size: 2rem;
+}
+
+.navbar-brand:hover, .crete:hover{
+    color: antiquewhite;
+}
+
+.note-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
