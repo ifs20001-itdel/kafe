@@ -1,11 +1,14 @@
-import Head from 'next/head';
+import Head from 'next/dist/shared/lib/head';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { Link, Nav } from 'components';
+import { Alert } from 'components';
+
 
 import 'styles/globals.css';
 
 import { userService } from 'services';
-import { Nav, Alert, Link } from 'components';
+
 
 export default App;
 
@@ -53,10 +56,8 @@ function App({ Component, pageProps }) {
     return (
         <>
             <Head>
-                <title>Next.js 11 - User Registration and Login Example</title>
-                
-                {/* eslint-disable-next-line @next/next/no-css-tags */}
-                <link href="//netdna.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+                <title>Kefi</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossOrigin="anonymous" />
             </Head>
 
             <div className={`app-container ${user ? `bg-light` : ``}`}>
@@ -125,7 +126,7 @@ function App({ Component, pageProps }) {
                         <img src="/kefi.png" width={60} height={60}></img>
                     </div>
                     <p className="text-sm text-white-500 sm:ml-6 sm:mt-0 mt-4">© Intership Del 2023 —
-                        <Link href="kefi.cafeandspace" rel="noopener noreferrer" className="text-white-600 ml-1" target="_blank">@keficafe</Link>
+                        <div rel="noopener noreferrer" className="text-white-600 ml-1" target="_blank">@keficafe</div>
                     </p>
                     <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
                         <div className="text-white-500">

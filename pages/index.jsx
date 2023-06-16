@@ -9,15 +9,16 @@ function Home() {
         <div className="p-4">
             <div className="container">
         <main>
-        <div style={{ width: `100%`, height: `100%`, position: `relative` }}>
-            <Image src="/background.png" style={{ objectFit: "cover" }} />
-            <div style={{ position: `absolute`, top: `50%`, left: `50%`, transform: `translate(-50%, -50%)`, color: `black`, fontSize: `24px` }}>
-                <Link href="/menu" className="relative rounded px-20 py-2.5 overflow-hidden group bg-yellow-50 relative hover:bg-gradient-to-r hover:from-amber-500 hover:to-amber-400 text-amber-950 hover:ring-2 hover:ring-offset-2 hover:ring-amber-400 transition-all ease-out duration-300">
-                    <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-20 group-hover:-translate-x-80 ease"></span>
-                    <span classNames="relative">Order Sekarang</span>
-                </Link>
+        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+            <Image src="/background.png" layout="fill" objectFit="cover" />
+                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: 'black', fontSize: '24px' }}>
+                    <Link href="/menu" className="relative rounded px-20 py-2.5 overflow-hidden group bg-yellow-50 relative hover:bg-gradient-to-r hover:from-amber-500 hover:to-amber-400 text-amber-950 hover:ring-2 hover:ring-offset-2 hover:ring-amber-400 transition-all ease-out duration-300">
+                        <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-20 group-hover:-translate-x-80 ease"></span>
+                        <span className="relative">Order Sekarang</span>
+                    </Link>
                 </div>
         </div>
+
 
 
         {/* STORY */}
