@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 
 import { alertService, AlertType } from 'services';
+import { Link } from './Link';
 
 export { Alert };
 
@@ -106,7 +107,7 @@ function Alert({ id, fade }) {
             <div className="m-3">
                 {alerts.map((alert, index) =>
                     <div key={index} className={cssClasses(alert)}>
-                        <a className="close" onClick={() => removeAlert(alert)}>&times;</a>
+                        <Link className="close" onClick={() => removeAlert(alert)}>&times;</Link>
                         <span dangerouslySetInnerHTML={{ __html: alert.message }}></span>
                     </div>
                 )}
