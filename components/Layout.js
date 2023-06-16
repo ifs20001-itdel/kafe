@@ -5,12 +5,12 @@ import Footer from "./Footer";
 const Layout = ({children}) => (
     <>
         <Head>
-            <title>Note App</title>
+            <title>Kefi Cafe</title>
+            <script src="https://cdn.tailwindcss.com" async></script>
         </Head>
         <Navbar />
         {children}
         <Footer />
     </>
 )
-
 export default Layout;
