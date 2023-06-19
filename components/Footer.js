@@ -15,31 +15,31 @@ const Footer = () => (
                 <div className="flex title-font font-medium items-center md:justify-start justify-center text-white-900 mb-6">LINKS</div>
                 <nav className="flex justify-center">
                 <table>
-  <tr>
-    <td>
-      <Link href="/home" className="mr-5 hover:text-black-900">
-        <p>Home Page</p>
-      </Link>
-    </td>
-    <td>
-      <Link href="/" className="mr-5 hover:text-black-900">
-        <p>Promo</p>
-      </Link>
-    </td>
-  </tr>
-  <tr>
-    <td style={{paddingRight:"109px"}}>
-      <Link href="/index_promo" className="mr-5 hover:text-black-900">
-        <p>Our Menu</p>
-      </Link>
-    </td>
-    <td>
-      <Link href="/contact" className="mr-5 hover:text-black-900">
-        <p>Location</p>
-      </Link>
-    </td>
-  </tr>
-</table>
+                    <tr>
+                        <td>
+                        <Link href="/home" className="mr-5 hover:text-black-900">
+                            <p>Home Page</p>
+                        </Link>
+                        </td>
+                        <td>
+                        <Link href="/" className="mr-5 hover:text-black-900">
+                            <p>Promo</p>
+                        </Link>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style={{paddingRight:"109px"}}>
+                        <Link href="/index_promo" className="mr-5 hover:text-black-900">
+                            <p>Our Menu</p>
+                        </Link>
+                        </td>
+                        <td>
+                        <Link href="/contact" className="mr-5 hover:text-black-900">
+                            <p>Location</p>
+                        </Link>
+                        </td>
+                    </tr>
+                    </table>
 
 </nav>
 <div className="flex title-font font-medium items-center md:justify-start justify-center text-white-900 mb-3 mt-6">CONTACT</div>

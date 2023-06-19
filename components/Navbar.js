@@ -1,3 +1,6 @@
+import 'bootstrap/dist/css/bootstrap.css';
+import 'tailwindcss/tailwind.css';
+
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from 'react';
@@ -11,55 +14,52 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="text-gray-600 body-font mb-10">
-        <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row">
-          <div className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-            <span className="ml-3 text-xl">
-              <Image src="/kefi.png" width={50} height={50}></Image>
-            </span>
+      <nav className="navbar navbar-light bg-light justify-content-between" style={{ position: 'relative' }}>
+        <div className="pt-8 pb-12 relative z-20">
+          <div className="mr-5 md:hidden">
+            <button className="focus:outline-none ml-6" onClick={toggleMobileMenu} style={{ color: "#67442E" }}>
+              {isMobileMenuOpen ? (
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-10 h-10">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-10 h-10">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+              )}
+            </button>
           </div>
-          <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-            <div className="mr-5 md:hidden">
-            <button className="focus:outline-none"
-                onClick={toggleMobileMenu}>
-                <div class="relative flex overflow-hidden items-center justify-center rounded-full w-[50px] h-[50px] transform transition-all bg-slate-700 ring-0 ring-gray-300 hover:ring-8 group-focus:ring-4 ring-opacity-30 duration-200 shadow-md">
-                <div class="flex flex-col justify-between w-[20px] h-[20px] transform transition-all duration-300 origin-center overflow-hidden group-focus:translate-x-1.5">
-                    <div class="bg-white h-[2px] w-7 transform transition-all duration-300 origin-left group-focus:rotate-[42deg] group-focus:w-2/3 delay-150"></div>
-                    <div class="bg-white h-[2px] w-7 rounded transform transition-all duration-300 group-focus:translate-x-10"></div>
-                    <div class="bg-white h-[2px] w-7 transform transition-all duration-300 origin-left group-focus:-rotate-[42deg] group-focus:w-2/3 delay-150"></div>
-                </div>
-                </div>
-            </button>
-            </div>
 
-            <div
-              className={`${
-                isMobileMenuOpen ? '' : 'hidden'
-              } md:flex flex-wrap items-center`}
-            >
-              <Link href="/home" className="mr-5 hover:text-gray-900">
-                <p>Home Page</p>
-              </Link>
-              <Link href="/" className="mr-5 hover:text-gray-900">
-                <p>Menu</p>
-              </Link>
-              <Link href="/index_promo" className="mr-5 hover:text-gray-900">
-                <p>Promo</p>
-              </Link>
-              <Link href="/contact" className="mr-5 hover:text-gray-900">
-                <p>Contact</p>
-              </Link>
-              <Link href="/new" className="mr-5 hover:text-gray-900">
-                <p>CREATE</p>
-              </Link>
-            </div>
-          </nav>
-          <Link href="/autentikasi">
-            <button className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
-              Akun
-            </button>
-          </Link>
+          <div className={`menu-dropdown ${isMobileMenuOpen ? '' : 'hidden'} mt-6 md:flex w-screen flex-wrap items-center justify-center absolute top-16 left-0 z-10`} style={{ zIndex: 10, backgroundColor: "#F3E0BF" }}>
+            <Link href="/home" className="mr-5 hover:text-gray-900">
+              <p className="text-center" style={{ marginTop: "10px" }}>Home Page</p>
+            </Link>
+            <Link href="/" className="mr-5 hover:text-gray-900">
+              <p className="text-center">Menu</p>
+            </Link>
+            <Link href="/index_promo" className="mr-5 hover:text-gray-900">
+              <p className="text-center">Promo</p>
+            </Link>
+            <Link href="/contact" className="mr-5 hover:text-gray-900">
+              <p className="text-center">Contact</p>
+            </Link>
+            <Link href="/new" className="mr-5 hover:text-gray-900">
+              <p className="text-center">CREATE</p>
+            </Link>
+          </div>
         </div>
+
+        <div className="flex justify-center pt-8 pb-12">
+          <span className="text-xl">
+            <Image src="/kefi.png" width={50} height={50} />
+          </span>
+        </div>
+
+        <Link href="/autentikasi" className="md:ml-auto flex flex-wrap items-center text-base justify-center pt-8 pb-12 mr-6" style={{ color: "#67442E", zIndex: 20 }}>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+          </svg>
+        </Link>
       </nav>
     </>
   );
