@@ -105,3 +105,12 @@ a {
     color-scheme: dark;
   }
 }
+
+/* Styling for mobile devices */
+@media (max-width: 767px) {
+  .order-button {
+      width: 80%; /* Example responsive width */
+      margin: 0 auto; /* Example center alignment */
+      font-size: 18px; /* Example responsive font size */
+  }
+}
