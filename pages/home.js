@@ -89,8 +89,8 @@ return (
         <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
         <div class="text-gray-600 body-font">
 
-        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-  <div class="carousel-inner">
+        <div id="minuman" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-inner rounded-lg">
     <div class="carousel-item active">
       <img src="/minuman1.JPG" class="d-block w-100" alt="..." />
     </div>
@@ -101,11 +101,11 @@ return (
       <img src="minuman3.JPG" class="d-block w-100" alt="..." />
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+  <button class="carousel-control-prev" type="button" data-bs-target="#minuman" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+  <button class="carousel-control-next" type="button" data-bs-target="#minuman" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
@@ -115,7 +115,7 @@ return (
     </div>
     </div>
 
-        {/* MINUMAN */}
+        {/* PROMO */}
         <div class="text-gray-600 body-font mb-10">
     <div class="container px-5 py-24 mx-auto">
         <div class="text-center mb-10">
@@ -128,8 +128,8 @@ return (
         <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
         <div class="text-gray-600 body-font">
 
-        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-  <div class="carousel-inner">
+        <div id="promo" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-inner rounded-lg">
     <div class="carousel-item active">
       <img src="/minuman1.JPG" class="d-block w-100" alt="..." />
     </div>
@@ -140,11 +140,11 @@ return (
       <img src="minuman3.JPG" class="d-block w-100" alt="..." />
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+  <button class="carousel-control-prev" type="button" data-bs-target="#promo" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+  <button class="carousel-control-next" type="button" data-bs-target="#promo" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>

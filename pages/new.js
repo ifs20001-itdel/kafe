@@ -4,7 +4,7 @@ import { Button, Form, Loader } from "semantic-ui-react";
 import { useRouter } from "next/router";
 
 const NewNote = () => {
-  const [form, setForm] = useState({ title: '', description: '' });
+  const [form, setForm] = useState({ title: '', description: '', image: null });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
   const router = useRouter();
@@ -21,15 +21,21 @@ const NewNote = () => {
 
   const createNote = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/api/notes`, {
+      const formData = new FormData();
+      formData.append("title", form.title);
+      formData.append("description", form.description);
+      formData.append("image", form.image);
+
+      const res = await fetch(`/api/notes`, {
         method: 'POST',
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(form)
+        body: formData
       });
-      router.push("/");
+      const data = await res.json();
+      if (res.ok) {
+        router.push("/");
+      } else {
+        throw new Error(data.error);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -43,10 +49,17 @@ const NewNote = () => {
   }
 
   const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    });
+    if (e.target.name === "image") {
+      setForm({
+        ...form,
+        image: e.target.files[0]
+      });
+    } else {
+      setForm({
+        ...form,
+        [e.target.name]: e.target.value
+      });
+    }
   }
 
   const validate = () => {
@@ -76,6 +89,7 @@ const NewNote = () => {
                   label="Title"
                   placeholder="Title"
                   name="title"
+                  value={form.title}
                   onChange={handleChange}
                 />
                 <Form.TextArea
@@ -84,6 +98,15 @@ const NewNote = () => {
                   label="Description"
                   placeholder="Description"
                   name="description"
+                  value={form.description}
+                  onChange={handleChange}
+                />
+                <Form.Input
+                  type="file"
+                  fluid
+                  label="Image"
+                  name="image"
+                  accept="image/*"
                   onChange={handleChange}
                 />
                 <Button type="submit">Create</Button>

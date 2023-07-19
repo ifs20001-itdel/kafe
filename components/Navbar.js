@@ -34,7 +34,7 @@ const Navbar = () => {
             <Link href="/home" className="mr-5 hover:text-gray-900">
               <p className="text-center" style={{ marginTop: "10px" }}>Home Page</p>
             </Link>
-            <Link href="/" className="mr-5 hover:text-gray-900">
+            <Link href="/menu" className="mr-5 hover:text-gray-900">
               <p className="text-center">Menu</p>
             </Link>
             <Link href="/index_promo" className="mr-5 hover:text-gray-900">
