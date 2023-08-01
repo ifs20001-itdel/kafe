@@ -1,6 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.css';
 import 'tailwindcss/tailwind.css';
-
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from 'react';
@@ -37,7 +35,7 @@ const Navbar = () => {
             <Link href="/menu" className="mr-5 hover:text-gray-900">
               <p className="text-center">Menu</p>
             </Link>
-            <Link href="/index_promo" className="mr-5 hover:text-gray-900">
+            <Link href="/promo" className="mr-5 hover:text-gray-900">
               <p className="text-center">Promo</p>
             </Link>
             <Link href="/contact" className="mr-5 hover:text-gray-900">
@@ -55,11 +53,21 @@ const Navbar = () => {
           </span>
         </div>
 
-        <Link href="/autentikasi" className="md:ml-auto flex flex-wrap items-center text-base justify-center pt-8 pb-12 mr-6" style={{ color: "#67442E", zIndex: 20 }}>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-          </svg>
-        </Link>
+        <details className="md:ml-auto flex flex-wrap items-center text-base justify-center pt-8 pb-12 mr-6" style={{ color: "#67442E", zIndex: 20 }}>
+          <summary style={{ listStyle: "none", cursor: "pointer" }}> {/* Set listStyle to none and cursor to pointer */}
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+            </svg>
+          </summary>
+          <div className={`mt-6 md:flex w-screen flex-wrap items-center justify-center absolute top-16 left-0 z-10`} style={{ zIndex: 10, backgroundColor: "#F3E0BF" }}>
+            <Link href="/" className="mr-5 hover:text-gray-900">
+              <p className="text-center" style={{ marginTop: "10px" }}>Home Page</p>
+            </Link>
+            <Link href="/registrasi" className="mr-5 hover:text-gray-900">
+              <p className="text-center">Log out</p>
+            </Link>
+          </div>
+        </details>
       </nav>
     </>
   );
