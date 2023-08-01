@@ -3,14 +3,14 @@ import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import { Button, Card } from 'semantic-ui-react';
 
-const Index = ({ notes }) => {
+const Index = ({ minumans }) => {
   useEffect(() => {
-    console.log(notes); // Periksa data yang diterima
-  }, [notes]);
+    console.log(minumans); // Periksa data yang diterima
+  }, [minumans]);
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/notes/${id}`, {
+      const res = await fetch(`http://localhost:3000/api/minumans/${id}`, {
         method: 'DELETE',
       });
 
@@ -54,45 +54,46 @@ const Index = ({ notes }) => {
       </nav>
       <div style={{ textAlign: "center", marginTop: "20px" }}>
         <div className="content-container">
-          <div className="mb-6" style={{display:"flex",
-          justifyContent:"center",
-          alignItems:"center"
-        }}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="47" height="47" viewBox="0 0 47 47" fill="none">
-            <g clip-path="url(#clip0_90_1510)">
-              <path d="M47 0H0V47H47V0Z" fill="white" fill-opacity="0.01" />
-              <path d="M11.75 5.875L5.875 11.75" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M41.125 35.25L35.25 41.125" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M21.5417 5.875L5.875 21.5417" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M31.3333 5.875L5.875 31.3333" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M41.125 5.875L5.875 41.125" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M41.1251 15.6666L15.6667 41.125" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M41.1249 25.4584L25.4583 41.125" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-            </g>
-            <defs>
-              <clipPath id="clip0_90_1510">
-                <rect width="47" height="47" fill="white" />
-              </clipPath>
-            </defs>
-          </svg>
-          <h1
-            style={{
-              color: "#000",
-              fontFamily: "Quicksand",
-              fontSize: "20px",
-              fontStyle: "normal",
-              fontWeight: "600",
-              lineHeight: "25px"
-            }}
-          >What do you want to drink?</h1>
+          <div className="mb-6" style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+          }}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="47" height="47" viewBox="0 0 47 47" fill="none">
+              <g clip-path="url(#clip0_90_1510)">
+                <path d="M47 0H0V47H47V0Z" fill="white" fill-opacity="0.01" />
+                <path d="M11.75 5.875L5.875 11.75" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M41.125 35.25L35.25 41.125" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21.5417 5.875L5.875 21.5417" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M31.3333 5.875L5.875 31.3333" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M41.125 5.875L5.875 41.125" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M41.1251 15.6666L15.6667 41.125" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M41.1249 25.4584L25.4583 41.125" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
+              </g>
+              <defs>
+                <clipPath id="clip0_90_1510">
+                  <rect width="47" height="47" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+            <h1
+              style={{
+                color: "#000",
+                fontFamily: "Quicksand",
+                fontSize: "20px",
+                fontStyle: "normal",
+                fontWeight: "600",
+                lineHeight: "25px"
+              }}
+            >What do you want to drink?</h1>
           </div>
           <div className="cards-container">
-            {notes.map(note => {
+            {minumans.map(minuman => {
               return (
-                <div key={note._id} className="card-item" style={{ width: "156px" }}>
+                <div key={minuman._id} className="card-item" style={{ width: "156px" }}>
                   <div>
                     <div>
-                      <img src={note.image} alt="image description" style={{
+                      <img src={minuman.image} alt="image description" style={{
                         width: "150.135px",
                         height: "150.135px",
                         borderRadius: "20px"
@@ -100,7 +101,7 @@ const Index = ({ notes }) => {
                     </div>
                     <div>
                       <div className="mt-4 text-left">
-                        <Link href={`/${note._id}`}>
+                        <Link href={`/${minuman._id}`}>
                           <span style={{
                             color: "#000",
                             fontFamily: "Quicksand",
@@ -109,7 +110,7 @@ const Index = ({ notes }) => {
                             fontWeight: "600",
                             lineHeight: "18.885px",
                             letterSpacing: "0.283px"
-                          }}>{note.title}</span>
+                          }}>{minuman.title}</span>
                         </Link>
                       </div>
                     </div>
@@ -123,15 +124,15 @@ const Index = ({ notes }) => {
                         fontWeight: "500",
                         lineHeight: "15px",
                         letterSpacing: "0.26px"
-                      }}>Rp. {note.price}</span>
+                      }}>Rp. {minuman.price}</span>
                     </div>
                     <div className="mt-2 mb-6 text-left">
-                      {/* <Link href={`/${note._id}`}>
+                      {/* <Link href={`/${minuman._id}`}>
                       <Button className="bg-transparent text-[#67442E] font-semibold py-2 px-4 border m-2 border-[#67442E] rounded">
                         View
                       </Button>
                     </Link> */}
-                      <Link href={`/${note._id}`}>
+                      <Link href={`/${minuman._id}`}>
                         <div className="flex items-center justify-start">
                           <button className="bg-transparent text-[#67442E] font-semibold py-2 px-auto"
                             style={{
@@ -170,16 +171,15 @@ const Index = ({ notes }) => {
                           </button>
                         </div>
                       </Link>
-                      {/* <Link href={`/${note._id}/edit`}>
-                      <Button className="bg-transparent text-[#67442E] font-semibold py-2 px-4 border m-2 border-[#67442E] rounded">Edit</Button>
-                    </Link> */}
-                      {/* Tambahkan tombol "Delete" dan fungsi handleDelete */}
-                      {/* <Button
-                      className="bg-transparent text-[#FF0000] font-semibold py-2 px-4 border m-2 border-[#FF0000] rounded"
-                      onClick={() => handleDelete(note._id)}
-                    >
-                      Delete
-                    </Button> */}
+                      <Link href={`/${minuman._id}/edit`}>
+                        <Button className="bg-transparent text-[#67442E] font-semibold py-2 px-4 border m-2 border-[#67442E] rounded">Edit</Button>
+                      </Link>
+                      <Button
+                        className="bg-transparent text-[#FF0000] font-semibold py-2 px-4 border m-2 border-[#FF0000] rounded"
+                        onClick={() => handleDelete(minuman._id)}
+                      >
+                        Delete
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -220,12 +220,12 @@ const Index = ({ notes }) => {
 
 Index.getInitialProps = async () => {
   try {
-    const res = await fetch('http://localhost:3000/api/notes');
+    const res = await fetch('http://localhost:3000/api/minumans');
     const { data } = await res.json();
-    return { notes: data };
+    return { minumans: data };
   } catch (error) {
     console.log(error);
-    return { notes: [] };
+    return { minumans: [] };
   }
 }
 

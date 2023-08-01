@@ -26,7 +26,7 @@ const Makanan = ({ makanan }) => {
       });
       setDeleteSuccess(true);
       setTimeout(() => {
-        router.push('/');
+        router.push('/makanan');
       }, 2000);
     } catch (error) {
       setDeleteError('An error occurred while deleting the makanan.');

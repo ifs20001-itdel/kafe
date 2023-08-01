@@ -1,5 +1,5 @@
 import dbConnect from "../../../lib/dbConnect";
-import Note from "../../../models/Note";
+import Minuman from "../../../models/Minuman";
 
 dbConnect();
 
@@ -9,8 +9,8 @@ export default async (req, res) => {
   switch (method) {
     case "GET":
       try {
-        const notes = await Note.find({});
-        res.status(200).json({ success: true, data: notes });
+        const minumans = await Minuman.find({});
+        res.status(200).json({ success: true, data: minumans });
       } catch (error) {
         res.status(400).json({ success: false });
       }
@@ -18,8 +18,8 @@ export default async (req, res) => {
     case "POST":
       try {
         const data = req.body;
-        const note = await Note.create(data);
-        res.status(201).json({ success: true, data: note });
+        const minuman = await Minuman.create(data);
+        res.status(201).json({ success: true, data: minuman });
       } catch (error) {
         res.status(400).json({ success: false, error: error.message });
       }
@@ -31,12 +31,12 @@ export default async (req, res) => {
           return res.status(400).json({ success: false, error: "Missing ID parameter" });
         }
 
-        const deletedNote = await Note.findByIdAndDelete(id);
-        if (!deletedNote) {
-          return res.status(404).json({ success: false, error: "Note not found" });
+        const deletedMinuman = await Minuman.findByIdAndDelete(id);
+        if (!deletedMinuman) {
+          return res.status(404).json({ success: false, error: "Minuman not found" });
         }
 
-        return res.status(200).json({ success: true, data: deletedNote });
+        return res.status(200).json({ success: true, data: deletedMinuman });
       } catch (error) {
         res.status(400).json({ success: false, error: error.message });
       }

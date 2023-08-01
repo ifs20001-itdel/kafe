@@ -41,9 +41,9 @@ export default async (req, res) => {
             break;
         case 'DELETE':
             try {
-                const deletedNote = await Makanan.deleteOne({ _id: id });
+                const deletedMinuman = await Makanan.deleteOne({ _id: id });
 
-                if (!deletedNote.deletedCount) {
+                if (!deletedMinuman.deletedCount) {
                     return res.status(400).json({ success: false });
                 }
 

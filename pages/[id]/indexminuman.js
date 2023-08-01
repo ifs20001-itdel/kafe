@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Confirm, Loader, Message } from 'semantic-ui-react';
 
-const Note = ({ note }) => {
+const Minuman = ({ minuman }) => {
   const [confirm, setConfirm] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [deleteError, setDeleteError] = useState(null);
@@ -12,24 +12,24 @@ const Note = ({ note }) => {
 
   useEffect(() => {
     if (isDeleting) {
-      deleteNote();
+      deleteMinuman();
     }
   }, [isDeleting]);
 
   const open = () => setConfirm(true);
   const close = () => setConfirm(false);
-  const deleteNote = async () => {
-    const noteId = router.query.id;
+  const deleteMinuman = async () => {
+    const minumanId = router.query.id;
     try {
-      const deleted = await fetch(`http://localhost:3000/api/notes/${noteId}`, {
+      const deleted = await fetch(`http://localhost:3000/api/minumans/${minumanId}`, {
         method: 'DELETE'
       });
       setDeleteSuccess(true);
       setTimeout(() => {
-        router.push('/');
+        router.push('/minuman');
       }, 2000);
     } catch (error) {
-      setDeleteError('An error occurred while deleting the note.');
+      setDeleteError('An error occurred while deleting the minuman.');
       console.log(error);
     }
   };
@@ -40,20 +40,20 @@ const Note = ({ note }) => {
   };
 
   return (
-    <div className="note-container">
+    <div className="minuman-container">
       {isDeleting ? (
         <Loader active />
       ) : (
         <>
           {deleteSuccess && (
             <Message positive>
-              <Message.Header>Note Deleted</Message.Header>
-              <p>The note has been successfully deleted.</p>
+              <Message.Header>Minuman Deleted</Message.Header>
+              <p>The minuman has been successfully deleted.</p>
             </Message>
           )}
           {deleteError && (
             <Message negative>
-              <Message.Header>Error Deleting Note</Message.Header>
+              <Message.Header>Error Deleting Minuman</Message.Header>
               <p>{deleteError}</p>
             </Message>
           )}
@@ -62,15 +62,15 @@ const Note = ({ note }) => {
               <div className="text-center lg:w-2/3 w-full">
                 <img
                   className="h-auto max-w-full rounded"
-                  src={note.image}
+                  src={minuman.image}
                   alt="image description"
                 />
                 <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-                  {note?.title}
+                  {minuman?.title}
                 </h1>
-                <p className="mb-8 leading-relaxed">{note?.price}</p>
+                <p className="mb-8 leading-relaxed">{minuman?.price}</p>
                 <h2 className="flex-top">Description</h2>
-                <p className="mb-8 leading-relaxed">{note?.description}</p>
+                <p className="mb-8 leading-relaxed">{minuman?.description}</p>
                 <div className="flex justify-center">
                   <button className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
                     Buy
@@ -91,7 +91,7 @@ const Note = ({ note }) => {
         open={confirm}
         onCancel={close}
         onConfirm={handleDelete}
-        content="Are you sure you want to delete this note?"
+        content="Are you sure you want to delete this minuman?"
         cancelButton="No"
         confirmButton="Yes"
         size="tiny"
@@ -110,15 +110,15 @@ const Note = ({ note }) => {
   );
 };
 
-Note.getInitialProps = async ({ query: { id } }) => {
+Minuman.getInitialProps = async ({ query: { id } }) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/notes/${id}`);
+    const res = await fetch(`http://localhost:3000/api/minumans/${id}`);
     const { data } = await res.json();
-    return { note: data };
+    return { minuman: data };
   } catch (error) {
     console.log(error);
-    return { note: {} };
+    return { minuman: {} };
   }
 };
 
-export default Note;
+export default Minuman;

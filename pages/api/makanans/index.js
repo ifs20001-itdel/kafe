@@ -31,12 +31,12 @@ export default async (req, res) => {
           return res.status(400).json({ success: false, error: "Missing ID parameter" });
         }
 
-        const deletedNote = await Makanan.findByIdAndDelete(id);
-        if (!deletedNote) {
+        const deletedMakanan = await Makanan.findByIdAndDelete(id);
+        if (!deletedMakanan) {
           return res.status(404).json({ success: false, error: "Makanan not found" });
         }
 
-        return res.status(200).json({ success: true, data: deletedNote });
+        return res.status(200).json({ success: true, data: deletedMakanan });
       } catch (error) {
         res.status(400).json({ success: false, error: error.message });
       }

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const NoteSchema = new mongoose.Schema({
+const MinumanSchema = new mongoose.Schema({
     title: {
         type: String,
         required: [true, 'Please add a title'],
@@ -24,4 +24,4 @@ const NoteSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.models.Note || mongoose.model('Note', NoteSchema);
+module.exports = mongoose.models.Minuman || mongoose.model('Minuman', MinumanSchema);

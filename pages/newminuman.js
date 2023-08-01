@@ -3,7 +3,7 @@ import fetch from 'isomorphic-unfetch';
 import { Button, Form, Loader } from "semantic-ui-react";
 import { useRouter } from "next/router";
 
-const NewNote = () => {
+const NewMinuman = () => {
   const [form, setForm] = useState({ title: '', description: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
@@ -12,16 +12,16 @@ const NewNote = () => {
   useEffect(() => {
     if (isSubmitting) {
       if (Object.keys(errors).length === 0) {
-        createNote();
+        createMinuman();
       } else {
         setIsSubmitting(false);
       }
     }
   }, [errors]);
 
-  const createNote = async () => {
+  const createMinuman = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/api/notes`, {
+      const res = await fetch(`http://localhost:3000/api/minumans`, {
         method: 'POST',
         headers: {
           "Accept": "application/json",
@@ -112,4 +112,4 @@ const NewNote = () => {
   );
 }
 
-export default NewNote;
+export default NewMinuman;

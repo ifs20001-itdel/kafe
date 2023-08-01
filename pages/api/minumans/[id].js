@@ -1,5 +1,5 @@
 import dbConnect from "../../../lib/dbConnect";
-import Note from "../../../models/Note";
+import Minuman from "../../../models/Minuman";
 
 dbConnect();
 
@@ -12,38 +12,38 @@ export default async (req, res) => {
     switch (method) {
         case 'GET':
             try {
-                const note = await Note.findById(id);
+                const minuman = await Minuman.findById(id);
 
-                if (!note) {
+                if (!minuman) {
                     return res.status(400).json({ success: false });
                 }
 
-                res.status(200).json({ success: true, data: note });
+                res.status(200).json({ success: true, data: minuman });
             } catch (error) {
                 res.status(400).json({ success: false });
             }
             break;
         case 'PUT':
             try {
-                const note = await Note.findByIdAndUpdate(id, req.body, {
+                const minuman = await Minuman.findByIdAndUpdate(id, req.body, {
                     new: true,
                     runValidators: true
                 });
 
-                if (!note) {
+                if (!minuman) {
                     return res.status(400).json({ success: false });
                 }
 
-                res.status(200).json({ success: true, data: note });
+                res.status(200).json({ success: true, data: minuman });
             } catch (error) {
                 res.status(400).json({ success: false, error: error.message });
             }
             break;
         case 'DELETE':
             try {
-                const deletedNote = await Note.deleteOne({ _id: id });
+                const deletedMinuman = await Minuman.deleteOne({ _id: id });
 
-                if (!deletedNote.deletedCount) {
+                if (!deletedMinuman.deletedCount) {
                     return res.status(400).json({ success: false });
                 }
 

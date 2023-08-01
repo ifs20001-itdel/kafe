@@ -3,8 +3,8 @@ import fetch from 'isomorphic-unfetch';
 import { Button, Form, Loader } from "semantic-ui-react";
 import { useRouter } from "next/router";
 
-const EditNote = ({ note }) => {
-  const [form, setForm] = useState({ title: note.title, description: note.description });
+const EditMinuman = ({ minuman }) => {
+  const [form, setForm] = useState({ title: minuman.title, description: minuman.description });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
   const router = useRouter();
@@ -12,16 +12,16 @@ const EditNote = ({ note }) => {
   useEffect(() => {
     if (isSubmitting) {
       if (Object.keys(errors).length === 0) {
-        updateNote();
+        updateMinuman();
       } else {
         setIsSubmitting(false);
       }
     }
   }, [errors]);
 
-  const updateNote = async () => {
+  const updateMinuman = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/api/notes/${router.query.id}`, {
+      const res = await fetch(`http://localhost:3000/api/minumans/${router.query.id}`, {
         method: 'PUT',
         headers: {
           "Accept": "application/json",
@@ -64,7 +64,7 @@ const EditNote = ({ note }) => {
     <section className="text-gray-600 body-font">
       <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
         <div className="text-center lg:w-2/3 w-full">
-          <h1 className="title-font sm:text-4xl text-3xl mb-20 font-medium text-gray-900">Edit Note</h1>
+          <h1 className="title-font sm:text-4xl text-3xl mb-20 font-medium text-gray-900">Edit Minuman</h1>
           <div>
             {isSubmitting ?
               <Loader active inline="centered" />
@@ -116,11 +116,11 @@ const EditNote = ({ note }) => {
   );
 }
 
-EditNote.getInitialProps = async ({ query: { id } }) => {
-  const res = await fetch(`http://localhost:3000/api/notes/${id}`);
+EditMinuman.getInitialProps = async ({ query: { id } }) => {
+  const res = await fetch(`http://localhost:3000/api/minumans/${id}`);
   const { data } = await res.json();
 
-  return { note: data }
+  return { minuman: data }
 }
 
-export default EditNote;
+export default EditMinuman;
