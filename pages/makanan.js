@@ -3,14 +3,14 @@ import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import { Button, Card } from 'semantic-ui-react';
 
-const Index = ({ makanan }) => {
+const Index = ({ makanans }) => {
   useEffect(() => {
-    console.log(makanan); // Periksa data yang diterima
-  }, [makanan]);
+    console.log(makanans); // Periksa data yang diterima
+  }, [makanans]);
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/makanan/${id}`, {
+      const res = await fetch(`http://localhost:3000/api/makanans/${id}`, {
         method: 'DELETE',
       });
 
@@ -48,7 +48,7 @@ const Index = ({ makanan }) => {
             <span class='mx-2 text-neutral-500 dark:text-neutral-400'>/</span>
           </li>
           <li class='text-neutral-500 dark:text-neutral-400 text-[#67442E]'>
-            Our Drinks
+            Our Foods
           </li>
         </ol>
       </nav>
@@ -84,15 +84,15 @@ const Index = ({ makanan }) => {
               fontWeight: "600",
               lineHeight: "25px"
             }}
-          >What do you want to drink?</h1>
+          >What do you want to food?</h1>
           </div>
           <div className="cards-container">
-            {makanan.map(note => {
+            {makanans.map(makanan => {
               return (
-                <div key={note._id} className="card-item" style={{ width: "156px" }}>
+                <div key={makanan._id} className="card-item" style={{ width: "156px" }}>
                   <div>
                     <div>
-                      <img src={note.image} alt="image description" style={{
+                      <img src={makanan.image} alt="image description" style={{
                         width: "150.135px",
                         height: "150.135px",
                         borderRadius: "20px"
@@ -100,7 +100,7 @@ const Index = ({ makanan }) => {
                     </div>
                     <div>
                       <div className="mt-4 text-left">
-                        <Link href={`/${note._id}`}>
+                        <Link href={`/${makanan._id}`}>
                           <span style={{
                             color: "#000",
                             fontFamily: "Quicksand",
@@ -109,7 +109,7 @@ const Index = ({ makanan }) => {
                             fontWeight: "600",
                             lineHeight: "18.885px",
                             letterSpacing: "0.283px"
-                          }}>{note.title}</span>
+                          }}>{makanan.title}</span>
                         </Link>
                       </div>
                     </div>
@@ -123,15 +123,15 @@ const Index = ({ makanan }) => {
                         fontWeight: "500",
                         lineHeight: "15px",
                         letterSpacing: "0.26px"
-                      }}>Rp. {note.price}</span>
+                      }}>Rp. {makanan.price}</span>
                     </div>
                     <div className="mt-2 mb-6 text-left">
-                      {/* <Link href={`/${note._id}`}>
+                      {/* <Link href={`/${makanan._id}`}>
                       <Button className="bg-transparent text-[#67442E] font-semibold py-2 px-4 border m-2 border-[#67442E] rounded">
                         View
                       </Button>
                     </Link> */}
-                      <Link href={`/${note._id}`}>
+                      <Link href={`/${makanan._id}`}>
                         <div className="flex items-center justify-start">
                           <button className="bg-transparent text-[#67442E] font-semibold py-2 px-auto"
                             style={{
@@ -170,13 +170,13 @@ const Index = ({ makanan }) => {
                           </button>
                         </div>
                       </Link>
-                      {/* <Link href={`/${note._id}/edit`}>
+                      {/* <Link href={`/${makanan._id}/edit`}>
                       <Button className="bg-transparent text-[#67442E] font-semibold py-2 px-4 border m-2 border-[#67442E] rounded">Edit</Button>
                     </Link> */}
                       {/* Tambahkan tombol "Delete" dan fungsi handleDelete */}
                       {/* <Button
                       className="bg-transparent text-[#FF0000] font-semibold py-2 px-4 border m-2 border-[#FF0000] rounded"
-                      onClick={() => handleDelete(note._id)}
+                      onClick={() => handleDelete(makanan._id)}
                     >
                       Delete
                     </Button> */}
@@ -220,12 +220,12 @@ const Index = ({ makanan }) => {
 
 Index.getInitialProps = async () => {
   try {
-    const res = await fetch('http://localhost:3000/api/makanan');
+    const res = await fetch('http://localhost:3000/api/makanans');
     const { data } = await res.json();
-    return { makanan: data };
+    return { makanans: data };
   } catch (error) {
     console.log(error);
-    return { makanan: [] };
+    return { makanans: [] };
   }
 }
 

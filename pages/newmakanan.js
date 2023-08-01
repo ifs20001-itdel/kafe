@@ -3,7 +3,7 @@ import fetch from 'isomorphic-unfetch';
 import { Button, Form, Loader } from "semantic-ui-react";
 import { useRouter } from "next/router";
 
-const NewNote = () => {
+const NewMakanan = () => {
   const [form, setForm] = useState({ title: '', description: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
@@ -12,16 +12,16 @@ const NewNote = () => {
   useEffect(() => {
     if (isSubmitting) {
       if (Object.keys(errors).length === 0) {
-        createNote();
+        createMakanan();
       } else {
         setIsSubmitting(false);
       }
     }
   }, [errors]);
 
-  const createNote = async () => {
+  const createMakanan = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/api/notes`, {
+      const res = await fetch(`http://localhost:3000/api/makanans`, {
         method: 'POST',
         headers: {
           "Accept": "application/json",
@@ -29,7 +29,7 @@ const NewNote = () => {
         },
         body: JSON.stringify(form)
       });
-      router.push("/minuman");
+      router.push("/makanan");
     } catch (error) {
       console.log(error);
     }
@@ -64,7 +64,7 @@ const NewNote = () => {
     <section className="text-gray-600 body-font">
       <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
         <div className="text-center lg:w-2/3 w-full">
-          <h1 className="title-font sm:text-4xl text-3xl mb-20 font-medium text-gray-900">Create Minuman</h1>
+          <h1 className="title-font sm:text-4xl text-3xl mb-20 font-medium text-gray-900">Create Makanan</h1>
           <div>
             {isSubmitting ? (
               <Loader active inline="centered" />
@@ -112,4 +112,4 @@ const NewNote = () => {
   );
 }
 
-export default NewNote;
+export default NewMakanan;
