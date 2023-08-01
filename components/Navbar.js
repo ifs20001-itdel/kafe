@@ -29,7 +29,7 @@ const Navbar = () => {
           </div>
 
           <div className={`menu-dropdown ${isMobileMenuOpen ? '' : 'hidden'} mt-6 md:flex w-screen flex-wrap items-center justify-center absolute top-16 left-0 z-10`} style={{ zIndex: 10, backgroundColor: "#F3E0BF" }}>
-            <Link href="/home" className="mr-5 hover:text-gray-900">
+            <Link href="/" className="mr-5 hover:text-gray-900">
               <p className="text-center" style={{ marginTop: "10px" }}>Home Page</p>
             </Link>
             <Link href="/menu" className="mr-5 hover:text-gray-900">

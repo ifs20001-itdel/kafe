@@ -34,7 +34,7 @@ const Footer = () => (
           <table>
             <Table.Row>
               <td>
-                <Link href='/home' className='mr-5 hover:text-black-900'>
+                <Link href='/' className='mr-5 hover:text-black-900'>
                   <p>Home Page</p>
                 </Link>
               </td>

@@ -118,7 +118,7 @@ function menu () {
             <h1 class='text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-black'>
               Drinks
             </h1>
-            <Link href='/'>
+            <Link href='/minuman'>
               <p class='text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s text-[#67442E]'>
                 Menu lainnya
               </p>

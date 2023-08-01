@@ -1,232 +1,312 @@
-import React, { useEffect } from "react";
-import Link from "next/link";
-import fetch from "isomorphic-unfetch";
-import { Button, Card } from 'semantic-ui-react';
+import Link from 'next/link'
+import { Button } from 'semantic-ui-react'
 
-const Index = ({ notes }) => {
-  useEffect(() => {
-    console.log(notes); // Periksa data yang diterima
-  }, [notes]);
+const Home = () => {
+  const openMaps = () => {
+    const width = 600
+    const height = 600
+    const left = window.screen.width / 2 - width / 2
+    const top = window.screen.height / 2 - height / 2
+    const options = `width=${width},height=${height},top=${top},left=${left}`
 
-  const handleDelete = async (id) => {
-    try {
-      const res = await fetch(`http://localhost:3000/api/notes/${id}`, {
-        method: 'DELETE',
-      });
-
-      const data = await res.json();
-
-      if (data.success) {
-        // Jika delete berhasil, reload halaman untuk memperbarui daftar catatan
-        window.location.reload();
-      } else {
-        console.log(data.error);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+    window.open('https://goo.gl/maps/C5y8Qym7WoCpMKeB8', 'Google Maps', options)
+  }
   return (
-    <div>
-      <nav class='w-full rounded-md p-3'
-        style={{
-          color: "rgba(0, 0, 0, 0.75)",
-          textAlign: "center",
-          fontFamily: "Quicksand",
-          fontSize: "13px",
-          fontStyle: "normal",
-          fontWeight: "500",
-          lineHeight: "15px",
-          letterSpacing: "0.26px",
-        }}>
-        <ol class='list-reset flex'>
-          <li>
-            <Link href='/'>Homepage</Link>
-          </li>
-          <li>
-            <span class='mx-2 text-neutral-500 dark:text-neutral-400'>/</span>
-          </li>
-          <li class='text-neutral-500 dark:text-neutral-400 text-[#67442E]'>
-            Menu
-          </li>
-        </ol>
-      </nav>
-      <div style={{ textAlign: "center", marginTop: "20px" }}>
-        <div className="content-container">
-          <div className="mb-6" style={{display:"flex",
-          justifyContent:"center",
-          alignItems:"center"
-        }}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="47" height="47" viewBox="0 0 47 47" fill="none">
-            <g clip-path="url(#clip0_90_1510)">
-              <path d="M47 0H0V47H47V0Z" fill="white" fill-opacity="0.01" />
-              <path d="M11.75 5.875L5.875 11.75" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M41.125 35.25L35.25 41.125" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M21.5417 5.875L5.875 21.5417" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M31.3333 5.875L5.875 31.3333" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M41.125 5.875L5.875 41.125" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M41.1251 15.6666L15.6667 41.125" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M41.1249 25.4584L25.4583 41.125" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-            </g>
-            <defs>
-              <clipPath id="clip0_90_1510">
-                <rect width="47" height="47" fill="white" />
-              </clipPath>
-            </defs>
-          </svg>
-          <h1
-            style={{
-              color: "#000",
-              fontFamily: "Quicksand",
-              fontSize: "20px",
-              fontStyle: "normal",
-              fontWeight: "600",
-              lineHeight: "25px"
-            }}
-          >What do you want to drink?</h1>
+    <main>
+      <div style={{ width: `100%`, height: `100%`, position: `relative` }}>
+        <img src='/background.png' style={{ objectFit: `cover` }} />
+        <div
+          style={{
+            position: `absolute`,
+            top: `50%`,
+            left: `50%`,
+            transform: `translate(-50%, -50%)`,
+            color: `black`,
+            fontSize: `20px`
+          }}
+        >
+          <Link
+            href='/menu'
+            className='order-button relative rounded px-3 py-2.5 overflow-hidden group bg-yellow-50 relative hover:bg-gradient-to-r hover:from-amber-500 hover:to-amber-400 text-amber-950 hover:ring-2 hover:ring-offset-2 hover:ring-amber-400 transition-all ease-out duration-300'
+          >
+            <span className='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-20 group-hover:-translate-x-80 ease'></span>
+            <span className='relative'>Order Sekarang</span>
+          </Link>
+        </div>
+      </div>
+
+      {/* STORY */}
+      <div className='text-gray-600 body-font'>
+        <div className='container mx-auto flex px-5 py-24 md:flex-row flex-col items-center'>
+          <div className='lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center'>
+            <h1 className='title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900'>
+              Our Story
+            </h1>
           </div>
-          <div className="cards-container">
-            {notes.map(note => {
-              return (
-                <div key={note._id} className="card-item" style={{ width: "156px" }}>
-                  <div>
-                    <div>
-                      <img src={note.image} alt="image description" style={{
-                        width: "150.135px",
-                        height: "150.135px",
-                        borderRadius: "20px"
-                      }} />
-                    </div>
-                    <div>
-                      <div className="mt-4 text-left">
-                        <Link href={`/${note._id}`}>
-                          <span style={{
-                            color: "#000",
-                            fontFamily: "Quicksand",
-                            fontSize: "14.164px",
-                            fontStyle: "normal",
-                            fontWeight: "600",
-                            lineHeight: "18.885px",
-                            letterSpacing: "0.283px"
-                          }}>{note.title}</span>
-                        </Link>
-                      </div>
-                    </div>
-                    <div className="mt-1 text-left">
-                      <span style={{
-                        color: "rgba(0, 0, 0, 0.75)",
-                        textAlign: "center",
-                        fontFamily: "Quicksand",
-                        fontSize: "13px",
-                        fontStyle: "normal",
-                        fontWeight: "500",
-                        lineHeight: "15px",
-                        letterSpacing: "0.26px"
-                      }}>{note.price}</span>
-                    </div>
-                    <div className="mt-2 mb-6 text-left">
-                      {/* <Link href={`/${note._id}`}>
-                      <Button className="bg-transparent text-[#67442E] font-semibold py-2 px-4 border m-2 border-[#67442E] rounded">
-                        View
-                      </Button>
-                    </Link> */}
-                      <Link href={`/${note._id}`}>
-                        <div className="flex items-center justify-start">
-                          <button className="bg-transparent text-[#67442E] font-semibold py-2 px-auto"
-                            style={{
-                              borderRadius: "12.275px",
-                              border: "1.416px solid #67442E",
-                              display: "flex",
-                              padding: "4.83px 29.272px",
-                              alignItems: "flex-start",
-                              gap: "-3.45px"
-                            }}>
-                            <p className="pr-2" style={{
-                              color: "#67442E",
-                              textAlign: "center",
-                              fontFeatureSettings: "'clig' off, 'liga' off",
-                              fontFamily: "DM Sans",
-                              fontSize: "14.164px",
-                              fontStyle: "normal",
-                              fontWeight: "500",
-                              lineHeight: "26.221px"
-                            }}>Tambah</p>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              strokeWidth="1.5"
-                              stroke="currentColor"
-                              className="w-6 h-6"
-                              style={{ paddingTop: "2px", paddingBottom: "2px" }}
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-                              />
-                            </svg>
-                          </button>
-                        </div>
-                      </Link>
-                      {/* <Link href={`/${note._id}/edit`}>
-                      <Button className="bg-transparent text-[#67442E] font-semibold py-2 px-4 border m-2 border-[#67442E] rounded">Edit</Button>
-                    </Link> */}
-                      {/* Tambahkan tombol "Delete" dan fungsi handleDelete */}
-                      {/* <Button
-                      className="bg-transparent text-[#FF0000] font-semibold py-2 px-4 border m-2 border-[#FF0000] rounded"
-                      onClick={() => handleDelete(note._id)}
-                    >
-                      Delete
-                    </Button> */}
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
+          <div className='lg:max-w-lg lg:w-full md:w-1/2 w-5/6'>
+            <img
+              className='object-cover object-center rounded'
+              alt='hero'
+              src='/story.png'
+            />
+          </div>
+          <p className='mt-8 leading-relaxed'>
+            Kefi Coffe And Space merupakan sebuah tempat makan yang berada di
+            Medan. Rumah makan ini menyajikan berbagai menu minuman & aneka nasi
+            yang dibanderol dengan harga yang murah dan bersahabat dengan
+            kantong Anda.
+          </p>
+        </div>
+      </div>
+
+      {/* FOOD */}
+      <div
+        className='flex min-h-screen flex-col justify-between p-10'
+        style={{ backgroundColor: '#F9F9F9' }}
+      >
+        <div class='text-center'>
+          <h1 class='sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4'>
+            Our Foods
+          </h1>
+          <p class='text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s'>
+            Blue bottle crucifix vinyl post-ironic four dollar toast vegan
+            taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi
+            pug.
+          </p>
+          <div class='flex mt-6 mb-6 justify-center'>
+            <div class='w-16 h-1 rounded-full bg-yellow-500 inline-flex'></div>
           </div>
         </div>
+        <div className='grid gap-4'>
+          <div style={{ position: `relative` }}>
+            <img
+              className='h-auto max-w-full rounded-lg'
+              src='/makanan4.JPG'
+              alt=''
+              style={{ objectFit: 'cover' }}
+            />
+            <div
+              style={{
+                position: `absolute`,
+                top: `50%`,
+                left: `50%`,
+                transform: `translate(-50%, -50%)`,
+                color: `black`,
+                fontSize: `24px`
+              }}
+            >
+              <Link
+                href='/menu'
+                class='relative rounded px-3 py-2.5 overflow-hidden group bg-yellow-50 relative hover:bg-gradient-to-r hover:from-amber-500 hover:to-amber-400 text-amber-950 hover:ring-2 hover:ring-offset-2 hover:ring-amber-400 transition-all ease-out duration-300'
+              >
+                <span class='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-20 group-hover:-translate-x-80 ease'></span>
+                <span class='relative'>See Others</span>
+              </Link>
+            </div>
+          </div>
 
-        <style jsx>{`
-        /* Navbar styles */
-        .navbar-container {
-          /* Add styles for your navbar here */
-          /* For example: background-color, height, padding, etc. */
-        }
+          <div className='grid grid-cols-2 gap-3'>
+            <div>
+              <img
+                className='h-auto max-w-full rounded-lg'
+                src='/makanan4.JPG'
+                alt=''
+              />
+            </div>
+            <div>
+              <img
+                className='h-auto max-w-full rounded-lg'
+                src='/makanan2.JPG'
+                alt=''
+              />
+            </div>
+            <div>
+              <img
+                className='h-auto max-w-full rounded-lg'
+                src='/makanan3.JPG'
+                alt=''
+              />
+            </div>
+            <div>
+              <img
+                className='h-auto max-w-full rounded-lg'
+                src='/makanan4.JPG'
+                alt=''
+              />
+            </div>
+            <div></div>
+          </div>
+        </div>
+      </div>
 
-        /* Content styles */
-        .content-container {
-          margin-top: 10px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
+      {/* MINUMAN */}
+      <div class='text-gray-600 body-font'>
+        <div class='container px-5 py-24 mx-auto'>
+          <div class='text-center mb-10'>
+            <h1 class='sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4'>
+              Our Drinks
+            </h1>
+            <p class='text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s'>
+              Blue bottle crucifix vinyl post-ironic four dollar toast vegan
+              taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh
+              mi pug.
+            </p>
+            <div class='flex mt-6 justify-center'>
+              <div class='w-16 h-1 rounded-full bg-yellow-500 inline-flex'></div>
+            </div>
+          </div>
 
-        .cards-container {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-        }
+          <div class='flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6'>
+            <div class='text-gray-600 body-font'>
+              <div
+                id='minuman'
+                class='carousel slide carousel-fade'
+                data-bs-ride='carousel'
+              >
+                <div class='carousel-inner rounded-lg'>
+                  <div class='carousel-item active'>
+                    <img src='/minuman1.JPG' class='d-block w-100' alt='...' />
+                  </div>
+                  <div class='carousel-item'>
+                    <img src='minuman2.JPG' class='d-block w-100' alt='...' />
+                  </div>
+                  <div class='carousel-item'>
+                    <img src='minuman3.JPG' class='d-block w-100' alt='...' />
+                  </div>
+                </div>
+                <button
+                  class='carousel-control-prev'
+                  type='button'
+                  data-bs-target='#minuman'
+                  data-bs-slide='prev'
+                >
+                  <span
+                    class='carousel-control-prev-icon'
+                    aria-hidden='true'
+                  ></span>
+                  <span class='visually-hidden'>Previous</span>
+                </button>
+                <button
+                  class='carousel-control-next'
+                  type='button'
+                  data-bs-target='#minuman'
+                  data-bs-slide='next'
+                >
+                  <span
+                    class='carousel-control-next-icon'
+                    aria-hidden='true'
+                  ></span>
+                  <span class='visually-hidden'>Next</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        .card-item {
-          margin: 10px;
-        }
-      `}</style>
-      </div >
-    </div>
+      {/* PROMO */}
+      <div class='text-gray-600 body-font mb-10'>
+        <div class='container px-5 py-24 mx-auto'>
+          <div class='text-center mb-10'>
+            <h1 class='sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4'>
+              Promo
+            </h1>
+            <div class='flex mt-6 justify-center'>
+              <div class='w-16 h-1 rounded-full bg-yellow-500 inline-flex'></div>
+            </div>
+          </div>
+
+          <div class='flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6'>
+            <div class='text-gray-600 body-font'>
+              <div
+                id='promo'
+                class='carousel slide carousel-fade'
+                data-bs-ride='carousel'
+              >
+                <div class='carousel-inner rounded-lg'>
+                  <div class='carousel-item active'>
+                    <img src='/minuman1.JPG' class='d-block w-100' alt='...' />
+                  </div>
+                  <div class='carousel-item'>
+                    <img src='minuman2.JPG' class='d-block w-100' alt='...' />
+                  </div>
+                  <div class='carousel-item'>
+                    <img src='minuman3.JPG' class='d-block w-100' alt='...' />
+                  </div>
+                </div>
+                <button
+                  class='carousel-control-prev'
+                  type='button'
+                  data-bs-target='#promo'
+                  data-bs-slide='prev'
+                >
+                  <span
+                    class='carousel-control-prev-icon'
+                    aria-hidden='true'
+                  ></span>
+                  <span class='visually-hidden'>Previous</span>
+                </button>
+                <button
+                  class='carousel-control-next'
+                  type='button'
+                  data-bs-target='#promo'
+                  data-bs-slide='next'
+                >
+                  <span
+                    class='carousel-control-next-icon'
+                    aria-hidden='true'
+                  ></span>
+                  <span class='visually-hidden'>Next</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* TESTIMONI */}
+      <div className='text-gray-600 body-font'>
+        {/* <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+            <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+                <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Our Story</h1>
+                <p className="mb-8 leading-relaxed">Kefi Coffee And Space is a restaurant located in Medan. This restaurant serves various drinks and rice menus at affordable prices.</p>
+            </div> */}
+        <div className='w-full'>
+          <img className='w-full' alt='testimoni' src='/Testimonials.png' />
+        </div>
+        {/* </div> */}
+      </div>
+
+      {/* Location */}
+      <div className='text-gray-600 body-font'>
+        <div className='container mx-auto flex px-5 py-24 md:flex-row flex-col items-center'>
+          <div className='lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center'>
+            <h1 className='title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900'>
+              Location
+            </h1>
+            <div className='lg:max-w-lg lg:w-full md:w-1/2 w-5/6'>
+              <img
+                className='object-cover object-center rounded-xl'
+                alt='hero'
+                src='/lokasi.png'
+              />
+            </div>
+            <p className='mb-8 leading-relaxed mt-5'>
+              KOMPLEK, Jl. Classic II Jl. Abdul Hakim, Tj. Sari, Kec. Medan
+              Selayang, Kota Medan, Sumatera Utara 20131
+            </p>
+            <p className='mb-8 leading-relaxed'>Open at 09.00 AM - 11.00 PM</p>
+          </div>
+          <Button
+            style={{ backgroundColor: '#DDCCAE', color: '#67442E' }}
+            onClick={openMaps}
+          >
+            Open Maps
+          </Button>
+        </div>
+      </div>
+    </main>
   )
 }
 
-Index.getInitialProps = async () => {
-  try {
-    const res = await fetch('http://localhost:3000/api/notes');
-    const { data } = await res.json();
-    return { notes: data };
-  } catch (error) {
-    console.log(error);
-    return { notes: [] };
-  }
-}
-
-export default Index;
+export default Home

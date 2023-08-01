@@ -29,7 +29,7 @@ const EditNote = ({ note }) => {
         },
         body: JSON.stringify(form)
       });
-      router.push("/");
+      router.push("/minuman");
     } catch (error) {
       console.log(error);
     }
