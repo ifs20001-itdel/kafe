@@ -72,6 +72,9 @@ const Navbar = ({ userRole }) => {
                         <Link href="/newminuman" className="mr-5 hover:text-gray-900">
                           <p className="text-center">CREATE Minuman</p>
                         </Link>
+                        <Link href="/newpromo" className="mr-5 hover:text-gray-900">
+                          <p className="text-center">CREATE Promo</p>
+                        </Link>
                       </div>
                     )}
                   </>
