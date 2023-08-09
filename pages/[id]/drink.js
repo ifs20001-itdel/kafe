@@ -121,4 +121,5 @@ Minuman.getInitialProps = async ({ query: { id } }) => {
   }
 };
 
+
 export default Minuman;

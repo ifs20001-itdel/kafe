@@ -41,7 +41,7 @@ function promo() {
           <h1
             style={{
               color: "#000",
-              fontFamily: "Quicksand",
+              
               fontSize: "20px",
               fontStyle: "normal",
               fontWeight: "600",

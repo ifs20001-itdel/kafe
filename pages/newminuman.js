@@ -89,8 +89,8 @@ const NewMinuman = () => {
                 <Form.Input
                   fluid
                   error={errors.image ? { content: 'Please enter a image', pointing: 'below' } : null}
-                  label="Image"
-                  placeholder="Image"
+                  label="Url Image"
+                  placeholder="https://gambar.jpg"
                   name="image"
                   onChange={handleChange}
                 />

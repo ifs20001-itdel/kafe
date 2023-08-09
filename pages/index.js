@@ -96,7 +96,7 @@ const Home = () => {
               }}
             >
               <Link
-                href='/menu'
+                href='/makanan'
                 class='relative rounded px-3 py-2.5 overflow-hidden group bg-yellow-50 relative hover:bg-gradient-to-r hover:from-amber-500 hover:to-amber-400 text-amber-950 hover:ring-2 hover:ring-offset-2 hover:ring-amber-400 transition-all ease-out duration-300'
               >
                 <span class='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-20 group-hover:-translate-x-80 ease'></span>
@@ -146,11 +146,26 @@ const Home = () => {
             <h1 class='sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4'>
               Our Drinks
             </h1>
-            <p class='text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s'>
-              Blue bottle crucifix vinyl post-ironic four dollar toast vegan
-              taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh
-              mi pug.
-            </p>
+            <div style={{ position: `relative` }}>
+            <div
+              style={{
+                position: `absolute`,
+                top: `50%`,
+                left: `50%`,
+                transform: `translate(-50%, -50%)`,
+                color: `black`,
+                fontSize: `14px`
+              }}
+            >
+              <Link
+                href='/minuman'
+                class='relative rounded px-3 py-2.5 overflow-hidden group bg-yellow-50 relative hover:bg-gradient-to-r hover:from-amber-500 hover:to-amber-400 text-amber-950 hover:ring-2 hover:ring-offset-2 hover:ring-amber-400 transition-all ease-out duration-300'
+              >
+                <span class='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-20 group-hover:-translate-x-80 ease'></span>
+                <span class='relative'>See Others</span>
+              </Link>
+            </div>
+          </div>
             <div class='flex mt-6 justify-center'>
               <div class='w-16 h-1 rounded-full bg-yellow-500 inline-flex'></div>
             </div>

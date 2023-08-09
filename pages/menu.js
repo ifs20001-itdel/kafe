@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-function menu () {
+function menu() {
   return (
     <div>
       <nav class='w-full rounded-md p-3'>
@@ -17,38 +17,39 @@ function menu () {
           </li>
         </ol>
       </nav>
-      <div className="mt-4" style={{display:"flex",
-          justifyContent:"center",
-          alignItems:"center",
-        }}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="47" height="47" viewBox="0 0 47 47" fill="none">
-            <g clip-path="url(#clip0_90_1510)">
-              <path d="M47 0H0V47H47V0Z" fill="white" fill-opacity="0.01" />
-              <path d="M11.75 5.875L5.875 11.75" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M41.125 35.25L35.25 41.125" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M21.5417 5.875L5.875 21.5417" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M31.3333 5.875L5.875 31.3333" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M41.125 5.875L5.875 41.125" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M41.1251 15.6666L15.6667 41.125" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M41.1249 25.4584L25.4583 41.125" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
-            </g>
-            <defs>
-              <clipPath id="clip0_90_1510">
-                <rect width="47" height="47" fill="white" />
-              </clipPath>
-            </defs>
-          </svg>
-          <h1
-            style={{
-              color: "#000",
-              fontFamily: "Quicksand",
-              fontSize: "20px",
-              fontStyle: "normal",
-              fontWeight: "600",
-              lineHeight: "25px"
-            }}
-          >Pilih menu favorit kamu</h1>
-          </div>
+      <div className="mt-4" style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="47" height="47" viewBox="0 0 47 47" fill="none">
+          <g clip-path="url(#clip0_90_1510)">
+            <path d="M47 0H0V47H47V0Z" fill="white" fill-opacity="0.01" />
+            <path d="M11.75 5.875L5.875 11.75" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M41.125 35.25L35.25 41.125" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M21.5417 5.875L5.875 21.5417" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M31.3333 5.875L5.875 31.3333" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M41.125 5.875L5.875 41.125" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M41.1251 15.6666L15.6667 41.125" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M41.1249 25.4584L25.4583 41.125" stroke="#F3E0BF" stroke-width="3.91667" stroke-linecap="round" stroke-linejoin="round" />
+          </g>
+          <defs>
+            <clipPath id="clip0_90_1510">
+              <rect width="47" height="47" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+        <h1
+          style={{
+            color: "#000",
+
+            fontSize: "20px",
+            fontStyle: "normal",
+            fontWeight: "600",
+            lineHeight: "25px"
+          }}
+        >Pilih menu favorit kamu</h1>
+      </div>
       {/* MAKANAN */}
       <div class='text-gray-600 body-font'>
         <div class='container px-5 py-24 mx-auto'>
