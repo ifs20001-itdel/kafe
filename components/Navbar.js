@@ -73,7 +73,7 @@ const Navbar = ({ userRole }) => {
                 <p className="text-center">Contact</p>
               </Link>
               <div className="hover:text-gray-900 focus:outline-none cursor-pointer" onClick={toggleCreateMenu}>
-                {userRole === 'Admin' && (
+                {userRole === 'admin' && (
                   <>
                     <p className="text-center">CREATE</p>
                     {isCreateMenuOpen && (
@@ -107,7 +107,7 @@ const Navbar = ({ userRole }) => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
               </svg>
             </summary>
-            <div className={`mt-6 md:flex w-screen flex-wrap items-center justify-center absolute top-16 left-0 z-10`} style={{ zIndex: 10, backgroundColor: "#F3E0BF" }}>
+            <div className={`mt-6 md:flex w-full flex-wrap items-center justify-center absolute top-16 left-0 z-10`} style={{ zIndex: 10, backgroundColor: "#F3E0BF" }}>
               <Link href="/" className="mr-5 hover:text-gray-900">
                 <p className="text-center" style={{ marginTop: "10px" }}>Home Page</p>
               </Link>

@@ -12,7 +12,7 @@ export default async function handler(req, res) {
       return res.json({ status: "Belum melakukan registrasi" });
     } else {
       // Simpan status login ke cookie
-      setCookie({ res }, 'user_token', 'user_authenticated_value', {
+      setCookie({ res }, 'user_token', JSON.stringify({isLoggedIn: true, user}), {
         maxAge: 30 * 24 * 60 * 60, // Durasi cookie dalam detik (30 hari)
         path: '/',
       });
