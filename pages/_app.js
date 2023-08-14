@@ -1,4 +1,7 @@
 import 'semantic-ui-css/semantic.min.css'
+
+import "../css/style.css"
+
 import Layout from '../components/Layout'
 
 export default function App({ Component, pageProps }) {

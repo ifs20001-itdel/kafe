@@ -1,11 +1,19 @@
 import Head from "next/head";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { parseCookies } from "nookies";
 
 const Layout = ({ children }) => {
+  
+  const cookies = parseCookies();
+  
+  console.log("user token cookies: ", cookies.user_token)
+  
   // Ganti nilai userRole dengan nilai yang sesuai setelah pengguna masuk atau memiliki peran tertentu.
-  const userRole = 'admin'; // Misalnya, ubah menjadi 'admin' jika pengguna memiliki peran admin.
+  // const userRole = 'admin'; // Misalnya, ubah menjadi 'admin' jika pengguna memiliki peran admin.
 
+  const userRole = 'admin'; // Misalnya, ubah menjadi 'admin' jika pengguna memiliki peran admin.
+  
   return (
     <>
       <Head>
@@ -25,9 +33,11 @@ const Layout = ({ children }) => {
           }
         `}
       </style>
+      <div className="max-w-[380px] m-auto">
       <Navbar userRole={userRole} /> {/* Berikan properti userRole */}
       {children}
       <Footer />
+      </div>
     </>
   );
 };

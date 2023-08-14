@@ -1,5 +1,6 @@
 import connect from "../../lib/dbConnect";
-import User from "../../models/schema"
+import User from "../../models/schema";
+
 
 connect()
 

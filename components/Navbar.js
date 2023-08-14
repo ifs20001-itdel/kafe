@@ -1,7 +1,7 @@
 import 'tailwindcss/tailwind.css';
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { destroyCookie } from 'nookies';
 import { useRouter } from 'next/router';
 
@@ -13,8 +13,6 @@ const Navbar = ({ userRole }) => {
     destroyCookie(null, 'user_token', {
       path: '/',
     });
-
-    // Redirect to the login page after logout
     router.push('/login');
   };
 
@@ -29,11 +27,22 @@ const Navbar = ({ userRole }) => {
     setIsCreateMenuOpen(!isCreateMenuOpen);
   };
 
+  useEffect(() => {
+    router.events.on("routeChangeComplete", ()=>{
+      setIsMobileMenuOpen(false)
+    })
+  
+    return () => {
+      
+    }
+  }, [])
+  
+
     return (
       <>
-        <nav className="navbar navbar-light bg-light justify-content-between" style={{ position: 'relative' }}>
-          <div className="pt-8 pb-12 relative z-20">
-            <div className="mr-5 md:hidden">
+        <nav className="flex justify-content-between relative" >
+          <div className="pt-8 pb-12 z-20">
+            <div className="mr-5">
               <button className="focus:outline-none ml-6" onClick={toggleMobileMenu} style={{ color: "#67442E" }}>
                 {isMobileMenuOpen ? (
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-10 h-10">
@@ -47,7 +56,7 @@ const Navbar = ({ userRole }) => {
               </button>
             </div>
 
-            <div className={`menu-dropdown ${isMobileMenuOpen ? '' : 'hidden'} mt-6 md:flex w-screen flex-wrap items-center justify-center absolute top-16 left-0 z-10`} style={{ zIndex: 10, backgroundColor: "#F3E0BF" }}>
+            <div className={`${isMobileMenuOpen ? '' : 'hidden'} mt-6 w-full flex-wrap items-center justify-center absolute top-16 left-0 z-10`} style={{ zIndex: 10, backgroundColor: "#F3E0BF" }}>
               <Link href="/" className="mr-5 hover:text-gray-900">
                 <p className="text-center" style={{ marginTop: "10px" }}>Home Page</p>
               </Link>
@@ -57,11 +66,14 @@ const Navbar = ({ userRole }) => {
               <Link href="/promo" className="mr-5 hover:text-gray-900">
                 <p className="text-center">Promo</p>
               </Link>
+              <Link href="/keranjang" className="mr-5 hover:text-gray-900">
+                <p className="text-center">Keranjang</p>
+              </Link>
               <Link href="/contact" className="mr-5 hover:text-gray-900">
                 <p className="text-center">Contact</p>
               </Link>
               <div className="hover:text-gray-900 focus:outline-none cursor-pointer" onClick={toggleCreateMenu}>
-                {userRole === 'admin' && ( // Hanya tampilkan jika userRole adalah 'admin'
+                {userRole === 'Admin' && (
                   <>
                     <p className="text-center">CREATE</p>
                     {isCreateMenuOpen && (
