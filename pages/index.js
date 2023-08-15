@@ -14,10 +14,9 @@ const Home = () => {
   return (
     <main>
       <div style={{ position: `relative` }}>
-        <img src='/background.png' style={{
+        <img src='/background.png' className='h-screen' style={{
           objectFit: `cover`,
-          width: `400px`,
-          height: `750px`
+          width: `100%`
 
         }} />
         <div
@@ -65,15 +64,15 @@ const Home = () => {
 
       {/* STORY */}
       <div className='text-gray-600 body-font'>
-        <div className='container mx-auto flex px-5 py-24 md:flex-row flex-col items-center'>
+        <div className='container text-center mt-16 mb-16'>
           <div className='lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center'>
-            <h1 className='title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900'>
+            <h1 className='title-font text-3xl mb-4 font-medium text-gray-900 flex'>
               Our Story
             </h1>
           </div>
-          <div className='lg:max-w-lg lg:w-full md:w-1/2 w-5/6'>
+          <div className='lg:max-w-lg lg:w-full 6md:w-1/2 w-5/6 m-auto'>
             <img
-              className='object-cover object-center rounded'
+              className='object-cover object-center rounded mb-'
               alt='hero'
               src='/story.png'
             />

@@ -34,6 +34,24 @@ const Index = ({ minumans }) => {
       console.log("Terjadi kesalahan:", error);
     }
   };
+  const handleDelete = async (id) => {
+    try {
+      const res = await fetch(`http://localhost:3000/api/makanans/${id}`, {
+        method: 'DELETE',
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        // Jika delete berhasil, reload halaman untuk memperbarui daftar catatan
+        window.location.reload();
+      } else {
+        console.log(data.error);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -102,15 +120,17 @@ const Index = ({ minumans }) => {
                   <div key={minuman._id} className="card-item" style={{ width: "156px" }}>
                     <div>
                       <div>
-                        <img src={minuman.image} alt="image description" style={{
-                          width: "150.135px",
-                          height: "150.135px",
-                          borderRadius: "20px"
-                        }} />
+                        <Link href={`/${minuman._id}/drink`}>
+                          <img src={minuman.image} alt="image description" style={{
+                            width: "150.135px",
+                            height: "150.135px",
+                            borderRadius: "20px"
+                          }} />
+                        </Link>
                       </div>
                       <div>
                         <div className="mt-4 text-left">
-                          <Link href={`/${minuman._id}`}>
+                          <Link href={`/${minuman._id}/drink`}>
                             <span style={{
                               color: "#000",
 
@@ -183,16 +203,38 @@ const Index = ({ minumans }) => {
                             </button>
                           </div>
                         </Link>
-                        {/* <Link href={`/${minuman._id}/edit`}>
-                        <Button className="bg-transparent text-[#67442E] font-semibold py-2 px-4 border m-2 border-[#67442E] rounded">Edit</Button>
-                      </Link> */}
+                        <Link href={`/${minuman._id}/editminuman`}>
+                          <button
+                            className="bg-transparent text-[#67442E] font-semibold py-2 px-auto"
+                            style={{
+                              borderRadius: "12.275px",
+                              border: "1.416px solid #67442E",
+                              display: "flex",
+                              padding: "4.83px 29.272px",
+                              alignItems: "flex-start",
+                              gap: "-3.45px",
+                            }}>
+                            Edit
+                          </button>
+                        </Link>
 
-                        {/* <Button
-                        className="bg-transparent text-[#FF0000] font-semibold py-2 px-4 border m-2 border-[#FF0000] rounded"
-                        onClick={() => handleDelete(minuman._id)}
-                      >
-                        Delete
-                      </Button> */}
+                        <Button
+                          className="bg-transparent text-[#FF0000] font-semibold py-2 px-4 border m-2 border-[#FF0000] rounded"
+                          onClick={() => handleDelete(minuman._id)}
+                        >
+                          <button
+                            className="bg-transparent text-[#67442E] font-semibold py-2 px-auto"
+                            style={{
+                              borderRadius: "12.275px",
+                              border: "1.416px solid #67442E",
+                              display: "flex",
+                              padding: "4.83px 29.272px",
+                              alignItems: "flex-start",
+                              gap: "-3.45px",
+                            }}>
+                            Delete
+                          </button>
+                        </Button>
                       </div>
                     </div>
                   </div>

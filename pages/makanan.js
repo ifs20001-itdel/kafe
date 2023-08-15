@@ -1,32 +1,35 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
 import fetch from "isomorphic-unfetch";
-import { Button, Card } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import PrivateRoute from "../components/PrivateRoute";
+import { useRouter } from 'next/router';
 
-const Index = ({ makanans }) => {
+const Index = ({ makanans, userRole }) => {
+
   useEffect(() => {
     console.log(makanans); // Periksa data yang diterima
   }, [makanans]);
 
-  // const handleDelete = async (id) => {
-  //   try {
-  //     const res = await fetch(`http://localhost:3000/api/makanans/${id}`, {
-  //       method: 'DELETE',
-  //     });
 
-  //     const data = await res.json();
+  const handleDelete = async (id) => {
+    try {
+      const res = await fetch(`http://localhost:3000/api/makanans/${id}`, {
+        method: 'DELETE',
+      });
 
-  //     if (data.success) {
-  //       // Jika delete berhasil, reload halaman untuk memperbarui daftar catatan
-  //       window.location.reload();
-  //     } else {
-  //       console.log(data.error);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+      const data = await res.json();
+
+      if (data.success) {
+        // Jika delete berhasil, reload halaman untuk memperbarui daftar catatan
+        window.location.reload();
+      } else {
+        console.log(data.error);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handleAddToCart = async (makanan) => {
     try {
       const res = await fetch("http://localhost:3000/api/keranjangs", {
@@ -119,7 +122,7 @@ const Index = ({ makanans }) => {
                   <div key={makanan._id} className="card-item" style={{ width: "156px" }}>
                     <div>
                       <div>
-                        <Link href={`${makanan._id}`}>
+                        <Link href={`/${makanan._id}/food`}>
                           <img src={makanan.image} alt="image description" style={{
                             width: "150.135px",
                             height: "150.135px",
@@ -202,16 +205,37 @@ const Index = ({ makanans }) => {
                             </button>
                           </div>
                         </Link>
-                        {/* <Link href={`/${makanan._id}/edit`}>
-                        <Button className="bg-transparent text-[#67442E] font-semibold py-2 px-4 border m-2 border-[#67442E] rounded">Edit</Button>
-                      </Link> */}
-
-                        {/* <Button
-                        className="bg-transparent text-[#FF0000] font-semibold py-2 px-4 border m-2 border-[#FF0000] rounded"
-                        onClick={() => handleDelete(makanan._id)}
-                      >
-                        Delete
-                      </Button> */}
+                        <Link href={`/${makanan._id}/editmakanan`}>
+                          <button
+                            className="bg-transparent text-[#67442E] font-semibold py-2  px-auto"
+                            style={{
+                              borderRadius: "12.275px",
+                              border: "1.416px solid #67442E",
+                              display: "flex",
+                              padding: "4.83px 29.272px",
+                              alignItems: "flex-start",
+                              gap: "-3.45px",
+                            }}>
+                            Edit
+                          </button>
+                        </Link>
+                        <Button
+                          className="bg-transparent text-[#FF0000] font-semibold py-2 px-4 border m-2 border-[#FF0000] rounded"
+                          onClick={() => handleDelete(makanan._id)}
+                        >
+                          <button
+                            className="bg-transparent text-[#67442E] font-semibold py-2 px-auto"
+                            style={{
+                              borderRadius: "12.275px",    
+                              border: "1.416px solid #67442E",
+                              display: "flex",
+                              padding: "4.83px 29.272px",
+                              alignItems: "flex-start",
+                              gap: "-3.45px",
+                            }}>
+                            Delete
+                          </button>
+                        </Button>
                       </div>
                     </div>
                   </div>

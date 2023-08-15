@@ -4,7 +4,7 @@ import { Button, Form, Loader } from "semantic-ui-react";
 import { useRouter } from "next/router";
 
 const EditMakanan = ({ makanan }) => {
-  const [form, setForm] = useState({ title: makanan.title, description: makanan.description });
+  const [form, setForm] = useState({ title: makanan.title, price: makanan.price, image: makanan.image, description: makanan.description });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
   const router = useRouter();
@@ -29,7 +29,7 @@ const EditMakanan = ({ makanan }) => {
         },
         body: JSON.stringify(form)
       });
-      router.push("/minuman");
+      router.push("/makanan");
     } catch (error) {
       console.log(error);
     }

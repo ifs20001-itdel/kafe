@@ -4,7 +4,7 @@ import { Button, Form, Loader } from "semantic-ui-react";
 import { useRouter } from "next/router";
 
 const EditMinuman = ({ minuman }) => {
-  const [form, setForm] = useState({ title: minuman.title, description: minuman.description });
+  const [form, setForm] = useState({ title: minuman.title, price: minuman.price, image: minuman.image, description: minuman.description });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
   const router = useRouter();

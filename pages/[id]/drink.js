@@ -57,29 +57,43 @@ const Minuman = ({ minuman }) => {
               <p>{deleteError}</p>
             </Message>
           )}
-          <section className="text-gray-600 body-font">
+          <section className="">
             <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
               <div className="text-center lg:w-2/3 w-full">
                 <img
-                  className="h-auto max-w-full rounded"
+                  style={{
+                    width: "308px",
+                    height: "276px",
+                    borderRadius:"20px"
+                  }}
                   src={minuman.image}
                   alt="image description"
                 />
-                <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-                  {minuman?.title}
-                </h1>
-                <p className="mb-8 leading-relaxed">{minuman?.price}</p>
-                <h2 className="flex-top">Description</h2>
-                <p className="mb-8 leading-relaxed">{minuman?.description}</p>
+                <div className="mb-16 text-start">
+                  <h1 className="title-font pt-6 sm:text-4xl mt-6 text-3xl mb-2 font-medium text-gray-900">
+                    {minuman?.title}
+                  </h1>
+                  <p className="mb-8 leading-relaxed">Rp {minuman?.price}</p>
+                  <h2 className="flex-top tex-[#000]">Description</h2>
+                  <p className="mb-8 leading-relaxed" style={{
+                    color: "rgba(0, 0, 0, 0.75)"
+                  }}>{minuman?.description}</p>
+                </div>
                 <div className="flex justify-center">
-                  <button className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-                    Buy
-                  </button>
-                  <button
-                    className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"
-                    onClick={open}
-                  >
-                    Delete
+                  <button className="text-[#67442E] py-2 px-6 focus:outline-none text-lg" style={{
+                    borderRadius: "23px",
+                    background: "#DDCCAE",
+                    width: "307px",
+                    color: "#67442E",
+                    textAlign: "center",
+                    // font-feature-settings: 'clig' off, 'liga' off;
+                    fontFamily: "DM Sans",
+                    fontSize: "20px",
+                    fontStyle: "normal",
+                    fontWeight: "500",
+                    lineHeight: "38px"
+                  }}>
+                    Pesan Sekarang
                   </button>
                 </div>
               </div>
@@ -120,6 +134,5 @@ Minuman.getInitialProps = async ({ query: { id } }) => {
     return { minuman: {} };
   }
 };
-
 
 export default Minuman;

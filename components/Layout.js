@@ -7,10 +7,8 @@ import { useEffect, useState } from "react";
 const Layout = ({ children }) => {
 
   const [userRole, setUserRole] = useState("user")
-
   const cookies = parseCookies();
 
-  
   // console.log("user token cookies: ", cookies.user_token)
   // console.log(typeof cookies.user_token)
   
@@ -19,7 +17,6 @@ const Layout = ({ children }) => {
     if (cookies.user_token) {
       const user = JSON.parse(cookies.user_token).user;
       console.log(user)
-    
       setUserRole(user?.role?.toLowerCase())
     }
 
@@ -28,11 +25,8 @@ const Layout = ({ children }) => {
   // console.log(JSON.parse(cookies.user_token))
   // console.log(cookies.user_token?.isLoggedIn)
   // console.log(cookies.user_token?.user?.role)
-  
   // Ganti nilai userRole dengan nilai yang sesuai setelah pengguna masuk atau memiliki peran tertentu.
   // const userRole = 'admin'; // Misalnya, ubah menjadi 'admin' jika pengguna memiliki peran admin.
-
-
   // console.log(userRole)
 
   return (
@@ -54,7 +48,10 @@ const Layout = ({ children }) => {
           }
         `}
       </style>
-      <div className="max-w-[380px] m-auto">
+      <div className="m-auto" style={{
+        width:"387px",
+        height:"800px"
+      }}>
         <Navbar userRole={userRole} /> {/* Berikan properti userRole */}
         {children}
         <Footer />

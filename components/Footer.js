@@ -68,14 +68,14 @@ const Footer = () => (
                   </Link>
                 </td>
                 <td>
-                  <Link href='/' className='mr-5 hover:text-black-900'>
+                  <Link href='/promo' className='mr-5 hover:text-black-900'>
                     <p>Promo</p>
                   </Link>
                 </td>
               </tr>
               <tr>
                 <td style={{ paddingRight: '109px' }}>
-                  <Link href='/index_promo' className='mr-5 hover:text-black-900'>
+                  <Link href='/menu' className='mr-5 hover:text-black-900'>
                     <p>Our Menu</p>
                   </Link>
                 </td>
