@@ -5,7 +5,7 @@ import { Button, Card } from 'semantic-ui-react';
 import PrivateRoute from "../components/PrivateRoute";
 
 
-const Index = ({ minumans }) => {
+const Index = ({ minumans, userRole }) => {
   useEffect(() => {
     console.log(minumans); // Periksa data yang diterima
   }, [minumans]);
@@ -20,6 +20,7 @@ const Index = ({ minumans }) => {
         body: JSON.stringify({
           title: minuman.title,
           price: minuman.price,
+          image: minuman.image
         }),
       });
 
@@ -203,38 +204,42 @@ const Index = ({ minumans }) => {
                             </button>
                           </div>
                         </Link>
-                        <Link href={`/${minuman._id}/editminuman`}>
-                          <button
-                            className="bg-transparent text-[#67442E] font-semibold py-2 px-auto"
-                            style={{
-                              borderRadius: "12.275px",
-                              border: "1.416px solid #67442E",
-                              display: "flex",
-                              padding: "4.83px 29.272px",
-                              alignItems: "flex-start",
-                              gap: "-3.45px",
-                            }}>
-                            Edit
-                          </button>
-                        </Link>
+                        {userRole === 'admin' && (
+                          <>
+                            <Link href={`/${minuman._id}/editminuman`}>
+                              <button
+                                className="bg-transparent text-[#67442E] font-semibold py-2 px-auto"
+                                style={{
+                                  borderRadius: "12.275px",
+                                  border: "1.416px solid #67442E",
+                                  display: "flex",
+                                  padding: "4.83px 29.272px",
+                                  alignItems: "flex-start",
+                                  gap: "-3.45px",
+                                }}>
+                                Edit
+                              </button>
+                            </Link>
 
-                        <Button
-                          className="bg-transparent text-[#FF0000] font-semibold py-2 px-4 border m-2 border-[#FF0000] rounded"
-                          onClick={() => handleDelete(minuman._id)}
-                        >
-                          <button
-                            className="bg-transparent text-[#67442E] font-semibold py-2 px-auto"
-                            style={{
-                              borderRadius: "12.275px",
-                              border: "1.416px solid #67442E",
-                              display: "flex",
-                              padding: "4.83px 29.272px",
-                              alignItems: "flex-start",
-                              gap: "-3.45px",
-                            }}>
-                            Delete
-                          </button>
-                        </Button>
+                            <Button
+                              className="bg-transparent text-[#FF0000] font-semibold py-2 px-4 border m-2 border-[#FF0000] rounded"
+                              onClick={() => handleDelete(minuman._id)}
+                            >
+                              <button
+                                className="bg-transparent text-[#67442E] font-semibold py-2 px-auto"
+                                style={{
+                                  borderRadius: "12.275px",
+                                  border: "1.416px solid #67442E",
+                                  display: "flex",
+                                  padding: "4.83px 29.272px",
+                                  alignItems: "flex-start",
+                                  gap: "-3.45px",
+                                }}>
+                                Delete
+                              </button>
+                            </Button>
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>

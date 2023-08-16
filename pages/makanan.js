@@ -41,6 +41,7 @@ const Index = ({ makanans, userRole }) => {
         body: JSON.stringify({
           title: makanan.title,
           price: makanan.price,
+          image: makanan.image
         }),
       });
 

@@ -11,7 +11,13 @@ const KeranjangSchema = new mongoose.Schema({
         type: Number,
         required: true,
         maxlength: [200, 'Price cannot be more than 200 characters']
+    },
+    image: {
+        type: String,
+        required: true,
+        maxlength: [1000, 'Image cannot be more than 1000 characters']
     }
+    
 })
 
 module.exports = mongoose.models.Keranjang || mongoose.model('Keranjang', KeranjangSchema);

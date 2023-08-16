@@ -76,7 +76,7 @@ const Index = ({ keranjangs }) => {
           fontWeight: "600"
         }}>
           <div
-            className="p-4 border-b-2 flex justify items-center"
+            className="p-4 mb-12 border-b-2 flex justify items-center"
             style={{
               width: "350px",
               color: "#000",
@@ -104,65 +104,153 @@ const Index = ({ keranjangs }) => {
           {keranjangs.map((keranjang) => (
             <div
               key={keranjang._id}
-              className="p-4 border-b-2 flex justify items-center"
+              className="flex justify items-center"
               style={{ width: "350px" }}
             >
-              <div className="flex flex-row justify-between w-full">
-                <div className="text-left">
-                  <label className="cursor-pointer">
-                    <Link href={`/${keranjang._id}`}>
-                      <span className="text-black font-semibold text-sm">
-                        {keranjang.title}
-                      </span>
-                    </Link>
-                  </label>
-                </div>
-                <div className="text-right">
-                  <span className="mr-1">+</span>
-                  <span className="text-gray-700 font-medium text-sm" style={{
-                    fontWeight: "600",
-                    color: "#000",
-                    fontSize: "13px"
+              <div class='text-gray-600 body-font mb-2'>
+                <div class='mx-auto'>
+                  <div class='flex items-center flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6' style={{
+                    margin: "auto 25px"
                   }}>
-                    Rp. {keranjang.price}
-                  </span>
-                  <input
-                    className="ml-2"
-                    type="checkbox"
-                    checked={selectedItems.includes(keranjang)}
-                    onChange={() => handleCheckboxChange(keranjang)}
-                  />
+                    <div class='flex items-center mb-3' style={{
+                      width: "308px",
+                      height: "103px",
+                      flexShrink: "0",
+                      borderRadius: "10px",
+                      background: "#F6ECD1"
+                    }}>
+
+                      <img class='ml-3'
+                        src={keranjang.image} alt="Deskripsi Gambar" style={{
+                          width: "76.757px",
+                          height: "79px",
+                          borderRadius: "10px"
+                        }} />
+                      <input
+                        className="ml-2"
+                        type="checkbox"
+                        checked={selectedItems.includes(keranjang)}
+                        onChange={() => handleCheckboxChange(keranjang)}
+                        style={{ opacity: 0 }}
+                      />
+
+                      <div class='text-start ml-6 flex flex-col justify-items-end'>
+                        <h1
+                          className="mb-2" style={{
+                            color: "#000",
+                            fontSize: "15px",
+                            fontWeight: "500",
+                            lineHeight: "20px",
+                          }}>
+                          {keranjang.title}
+                          <input
+                            className="ml-2"
+                            type="checkbox"
+                            checked={selectedItems.includes(keranjang)}
+                            onChange={() => handleCheckboxChange(keranjang)}
+                            style={{ opacity: 0 }}
+                          />
+                        </h1>
+                        <div style={{
+                          color: "rgba(0, 0, 0, 0.75)",
+                          fontSize: "13px",
+                          fontWeight: "500",
+                          lineHeight: "20px"
+                        }}>
+
+                          <p>
+                            {keranjang.price}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
+          <div className="">
+
+          </div>
         </div>
-        <div className="mt-4">
-          <button
-            onClick={handleAddToCart}
-            style={{
-              borderRadius: "27px",
-              background: "#F3E0BF",
-              padding: "15px 20px",
-              gap: "10px",
-              color: "#67442E"
-            }}
-          >
-            Tambah Order
-            <span className="bg-[#67442E]"
-              style={{
-                borderRadius: "23px",
-                background: "#67442E",
-                color: "#F3E0BF",
-                padding: "10px 20px",
-                gap: "10px",
-                marginLeft: "30px"
-              }}>
-              {totalPrice}
-            </span>
-          </button>
+        <div className="mt-2 flex items-center justify-center">
+          <div class='flex items-center justify-between' style={{
+            width: "314px",
+            height: "47px",
+          }}>
+            <p class='' style={{
+              color: "#000",
+              fontSize: "15px",
+              fontStyle: "normal",
+              fontWeight: "600",
+              lineHeight: "normal"
+            }}>
+              Sub Total
+            </p>
+            <div style={{ position: `relative` }}>
+              <div class='text-center'>
+                <div style={{
+                  color: "#A5895E",
+                  fontSize: "15px",
+                  fontStyle: "normal",
+                  fontWeight: "600",
+                  lineHeight: "normal"
+                }}>
+                  {totalPrice}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="mt-2 flex items-center justify-center">
+          <div class='flex items-center justify-between' style={{
+            width: "314px",
+            height: "47px",
+          }}>
+            <p class='' style={{
+              color: "#000",
+              fontSize: "15px",
+              fontStyle: "normal",
+              fontWeight: "600",
+              lineHeight: "normal"
+            }}>
+              Total
+            </p>
+            <div style={{ position: `relative` }}>
+              <div class='text-center'>
+                <div style={{
+                  color: "#A5895E",
+                  fontSize: "15px",
+                  fontStyle: "normal",
+                  fontWeight: "600",
+                  lineHeight: "normal"
+                }}>
+                  {totalPrice}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      <button
+        type="submit"
+        style={{
+          borderRadius: "15px",
+          background: "#DDCCAE",
+          display: "flex",
+          width: "308px",
+          height: "54px",
+          padding: "8px 20px",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "-5px",
+          fontSize: "20px",
+          fontWeight: "500px",
+          margin: "40px auto"
+        }}
+      >
+        Buat Pesanan
+      </button>
     </div>
   );
 };
