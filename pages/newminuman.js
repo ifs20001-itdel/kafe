@@ -61,7 +61,7 @@ const NewMinuman = () => {
   }
 
   return (
-    <section className="text-gray-600 body-font">
+    <section className="text-gray-600 bg-[#f6efdf] body-font">
       <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
         <div className="text-center lg:w-2/3 w-full">
           <h1 className="title-font sm:text-4xl text-3xl mb-20 font-medium text-gray-900">Create Minuman</h1>
@@ -102,7 +102,25 @@ const NewMinuman = () => {
                   name="description"
                   onChange={handleChange}
                 />
-                <Button type="submit">Create</Button>
+                <button
+                  type='submit'
+                  className="mt-16"
+                  style={{
+                    borderRadius: "15px",
+                    background: "#DDCCAE",
+                    display: "flex",
+                    width: "308px",
+                    height: "54px",
+                    padding: "8px 20px",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: "-5px",
+                    fontSize: "20px",
+                    fontWeight: "500px"
+                  }}
+                >
+                  Create
+                </button>
               </Form>
             )}
           </div>

@@ -27,7 +27,9 @@ const Footer = () => (
             <img src='/kefi.png' width={60} height={60}></img>
           </div>
         </div>
-        <div className='flex title-font font-medium items-center md:justify-start justify-center text-white-900 mb-6'>
+        <div className='flex flex-col font-bold justify-center items-center title-font text-white-900 mb-16' style={{
+          letterSpacing: "5px"
+        }}>
           LINKS
         </div>
         <nav className='flex justify-center'>
@@ -63,24 +65,32 @@ const Footer = () => (
             <tbody>
               <tr>
                 <td>
-                  <Link href='/' className='mr-5 hover:text-black-900'>
+                  <Link href='/' className='mr-5 hover:text-black-900' style={{
+                    letterSpacing: "2px"
+                  }}>
                     <p>Home Page</p>
                   </Link>
                 </td>
                 <td>
-                  <Link href='/promo' className='mr-5 hover:text-black-900'>
+                  <Link href='/promo' className='mr-5 hover:text-black-900' style={{
+                    letterSpacing: "2px"
+                  }}>
                     <p>Promo</p>
                   </Link>
                 </td>
               </tr>
               <tr>
                 <td style={{ paddingRight: '109px' }}>
-                  <Link href='/menu' className='mr-5 hover:text-black-900'>
+                  <Link href='/menu' className='mr-5 hover:text-black-900' style={{
+                    letterSpacing: "2px"
+                  }}>
                     <p>Our Menu</p>
                   </Link>
                 </td>
                 <td>
-                  <Link href='/contact' className='mr-5 hover:text-black-900'>
+                  <Link href='/contact' className='mr-5 hover:text-black-900' style={{
+                    letterSpacing: "2px"
+                  }}>
                     <p>Location</p>
                   </Link>
                 </td>
@@ -88,19 +98,32 @@ const Footer = () => (
             </tbody>
           </table>
         </nav>
-        <div className='flex title-font font-medium items-center md:justify-start justify-center text-white-900 mb-3 mt-6'>
-          CONTACT
-        </div>
-        <div className='flex title-font font-medium items-center md:justify-start justify-center text-white-900 mb-10'>
-          email@gmail.com
+        <div className='flex flex-col items-center justify-center'>
+          <div className='title-font font-bold text-white-900 mb-3 mt-6' style={{
+            letterSpacing: "5px"
+          }}>
+            CONTACT
+          </div>
+          <div className='title-font font-medium text-white-900 mb-10' style={{
+            letterSpacing: "2px"
+          }}>
+            email@gmail.com
+          </div>
+
+          <div className='title-font font-bold text-white-900 mb-3' style={{
+            letterSpacing: "5px"
+          }}>
+            SOCIAL
+          </div>
+          <div className='title-font font-medium text-white-900' style={{
+            letterSpacing: "2px"
+          }}>
+            <Link href="https://www.instagram.com/kefi.cafeandspace/">
+              kefi.cafeandspace
+            </Link>
+          </div>
         </div>
 
-        <div className='flex title-font font-medium items-center md:justify-start justify-center text-white-900 mb-3'>
-          SOCIAL
-        </div>
-        <div className='flex title-font font-medium items-center md:justify-start justify-center text-white-900'>
-          kefi.cafeandspace
-        </div>
       </div>
     </div>
 

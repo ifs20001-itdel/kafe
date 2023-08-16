@@ -65,12 +65,12 @@ const Home = () => {
       {/* STORY */}
       <div className='text-gray-600 body-font'>
         <div className='container text-center mt-16 mb-16'>
-          <div className='lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center'>
-            <h1 className='title-font text-3xl mb-4 font-medium text-gray-900 flex'>
+          <div className='lg:flex-grow md:items-start md:text-left mb-16 items-center text-center'>
+            <h1 className='title-font text-3xl mb-4 font-medium text-gray-900'>
               Our Story
             </h1>
           </div>
-          <div className='lg:max-w-lg lg:w-full 6md:w-1/2 w-5/6 m-auto'>
+          <div className='m-auto'>
             <img
               className='object-cover object-center rounded mb-'
               alt='hero'
@@ -89,7 +89,7 @@ const Home = () => {
       {/* FOOD */}
       <div class='text-gray-600 body-font pb-12 bg-[#F9F9F9]'>
         <div class='container px-5 py-10 mx-auto'>
-        <div class='flex items-center justify-between' style={{
+          <div class='flex items-center justify-between' style={{
             width: "314px",
             height: "47px",
           }}>
@@ -112,7 +112,7 @@ const Home = () => {
                   lineHeight: "normal"
                 }}>
                   <Link href="/makanan">
-                  See others
+                    See others
                   </Link>
                 </div>
               </div>
@@ -190,7 +190,7 @@ const Home = () => {
                   lineHeight: "normal"
                 }}>
                   <Link href="/minuman">
-                  See others
+                    See others
                   </Link>
                 </div>
               </div>
@@ -244,41 +244,43 @@ const Home = () => {
 
       {/* PROMO */}
       <div class='text-gray-600 body-font mb-10'>
-        <div class='container px-5 py-10 mx-auto'>
-          <div class='text-center mb-10'>
-          <div class='flex items-center justify-between' style={{
-            width: "314px",
-            height: "47px",
-          }}>
-            <p class='' style={{
-              color: "#000",
-              fontSize: "20px",
-              fontStyle: "normal",
-              fontWeight: "600",
-              lineHeight: "normal"
+        <div class='container py-10 mx-auto'>
+          <div class='text-center mb-10 px-3'>
+            <div class='flex items-center justify-between' style={{
+              width: "314px",
+              height: "47px",
             }}>
-              Promo
-            </p>
-            <div style={{ position: `relative` }}>
-              <div class='text-center'>
-                <div style={{
-                  color: "#A5895E",
-                  fontSize: "15px",
-                  fontStyle: "normal",
-                  fontWeight: "600",
-                  lineHeight: "normal"
-                }}>
-                  <Link href="/promo">
-                  See others
-                  </Link>
+              <p class='' style={{
+                color: "#000",
+                fontSize: "20px",
+                fontStyle: "normal",
+                fontWeight: "600",
+                lineHeight: "normal"
+              }}>
+                Promo
+              </p>
+              <div style={{ position: `relative` }}>
+                <div class='text-center'>
+                  <div style={{
+                    color: "#A5895E",
+                    fontSize: "15px",
+                    fontStyle: "normal",
+                    fontWeight: "600",
+                    lineHeight: "normal"
+                  }}>
+                    <Link href="/promo">
+                      See others
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          </div>
 
-          <div class='flex items-center flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6'>
-            <div class='flex items-center' style={{
+          <div class='flex items-center flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6' style={{
+            margin: "auto 25px"
+          }}>
+            <div class='flex items-center mb-4' style={{
               width: "308px",
               height: "103px",
               flexShrink: "0",
@@ -376,19 +378,19 @@ const Home = () => {
 
       {/* Location */}
       <div className='text-gray-600 body-font'>
-        <div className='container mx-auto flex px-5 py-24 md:flex-row flex-col items-center'>
-          <div className='lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center'>
-            <h1 className='title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900'>
+        <div className='container mx-auto flex py-24 flex-col items-center'>
+          <div className='flex flex-col mb-16 items-center'>
+            <h1 className='title-font sm:text-4xl text-3xl mb-16 font-medium text-gray-900'>
               Location
             </h1>
-            <div className='lg:max-w-lg lg:w-full md:w-1/2 w-5/6'>
+            <div className='w-5/6'>
               <img
                 className='object-cover object-center rounded-xl'
                 alt='hero'
                 src='/lokasi.png'
               />
             </div>
-            <p className='mb-8 leading-relaxed mt-5'>
+            <p className='mb-8 leading-relaxed mt-5 text-center'>
               KOMPLEK, Jl. Classic II Jl. Abdul Hakim, Tj. Sari, Kec. Medan
               Selayang, Kota Medan, Sumatera Utara 20131
             </p>

@@ -1,14 +1,15 @@
-import React from 'react'
-import Link from 'next/link'
+import Link from "next/link";
+import React from "react";
+import Layout from "../components/Layout";
 
-function autentikasi() {
+export default function Home() {
   return (
     <div>
       <div>
-        <section className='bg-gray-50 dark:bg-gray-900'>
-          <div className='flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0'>
-            <div className='w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700'>
-            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <section className='bg-[#f6efdf] dark:bg-gray-900'>
+          <div className='flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0'>
+            <div className='w-full'>
+              <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                 <Link href={`/`}>
                   <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="1.87646" y="39.9688" width="38.0927" height="38.0927" rx="18.7628" transform="rotate(-90 1.87646 39.9688)" fill="#DDCCAE" />
@@ -17,14 +18,20 @@ function autentikasi() {
                 </Link>
               </div>
               <div className='p-6 space-y-4 md:space-y-6 sm:p-8'>
-                <h1 className='text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white'>
-                  Registrasi
+                <h1 className='' style={{
+                  color: "#67442E",
+                  fontSize: "20px",
+                  fontWeight: "600",
+                  lineHeight: "20px",
+                  letterSpacing: "2px"
+                }}>
+                  Hello, nice to meet you
                 </h1>
                 <form className='space-y-4 md:space-y-6' action='/api/register' method='post'>
                   <div>
                     <label
                       htmlFor='name'
-                      className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+                      className='block mb-2 text-sm font-medium'
                     >
                       Your name
                     </label>
@@ -40,7 +47,7 @@ function autentikasi() {
                   <div>
                     <label
                       htmlFor='email'
-                      className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+                      className='block mb-2 text-sm font-medium '
                     >
                       Your email
                     </label>
@@ -56,7 +63,7 @@ function autentikasi() {
                   <div>
                     <label
                       htmlFor='password'
-                      className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+                      className='block mb-2 text-sm font-medium '
                     >
                       Password
                     </label>
@@ -73,7 +80,7 @@ function autentikasi() {
                   <div>
                     <label
                       htmlFor='role'
-                      className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+                      className='block mb-2 text-sm font-medium '
                     >
                       Your Role
                     </label>
@@ -86,38 +93,25 @@ function autentikasi() {
                       required=''
                     />
                   </div>
-
-                  <div className='flex items-start'>
-                    <div className='flex items-center h-5'>
-                      <input
-                        id='terms'
-                        aria-describedby='terms'
-                        type='checkbox'
-                        className='w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800'
-                        required=''
-                      />
-                    </div>
-                    <div className='ml-3 text-sm'>
-                      <label
-                        htmlFor='terms'
-                        className='font-light text-gray-500 dark:text-gray-300'
-                      >
-                        I accept the{' '}
-                        <a
-                          className='font-medium text-primary-600 hover:underline dark:text-primary-500'
-                          href='#'
-                        >
-                          Terms and Conditions
-                        </a>
-                      </label>
-                    </div>
-                  </div>
                   <button
                     type='submit'
                     value='Register'
-                    className='w-full bg-transparent hover:bg-[#DDCCAE] text-[#DDCCAE] font-semibold hover:text-white py-2 px-4 border border-[#DDCCAE] hover:border-transparent rounded'
+                    style={{
+                      borderRadius: "15px",
+                      background: "#DDCCAE",
+                      display: "flex",
+                      width: "290px",
+                      height: "54px",
+                      padding: "8px 20px",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "-5px",
+                      fontSize: "20px",
+                      fontWeight: "500px",
+                      color:"#67442E"
+                    }}
                   >
-                    Create an account
+                    Register
                   </button>
                   <p className='text-sm font-light text-gray-500 dark:text-gray-400'
                     style={{
@@ -125,7 +119,8 @@ function autentikasi() {
                       fontSize: "13px",
                       fontStyle: "normal",
                       fontWeight: "500",
-                      lineHeight: "20px"
+                      lineHeight: "20px",
+                      textAlign:"center"
                     }}
                   >
                     Sudah punya akun?{' '}
@@ -145,5 +140,3 @@ function autentikasi() {
     </div>
   )
 }
-
-export default autentikasi

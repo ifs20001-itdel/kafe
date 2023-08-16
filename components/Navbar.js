@@ -106,7 +106,6 @@ const Navbar = ({ userRole }) => {
             <Image src="/kefi.png" width={50} height={50} />
           </span>
         </div>
-
         <div className="pt-8 pb-12 z-20">
           <div className="mr-5">
             <button className="focus:outline-none ml-6" onClick={toggleUserMenu} style={{ color: "#67442E" }}>
@@ -120,9 +119,18 @@ const Navbar = ({ userRole }) => {
             <Link href="/" className="mr-5 hover:text-gray-900">
               <p className="text-center" style={{ marginTop: "10px" }}>Home Page</p>
             </Link>
-            <Link href="/login" className="mr-5 hover:text-gray-900">
-              <p className="text-center">Login</p>
-            </Link>
+            {/* Check if user is logged in */}
+            {userRole === 'user' ? (
+              <Link href="/login" className="mr-5 hover:text-gray-900">
+                <p className="text-center">Login</p>
+              </Link>
+            ) : (
+              <button className="focus:outline-none cursor-pointer mt-4" onClick={handleLogout}>
+                <p style={{
+                  margin:"auto 150px"
+                }}>Logout</p>
+              </button>
+            )}
           </div>
         </div>
       </nav>
