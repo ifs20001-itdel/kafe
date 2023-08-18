@@ -54,6 +54,8 @@ const Home = () => {
             className='order-button relative px-3 py-2.5 overflow-hidden group bg-yellow-50 relative hover:bg-gradient-to-r hover:from-amber-500 hover:to-amber-400 text-amber-950 hover:ring-2 hover:ring-offset-2 hover:ring-amber-400 transition-all ease-out duration-300'
             style={{
               borderRadius: "20px",
+              textDecoration:"none",
+              color:"#000"
             }}
           >
             <span className='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-20 group-hover:-translate-x-80 ease'></span>
@@ -111,7 +113,10 @@ const Home = () => {
                   fontWeight: "600",
                   lineHeight: "normal"
                 }}>
-                  <Link href="/makanan">
+                  <Link style={{
+                      textDecoration:"none",
+                      color:"#000"
+                    }} href="/makanan">
                     See others
                   </Link>
                 </div>
@@ -189,7 +194,10 @@ const Home = () => {
                   fontWeight: "600",
                   lineHeight: "normal"
                 }}>
-                  <Link href="/minuman">
+                  <Link style={{
+                      textDecoration:"none",
+                      color:"#000"
+                    }} href="/minuman">
                     See others
                   </Link>
                 </div>
@@ -268,7 +276,10 @@ const Home = () => {
                     fontWeight: "600",
                     lineHeight: "normal"
                   }}>
-                    <Link href="/promo">
+                    <Link style={{
+                      textDecoration:"none",
+                      color:"#000"
+                    }} href="/promo">
                       See others
                     </Link>
                   </div>

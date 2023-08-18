@@ -70,7 +70,10 @@ const Index = ({ minumans, userRole }) => {
           }}>
           <ol class='list-reset flex'>
             <li>
-              <Link href='/'>Homepage</Link>
+              <Link style={{
+                textDecoration: "none",
+                color: "#000"
+              }} href='/'>Homepage</Link>
             </li>
             <li>
               <span class='mx-2 text-neutral-500 dark:text-neutral-400'>/</span>
@@ -121,7 +124,10 @@ const Index = ({ minumans, userRole }) => {
                   <div key={minuman._id} className="card-item" style={{ width: "156px" }}>
                     <div>
                       <div>
-                        <Link href={`/${minuman._id}/drink`}>
+                        <Link style={{
+                          textDecoration: "none",
+                          color: "#000"
+                        }} href={`/${minuman._id}/drink`}>
                           <img src={minuman.image} alt="image description" style={{
                             width: "150.135px",
                             height: "150.135px",
@@ -131,7 +137,10 @@ const Index = ({ minumans, userRole }) => {
                       </div>
                       <div>
                         <div className="mt-4 text-left">
-                          <Link href={`/${minuman._id}/drink`}>
+                          <Link style={{
+                            textDecoration: "none",
+                            color: "#000"
+                          }} href={`/${minuman._id}/drink`}>
                             <span style={{
                               color: "#000",
 
@@ -162,7 +171,10 @@ const Index = ({ minumans, userRole }) => {
                         View
                       </Button>
                     </Link> */}
-                        <Link href='/keranjang'>
+                        <Link style={{
+                          textDecoration: "none",
+                          color: "#000"
+                        }} href='/keranjang'>
                           <div className="flex items-center justify-start">
                             <button
                               className="bg-transparent text-[#67442E] font-semibold py-2 px-auto"
@@ -206,7 +218,10 @@ const Index = ({ minumans, userRole }) => {
                         </Link>
                         {userRole === 'admin' && (
                           <>
-                            <Link href={`/${minuman._id}/editminuman`}>
+                            <Link style={{
+                              textDecoration: "none",
+                              color: "#000"
+                            }} href={`/${minuman._id}/editminuman`}>
                               <button
                                 className="bg-transparent text-[#67442E] font-semibold py-2 px-auto"
                                 style={{

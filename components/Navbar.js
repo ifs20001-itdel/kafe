@@ -64,18 +64,34 @@ const Navbar = ({ userRole }) => {
 
           <div className={`${isMobileMenuOpen ? '' : 'hidden'} mt-6 w-full flex-wrap items-center justify-center absolute top-16 left-0 z-10`} style={{ zIndex: 10, backgroundColor: "#F3E0BF" }}>
             <Link href="/" className="mr-5 hover:text-gray-900">
-              <p className="text-center" style={{ marginTop: "10px" }}>Home Page</p>
+              <p className="text-center" style={{
+                marginTop: "10px",
+                textDecoration: "none",
+                color: "#000"
+              }}>Home Page</p>
             </Link>
-            <Link href="/menu" className="mr-5 hover:text-gray-900">
+            <Link href="/menu" style={{
+              textDecoration: "none",
+              color: "#000"
+            }} className="mr-5 hover:text-gray-900">
               <p className="text-center">Menu</p>
             </Link>
-            <Link href="/promo" className="mr-5 hover:text-gray-900">
+            <Link href="/promo" style={{
+              textDecoration: "none",
+              color: "#000"
+            }} className="mr-5 hover:text-gray-900">
               <p className="text-center">Promo</p>
             </Link>
-            <Link href="/keranjang" className="mr-5 hover:text-gray-900">
+            <Link href="/keranjang" style={{
+              textDecoration: "none",
+              color: "#000"
+            }} className="mr-5 hover:text-gray-900">
               <p className="text-center">Keranjang</p>
             </Link>
-            <Link href="/contact" className="mr-5 hover:text-gray-900">
+            <Link href="/contact" style={{
+              textDecoration: "none",
+              color: "#000"
+            }} className="mr-5 hover:text-gray-900">
               <p className="text-center">Contact</p>
             </Link>
             <div className="hover:text-gray-900 focus:outline-none cursor-pointer" onClick={toggleCreateMenu}>
@@ -84,13 +100,22 @@ const Navbar = ({ userRole }) => {
                   <p className="text-center">CREATE</p>
                   {isCreateMenuOpen && (
                     <div className="mt-4 bg-[#C8AE7D]">
-                      <Link href="/newmakanan" className="mr-5 hover:text-gray-900">
+                      <Link href="/newmakanan" style={{
+                        textDecoration: "none",
+                        color: "#000"
+                      }} className="mr-5 hover:text-gray-900">
                         <p className="text-center pt-2">CREATE Makanan</p>
                       </Link>
-                      <Link href="/newminuman" className="mr-5 hover:text-gray-900">
+                      <Link href="/newminuman" style={{
+                        textDecoration: "none",
+                        color: "#000"
+                      }} className="mr-5 hover:text-gray-900">
                         <p className="text-center">CREATE Minuman</p>
                       </Link>
-                      <Link href="/newpromo" className="mr-5 hover:text-gray-900">
+                      <Link href="/newpromo" style={{
+                        textDecoration: "none",
+                        color: "#000"
+                      }} className="mr-5 hover:text-gray-900">
                         <p className="text-center">CREATE Promo</p>
                       </Link>
                     </div>
@@ -117,17 +142,24 @@ const Navbar = ({ userRole }) => {
 
           <div className={`${isUserMenuOpen ? '' : 'hidden'} mt-6 w-full flex-wrap items-center justify-center absolute top-16 left-0 z-10`} style={{ zIndex: 10, backgroundColor: "#F3E0BF" }}>
             <Link href="/" className="mr-5 hover:text-gray-900">
-              <p className="text-center" style={{ marginTop: "10px" }}>Home Page</p>
+              <p className="text-center" style={{
+                marginTop: "10px",
+                textDecoration: "none",
+                color: "#000"
+              }}>Home Page</p>
             </Link>
             {/* Check if user is logged in */}
             {userRole === 'user' ? (
-              <Link href="/login" className="mr-5 hover:text-gray-900">
+              <Link href="/login" style={{
+                textDecoration: "none",
+                color: "#000"
+              }} className="mr-5 hover:text-gray-900">
                 <p className="text-center">Login</p>
               </Link>
             ) : (
               <button className="focus:outline-none cursor-pointer mt-4" onClick={handleLogout}>
                 <p style={{
-                  margin:"auto 150px"
+                  margin: "auto 150px"
                 }}>Logout</p>
               </button>
             )}

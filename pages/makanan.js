@@ -72,7 +72,10 @@ const Index = ({ makanans, userRole }) => {
         }}>
         <ol class='list-reset flex'>
           <li>
-            <Link href='/'>Homepage</Link>
+            <Link style={{
+              textDecoration: "none",
+              color: "#000"
+            }} href='/'>Homepage</Link>
           </li>
           <li>
             <span class='mx-2 text-neutral-500 dark:text-neutral-400'>/</span>
@@ -123,7 +126,10 @@ const Index = ({ makanans, userRole }) => {
                 <div key={makanan._id} className="card-item" style={{ width: "156px" }}>
                   <div>
                     <div>
-                      <Link href={`/${makanan._id}/food`}>
+                      <Link style={{
+                        textDecoration: "none",
+                        color: "#000"
+                      }} href={`/${makanan._id}/food`}>
                         <img src={makanan.image} alt="image description" style={{
                           width: "150.135px",
                           height: "150.135px",
@@ -133,7 +139,10 @@ const Index = ({ makanans, userRole }) => {
                     </div>
                     <div>
                       <div className="mt-4 text-left">
-                        <Link href={`/${makanan._id}`}>
+                        <Link style={{
+                          textDecoration: "none",
+                          color: "#000"
+                        }} href={`/${makanan._id}`}>
                           <span style={{
                             color: "#000",
 
@@ -164,7 +173,10 @@ const Index = ({ makanans, userRole }) => {
                         View
                       </Button>
                     </Link> */}
-                      <Link href='/keranjang'>
+                      <Link style={{
+                        textDecoration: "none",
+                        color: "#000"
+                      }} href='/keranjang'>
                         <div className="flex items-center justify-start">
                           <button
                             className="bg-transparent text-[#67442E] font-semibold py-2 px-auto"
@@ -209,7 +221,10 @@ const Index = ({ makanans, userRole }) => {
                       <div className="mt-2 mb-6 text-left">
                         {userRole === 'admin' && (
                           <React.Fragment>
-                            <Link href={`/${makanan._id}/editmakanan`}>
+                            <Link style={{
+                              textDecoration: "none",
+                              color: "#000"
+                            }} href={`/${makanan._id}/editmakanan`}>
                               <button className="bg-transparent text-[#67442E] font-semibold py-2  px-auto" style={{ borderRadius: "12.275px", border: "1.416px solid #67442E", display: "flex", padding: "4.83px 29.272px", alignItems: "flex-start", gap: "-3.45px" }}>
                                 Edit
                               </button>

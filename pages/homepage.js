@@ -487,7 +487,10 @@ const Home = () => {
                   fontWeight: "600",
                   lineHeight: "normal"
                 }}>
-                  <Link href="/makanan">
+                  <Link style={{
+                      textDecoration:"none",
+                      color:"#000"
+                    }} href="/makanan">
                   See others
                   </Link>
                 </div>
@@ -565,7 +568,10 @@ const Home = () => {
                   fontWeight: "600",
                   lineHeight: "normal"
                 }}>
-                  <Link href="/minuman">
+                  <Link style={{
+                      textDecoration:"none",
+                      color:"#000"
+                    }} href="/minuman">
                   See others
                   </Link>
                 </div>
@@ -644,7 +650,10 @@ const Home = () => {
                   fontWeight: "600",
                   lineHeight: "normal"
                 }}>
-                  <Link href="/promo">
+                  <Link style={{
+                      textDecoration:"none",
+                      color:"#000"
+                    }} href="/promo">
                   See others
                   </Link>
                 </div>

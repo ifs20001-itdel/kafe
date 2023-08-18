@@ -51,7 +51,10 @@ const Index = ({ promos }) => {
           }}>
           <ol class='list-reset flex'>
             <li>
-              <Link href='/'>Homepage</Link>
+              <Link style={{
+                      textDecoration:"none",
+                      color:"#000"
+                    }} href='/'>Homepage</Link>
             </li>
             <li>
               <span class='mx-2 text-neutral-500 dark:text-neutral-400'>/</span>

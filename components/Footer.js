@@ -66,14 +66,18 @@ const Footer = () => (
               <tr>
                 <td>
                   <Link href='/' className='mr-5 hover:text-black-900' style={{
-                    letterSpacing: "2px"
+                    letterSpacing: "2px",
+                    textDecoration: "none",
+                    color: "#000"
                   }}>
                     <p>Home Page</p>
                   </Link>
                 </td>
                 <td>
                   <Link href='/promo' className='mr-5 hover:text-black-900' style={{
-                    letterSpacing: "2px"
+                    letterSpacing: "2px",
+                    textDecoration: "none",
+                    color: "#000"
                   }}>
                     <p>Promo</p>
                   </Link>
@@ -82,14 +86,18 @@ const Footer = () => (
               <tr>
                 <td style={{ paddingRight: '109px' }}>
                   <Link href='/menu' className='mr-5 hover:text-black-900' style={{
-                    letterSpacing: "2px"
+                    letterSpacing: "2px",
+                    textDecoration: "none",
+                    color: "#000"
                   }}>
                     <p>Our Menu</p>
                   </Link>
                 </td>
                 <td>
                   <Link href='/contact' className='mr-5 hover:text-black-900' style={{
-                    letterSpacing: "2px"
+                    letterSpacing: "2px",
+                    textDecoration: "none",
+                    color: "#000"
                   }}>
                     <p>Location</p>
                   </Link>
@@ -118,7 +126,10 @@ const Footer = () => (
           <div className='title-font font-medium text-white-900' style={{
             letterSpacing: "2px"
           }}>
-            <Link href="https://www.instagram.com/kefi.cafeandspace/">
+            <Link style={{
+              textDecoration: "none",
+              color: "#000"
+            }} href="https://www.instagram.com/kefi.cafeandspace/">
               kefi.cafeandspace
             </Link>
           </div>

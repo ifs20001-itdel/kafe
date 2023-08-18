@@ -7,7 +7,10 @@ function menu() {
       <nav class='w-full rounded-md p-3'>
         <ol class='list-reset flex'>
           <li>
-            <Link href='/'>Homepage</Link>
+            <Link style={{
+              textDecoration: "none",
+              color: "#000"
+            }} href='/'>Homepage</Link>
           </li>
           <li>
             <span class='mx-2 text-neutral-500 dark:text-neutral-400'>/</span>
@@ -75,7 +78,10 @@ function menu() {
                   fontWeight: "600",
                   lineHeight: "normal"
                 }}>
-                  <Link href="/makanan">
+                  <Link style={{
+                    textDecoration: "none",
+                    color: "#000"
+                  }} href="/makanan">
                     Menu Lainnya
                   </Link>
                 </div>
@@ -153,7 +159,10 @@ function menu() {
                   fontWeight: "600",
                   lineHeight: "normal"
                 }}>
-                  <Link href="/minuman">
+                  <Link style={{
+                    textDecoration: "none",
+                    color: "#000"
+                  }} href="/minuman">
                     Menu Lainnya
                   </Link>
                 </div>
