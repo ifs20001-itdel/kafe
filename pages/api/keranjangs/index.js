@@ -24,6 +24,15 @@ export default async (req, res) => {
         res.status(400).json({ success: false, error: error.message });
       }
       break;
+    case "DELETE":
+      try {
+        const { id } = req.query; 
+        await Keranjang.findByIdAndDelete(id);
+        res.status(200).json({ success: true, data: {} });
+      } catch (error) {
+        res.status(400).json({ success: false });
+      }
+      break;
     default:
       res.status(400).json({ success: false });
       break;

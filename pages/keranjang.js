@@ -31,6 +31,22 @@ const Index = ({ keranjangs }) => {
     );
   };
 
+  const handleDelete = async (keranjang) => {
+    try {
+      // Send DELETE request to the server to remove the item from the cart
+      await fetch(`http://localhost:3000/api/keranjangs/${keranjang._id}`, {
+        method: "DELETE",
+      });
+
+      // Update selectedItems by removing the deleted item
+      setSelectedItems((prevSelected) =>
+        prevSelected.filter((item) => item !== keranjang)
+      );
+    } catch (error) {
+      console.log("Terjadi kesalahan:", error);
+    }
+  };
+
   return (
     <div>
 
@@ -112,6 +128,13 @@ const Index = ({ keranjangs }) => {
                   <div class='flex items-center flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6' style={{
                     margin: "auto 25px"
                   }}>
+                    <button
+                      className="ml-2 text-red-500"
+                      onClick={() => handleDelete(keranjang)}
+                      style={{ border: "none", background: "none", cursor: "pointer" }}
+                    >
+                      Delete
+                    </button>
                     <div class='flex items-center mb-3' style={{
                       width: "308px",
                       height: "103px",
@@ -173,7 +196,7 @@ const Index = ({ keranjangs }) => {
 
           </div>
         </div>
-        <div className="mt-2 flex items-center justify-center">
+        <div className="mt-2 flex items-center border-t-2 justify-center">
           <div class='flex items-center justify-between' style={{
             width: "314px",
             height: "47px",
@@ -188,7 +211,7 @@ const Index = ({ keranjangs }) => {
               Sub Total
             </p>
             <div style={{ position: `relative` }}>
-              <div class='text-center'>
+              <div class='text-center '>
                 <div style={{
                   color: "#A5895E",
                   fontSize: "15px",

@@ -19,7 +19,7 @@ const Index = ({ promos }) => {
         },
         body: JSON.stringify({
           title: promo.title,
-          price: promo.price,
+          description: promo.description,
         }),
       });
 
@@ -100,6 +100,16 @@ const Index = ({ promos }) => {
                 return (
                   <div key={promo._id} className="card-item" style={{ width: "156px" }}>
                     <div>
+                      <div className="mt-2 text-left mb-3">
+                        <span style={{
+                          color: "#000",
+                          fontSize: "14.164px",
+                          fontStyle: "normal",
+                          fontWeight: "600",
+                          lineHeight: "18.885px",
+                          letterSpacing: "0.283px"
+                        }}>{promo.title}</span>
+                      </div>
                       <div>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -114,41 +124,46 @@ const Index = ({ promos }) => {
                             d="M0 13C0 5.8203 5.8203 0 13 0H142.133C149.313 0 155.133 5.8203 155.133 13V129.133C145.56 129.133 137.8 136.894 137.8 146.467C137.8 156.04 145.56 163.8 155.133 163.8V195C155.133 202.18 149.313 208 142.133 208H13C5.8203 208 0 202.18 0 195V163.8C9.57294 163.8 17.3333 156.04 17.3333 146.467C17.3333 136.894 9.57294 129.133 0 129.133V13Z"
                             fill="#6D0B0C"
                           />
+                          <text
+                            x="10"
+                            y="175"
+                            font-family="Arial, sans-serif"
+                            font-size="14"
+                            fill="#fff"
+                            font-weight="600"
+                          >
+                            {promo.title}
+                          </text>
+                          <text
+                            x="10"
+                            y="195"
+                            font-family="Arial, sans-serif"
+                            font-size="14"
+                            fill="rgba(255, 255, 255, 0.47)"
+                            font-weight="600"
+                          >
+                            {promo.description}
+                          </text>
+                          <circle cx="78" cy="91.467" r="65" fill="#fff" />
                           <image
                             href={promo.image}
-                            width="150"
-                            height="150"
-                            x="3.9325"
-                            y="16.467"
+                            x={(156 - 130) / 2}
+                            y={(190 - 130) / 2}
+                            width="130"
+                            height="130"
+                            preserveAspectRatio="xMidYMid slice"
+                            mask="url(#circle-mask)"
                           />
+                          <mask id="circle-mask" x="0" y="0" width="100%" height="100%">
+                            <circle cx="78" cy="91.467" r="60" fill="white" />
+                          </mask>
                         </svg>
+
+
+
+
                       </div>
                       <div>
-                        <div className="mt-4 text-left">
-                          <Link href={`/${promo._id}`}>
-                            <span style={{
-                              color: "#000",
-
-                              fontSize: "14.164px",
-                              fontStyle: "normal",
-                              fontWeight: "600",
-                              lineHeight: "18.885px",
-                              letterSpacing: "0.283px"
-                            }}>{promo.title}</span>
-                          </Link>
-                        </div>
-                      </div>
-                      <div className="mt-1 text-left">
-                        <span style={{
-                          color: "rgba(0, 0, 0, 0.75)",
-                          textAlign: "center",
-
-                          fontSize: "13px",
-                          fontStyle: "normal",
-                          fontWeight: "500",
-                          lineHeight: "15px",
-                          letterSpacing: "0.26px"
-                        }}>Rp. {promo.price}</span>
                       </div>
                       <div className="mt-2 mb-6 text-left">
                         {/* <Link href={`/${promo._id}`}>
@@ -156,48 +171,6 @@ const Index = ({ promos }) => {
                         View
                       </Button>
                     </Link> */}
-                        <Link href='/keranjang'>
-                          <div className="flex items-center justify-start">
-                            <button
-                              className="bg-transparent text-[#67442E] font-semibold py-2 px-auto"
-                              style={{
-                                borderRadius: "12.275px",
-                                border: "1.416px solid #67442E",
-                                display: "flex",
-                                padding: "4.83px 29.272px",
-                                alignItems: "flex-start",
-                                gap: "-3.45px",
-                              }}
-                              onClick={() => handleAddToCart(promo)}
-                            >
-                              <p className="pr-2" style={{
-                                color: "#67442E",
-                                textAlign: "center",
-                                fontFeatureSettings: "'clig' off, 'liga' off",
-                                fontFamily: "DM Sans",
-                                fontSize: "14.164px",
-                                fontStyle: "normal",
-                                fontWeight: "500",
-                                lineHeight: "26.221px"
-                              }}>Tambah</p>
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor"
-                                className="w-6 h-6"
-                                style={{ paddingTop: "2px", paddingBottom: "2px" }}
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-                                />
-                              </svg>
-                            </button>
-                          </div>
-                        </Link>
                         {/* <Link href={`/${promo._id}/edit`}>
                         <Button className="bg-transparent text-[#67442E] font-semibold py-2 px-4 border m-2 border-[#67442E] rounded">Edit</Button>
                       </Link> */}

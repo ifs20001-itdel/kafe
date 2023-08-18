@@ -104,12 +104,12 @@ const NewMinuman = () => {
                 />
                 <button
                   type='submit'
-                  className="mt-16"
+                  className="container mt-16"
                   style={{
                     borderRadius: "15px",
                     background: "#DDCCAE",
                     display: "flex",
-                    width: "308px",
+                    width: "250px",
                     height: "54px",
                     padding: "8px 20px",
                     justifyContent: "center",

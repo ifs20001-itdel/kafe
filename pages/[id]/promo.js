@@ -68,7 +68,6 @@ const Promo = ({ promo }) => {
                 <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
                   {promo?.title}
                 </h1>
-                <p className="mb-8 leading-relaxed">{promo?.price}</p>
                 <h2 className="flex-top">Description</h2>
                 <p className="mb-8 leading-relaxed">{promo?.description}</p>
                 <div className="flex justify-center">

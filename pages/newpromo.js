@@ -80,14 +80,6 @@ const NewPromo = () => {
                 />
                 <Form.Input
                   fluid
-                  error={errors.price ? { content: 'Please enter a price', pointing: 'below' } : null}
-                  label="Price"
-                  placeholder="Price"
-                  name="price"
-                  onChange={handleChange}
-                />
-                <Form.Input
-                  fluid
                   error={errors.image ? { content: 'Please enter a image', pointing: 'below' } : null}
                   label="Url Image"
                   placeholder="https://gambar.jpg"
@@ -104,12 +96,12 @@ const NewPromo = () => {
                 />
                 <button
                     type='submit'
-                    className="mt-16"
+                    className="container mt-16"
                     style={{
                       borderRadius: "15px",
                       background: "#DDCCAE",
                       display: "flex",
-                      width: "308px",
+                      width: "200px",
                       height: "54px",
                       padding: "8px 20px",
                       justifyContent: "center",

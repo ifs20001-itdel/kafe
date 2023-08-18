@@ -7,11 +7,6 @@ const PromoSchema = new mongoose.Schema({
         unique: true,
         maxlength: [40, 'Title cannot be more than 40 characters']
     },
-    price: {
-        type: Number,
-        required: true,
-        maxlength: [200, 'Price cannot be more than 200 characters']
-    },
     description: {
         type: String,
         required: true,
