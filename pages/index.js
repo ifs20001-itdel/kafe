@@ -12,7 +12,7 @@ const Home = () => {
     window.open('https://goo.gl/maps/C5y8Qym7WoCpMKeB8', 'Google Maps', options)
   }
   return (
-    <main>
+    <main className='bg-[#fff]'>
       <div style={{ position: `relative` }}>
         <img src='/background.png' className='h-screen' style={{
           objectFit: `cover`,
@@ -115,7 +115,7 @@ const Home = () => {
                 }}>
                   <Link style={{
                       textDecoration:"none",
-                      color:"#000"
+                      color:"#A5895E"
                     }} href="/makanan">
                     See others
                   </Link>
@@ -124,7 +124,7 @@ const Home = () => {
             </div>
           </div>
           <div class='flex mt-6 mb-6 justify-center'>
-            <div class='w-16 h-1 rounded-full bg-yellow-500 inline-flex'></div>
+            <div class='w-16 h-1 rounded-full bg-[#A5895E] inline-flex'></div>
           </div>
           <div class="flex flex-col m-auto p-auto">
             <div
@@ -196,7 +196,7 @@ const Home = () => {
                 }}>
                   <Link style={{
                       textDecoration:"none",
-                      color:"#000"
+                      color:"#A5895E"
                     }} href="/minuman">
                     See others
                   </Link>
@@ -205,7 +205,7 @@ const Home = () => {
             </div>
           </div>
           <div class='flex mt-6 mb-6 justify-center'>
-            <div class='w-16 h-1 rounded-full bg-yellow-500 inline-flex'></div>
+            <div class='w-16 h-1 rounded-full bg-[#A5895E] inline-flex'></div>
           </div>
           <div class="flex flex-col m-auto p-auto">
             <div
@@ -278,7 +278,7 @@ const Home = () => {
                   }}>
                     <Link style={{
                       textDecoration:"none",
-                      color:"#000"
+                      color:"#A5895E"
                     }} href="/promo">
                       See others
                     </Link>

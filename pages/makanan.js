@@ -178,7 +178,7 @@ const Index = ({ makanans, userRole }) => {
                         color: "#000"
                       }} href='/keranjang'>
                         <div className="flex items-center justify-start">
-                          <button
+                          <div
                             className="bg-transparent text-[#67442E] font-semibold py-2 px-auto"
                             style={{
                               borderRadius: "12.275px",
@@ -215,27 +215,23 @@ const Index = ({ makanans, userRole }) => {
                                 d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
                               />
                             </svg>
-                          </button>
+                          </div>
                         </div>
                       </Link>
                       <div className="mt-2 mb-6 text-left">
-                        {userRole === 'admin' && (
-                          <React.Fragment>
                             <Link style={{
                               textDecoration: "none",
                               color: "#000"
                             }} href={`/${makanan._id}/editmakanan`}>
-                              <button className="bg-transparent text-[#67442E] font-semibold py-2  px-auto" style={{ borderRadius: "12.275px", border: "1.416px solid #67442E", display: "flex", padding: "4.83px 29.272px", alignItems: "flex-start", gap: "-3.45px" }}>
+                              <div className="bg-transparent text-[#67442E] font-semibold py-2  px-auto" style={{ borderRadius: "12.275px", border: "1.416px solid #67442E", display: "flex", padding: "4.83px 29.272px", alignItems: "flex-start", gap: "-3.45px" }}>
                                 Edit
-                              </button>
+                              </div>
                             </Link>
-                            <button className="bg-transparent" onClick={() => handleDelete(makanan._id)}>
-                              <button className="bg-transparent text-[#67442E] font-semibold py-2  px-auto" style={{ borderRadius: "12.275px", border: "1.416px solid #67442E", display: "flex", padding: "4.83px 29.272px", alignItems: "flex-start", gap: "-3.45px" }}>
+                            <div className="bg-transparent" onClick={() => handleDelete(makanan._id)}>
+                              <div className="bg-transparent text-[#67442E] font-semibold py-2 mt-2 px-auto" style={{ borderRadius: "12.275px", border: "1.416px solid #67442E", display: "flex", padding: "4.83px 29.272px", alignItems: "flex-start", gap: "-3.45px" }}>
                                 Delete
-                              </button>
-                            </button>
-                          </React.Fragment>
-                        )}
+                              </div>
+                            </div>
                       </div>
                     </div>
                   </div>

@@ -109,7 +109,7 @@ const NewMinuman = () => {
                     borderRadius: "15px",
                     background: "#DDCCAE",
                     display: "flex",
-                    width: "250px",
+                    width: "200px",
                     height: "54px",
                     padding: "8px 20px",
                     justifyContent: "center",

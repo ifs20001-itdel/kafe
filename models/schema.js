@@ -19,6 +19,16 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['Admin', 'User'],
         required: true
+    },
+    alamat:{
+        type:String,
+        required:true,
+        unique:true
+    },
+    nomorhp:{
+        type:String,
+        required:true,
+        unique:true
     }
 })
 

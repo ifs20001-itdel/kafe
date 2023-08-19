@@ -60,7 +60,7 @@ const Layout = ({ children }) => {
           }
 
           body {
-            background-color: #FFFCF8;
+            background-color: #65451F;
             min-height: 100vh;
           }
 
@@ -70,7 +70,7 @@ const Layout = ({ children }) => {
           className="m-auto"
           style={{
             width: "387px",
-            height: "800px",
+            height: "full",
             background: "white"
           }}
         >

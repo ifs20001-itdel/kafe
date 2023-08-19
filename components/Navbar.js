@@ -88,12 +88,6 @@ const Navbar = ({ userRole }) => {
             }} className="mr-5 hover:text-gray-900">
               <p className="text-center">Keranjang</p>
             </Link>
-            <Link href="/contact" style={{
-              textDecoration: "none",
-              color: "#000"
-            }} className="mr-5 hover:text-gray-900">
-              <p className="text-center">Contact</p>
-            </Link>
             <div className="hover:text-gray-900 focus:outline-none cursor-pointer" onClick={toggleCreateMenu}>
               {userRole === 'admin' && (
                 <>
@@ -141,12 +135,12 @@ const Navbar = ({ userRole }) => {
           </div>
 
           <div className={`${isUserMenuOpen ? '' : 'hidden'} mt-6 w-full flex-wrap items-center justify-center absolute top-16 left-0 z-10`} style={{ zIndex: 10, backgroundColor: "#F3E0BF" }}>
-            <Link href="/" className="mr-5 hover:text-gray-900">
+            <Link href="/profil" className="mr-5 hover:text-gray-900">
               <p className="text-center" style={{
                 marginTop: "10px",
                 textDecoration: "none",
                 color: "#000"
-              }}>Home Page</p>
+              }}>Profil</p>
             </Link>
             {/* Check if user is logged in */}
             {userRole === 'user' ? (
@@ -159,7 +153,7 @@ const Navbar = ({ userRole }) => {
             ) : (
               <button className="focus:outline-none cursor-pointer mt-4" onClick={handleLogout}>
                 <p style={{
-                  margin: "auto 150px"
+                  margin: "auto 100px"
                 }}>Logout</p>
               </button>
             )}

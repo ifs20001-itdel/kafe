@@ -4,7 +4,7 @@ import { Table } from 'semantic-ui-react'
 const Footer = () => (
   <>
     <div
-      class='text-black-600 body-font mt-20'
+      class='text-black-600 body-font'
       style={{ backgroundColor: '#F6ECD1' }}
     >
       <div class='container px-5 py-24 mx-auto'>
@@ -33,34 +33,6 @@ const Footer = () => (
           LINKS
         </div>
         <nav className='flex justify-center'>
-          {/* <Table>
-            <Table.Body>
-              <tr>
-                <td>
-                  <Link href='/' className='mr-5 hover:text-black-900'>
-                    <p>Home Page</p>
-                  </Link>
-                </td>
-                <td>
-                  <Link href='/' className='mr-5 hover:text-black-900'>
-                    <p>Promo</p>
-                  </Link>
-                </td>
-              </tr>
-              <tr>
-                <td style={{ paddingRight: '109px' }}>
-                  <Link href='/index_promo' className='mr-5 hover:text-black-900'>
-                    <p>Our Menu</p>
-                  </Link>
-                </td>
-                <td>
-                  <Link href='/contact' className='mr-5 hover:text-black-900'>
-                    <p>Location</p>
-                  </Link>
-                </td>
-              </tr>
-            </Table.Body>
-          </Table> */}
           <table>
             <tbody>
               <tr>

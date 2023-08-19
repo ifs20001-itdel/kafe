@@ -1,12 +1,11 @@
 import Link from "next/link";
 import React from "react";
-import Layout from "../components/Layout";
 
 export default function Home() {
   return (
     <div>
       <div>
-        <section className='bg-[#f6efdf] dark:bg-gray-900'>
+        <section className='bg-[#f6efdf]'>
           <div className='flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0'>
             <div className='w-full'>
               <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -36,7 +35,7 @@ export default function Home() {
                       htmlFor='name'
                       className='block mb-2 text-sm font-medium'
                     >
-                      Your name
+                      Nama
                     </label>
                     <input
                       type='text'
@@ -52,7 +51,7 @@ export default function Home() {
                       htmlFor='email'
                       className='block mb-2 text-sm font-medium '
                     >
-                      Your email
+                      Email
                     </label>
                     <input
                       type='email'
@@ -79,13 +78,45 @@ export default function Home() {
                       required=''
                     />
                   </div>
+                  <div>
+                    <label
+                      htmlFor='nomorhp'
+                      className='block mb-2 text-sm font-medium'
+                    >
+                      Nomor Handphone
+                    </label>
+                    <input
+                      type='text'
+                      name='nomorhp'
+                      id='nomorhp'
+                      className='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                      placeholder='0895123123'
+                      required=''
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor='alamat'
+                      className='block mb-2 text-sm font-medium'
+                    >
+                      Alamat
+                    </label>
+                    <input
+                      type='text'
+                      name='alamat'
+                      id='alamat'
+                      className='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                      placeholder='JL.Jalan'
+                      required=''
+                    />
+                  </div>
 
                   <div>
                     <label
                       htmlFor='role'
                       className='block mb-2 text-sm font-medium '
                     >
-                      Your Role
+                      Role
                     </label>
                     <input
                       type=''

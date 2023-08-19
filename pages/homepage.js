@@ -489,7 +489,7 @@ const Home = () => {
                 }}>
                   <Link style={{
                       textDecoration:"none",
-                      color:"#000"
+                      color:"#A5895E"
                     }} href="/makanan">
                   See others
                   </Link>
@@ -570,7 +570,7 @@ const Home = () => {
                 }}>
                   <Link style={{
                       textDecoration:"none",
-                      color:"#000"
+                      color:"#A5895E"
                     }} href="/minuman">
                   See others
                   </Link>
@@ -652,7 +652,7 @@ const Home = () => {
                 }}>
                   <Link style={{
                       textDecoration:"none",
-                      color:"#000"
+                      color:"#A5895E"
                     }} href="/promo">
                   See others
                   </Link>

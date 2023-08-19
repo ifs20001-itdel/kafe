@@ -3,7 +3,7 @@ import React from 'react'
 
 function menu() {
   return (
-    <div>
+    <div className='bg-[#fff]'>
       <nav class='w-full rounded-md p-3'>
         <ol class='list-reset flex'>
           <li>
@@ -89,7 +89,7 @@ function menu() {
             </div>
           </div>
           <div class='flex mt-6 mb-6 justify-center'>
-            <div class='w-16 h-1 rounded-full bg-yellow-500 inline-flex'></div>
+            <div class='w-16 h-1 rounded-full bg-[#A5895E] inline-flex'></div>
           </div>
           <div class="flex flex-col m-auto p-auto">
             <div
@@ -170,7 +170,7 @@ function menu() {
             </div>
           </div>
           <div class='flex mt-6 mb-6 justify-center'>
-            <div class='w-16 h-1 rounded-full bg-yellow-500 inline-flex'></div>
+            <div class='w-16 h-1 rounded-full bg-[#A5895E] inline-flex'></div>
           </div>
           <div class="flex flex-col m-auto p-auto">
             <div
