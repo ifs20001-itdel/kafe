@@ -143,20 +143,21 @@ const Navbar = ({ userRole }) => {
               }}>Profil</p>
             </Link>
             {/* Check if user is logged in */}
-            {userRole === 'User' ? (
+            {userRole === 'admin' || userRole === 'user' ? (
+              <button className="focus:outline-none cursor-pointer mt-4" onClick={handleLogout}>
+                <p style={{
+                  margin: "auto 150px"
+                }}>Logout</p>
+              </button>
+            ) : (
               <Link href="/login" style={{
                 textDecoration: "none",
                 color: "#000"
               }} className="mr-5 hover:text-gray-900">
                 <p className="text-center">Login</p>
               </Link>
-            ) : (
-              <button className="focus:outline-none cursor-pointer mt-4" onClick={handleLogout}>
-                <p style={{
-                  margin: "auto 150px"
-                }}>Logout</p>
-              </button>
             )}
+
           </div>
         </div>
       </nav>

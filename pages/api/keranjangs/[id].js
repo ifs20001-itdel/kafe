@@ -4,29 +4,12 @@ import Keranjang from "../../../models/Keranjang";
 dbConnect();
 
 export default async (req, res) => {
-  const { method } = req;
+  const { method, query } = req;
 
   switch (method) {
-    case "GET":
-      try {
-        const keranjangs = await Keranjang.find({});
-        res.status(200).json({ success: true, data: keranjangs });
-      } catch (error) {
-        res.status(400).json({ success: false });
-      }
-      break;
-    case "POST":
-      try {
-        const data = req.body;
-        const keranjang = await Keranjang.create(data);
-        res.status(201).json({ success: true, data: keranjang });
-      } catch (error) {
-        res.status(400).json({ success: false, error: error.message });
-      }
-      break;
     case "DELETE":
       try {
-        const { id } = req.query;
+        const { id } = query;
         if (!id) {
           return res.status(400).json({ success: false, error: "Missing ID parameter" });
         }

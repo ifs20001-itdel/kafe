@@ -5,6 +5,7 @@ import fetch from "isomorphic-unfetch";
 const Index = ({ keranjangs }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [selectedItems, setSelectedItems] = useState([]);
+  
 
   useEffect(() => {
     const calculatedTotalPrice = selectedItems.reduce(
@@ -14,14 +15,7 @@ const Index = ({ keranjangs }) => {
     setTotalPrice(calculatedTotalPrice);
   }, [selectedItems]);
 
-  const handleAddToCart = async () => {
-    try {
-      // Add code to send selected items to the server and update the order
-      console.log("Selected Items:", selectedItems);
-    } catch (error) {
-      console.log("Terjadi kesalahan:", error);
-    }
-  };
+
 
   const handleCheckboxChange = (keranjang) => {
     setSelectedItems((prevSelected) =>
@@ -30,22 +24,41 @@ const Index = ({ keranjangs }) => {
         : [...prevSelected, keranjang]
     );
   };
-
+  
   const handleDelete = async (keranjang) => {
     try {
-      // Send DELETE request to the server to remove the item from the cart
+      // Konfirmasi sebelum penghapusan
+      const isConfirmed = window.confirm("Apakah kamu yakin ingin menghapus?");
+      
+      if (!isConfirmed) {
+        return; // Jika tidak dikonfirmasi, berhenti di sini
+      }
+  
+      // Kirim permintaan DELETE ke server untuk menghapus item dari keranjang
       await fetch(`http://localhost:3000/api/keranjangs/${keranjang._id}`, {
         method: "DELETE",
       });
-
-      // Update selectedItems by removing the deleted item
+  
+      // Perbarui selectedItems dengan menghapus item yang dihapus
       setSelectedItems((prevSelected) =>
         prevSelected.filter((item) => item !== keranjang)
       );
+  
+      // Perbarui state keranjangs dengan menyaring item yang dihapus
+      setKeranjangs((prevKeranjangs) =>
+        prevKeranjangs.filter((item) => item._id !== keranjang._id)
+      );
+      
+      // Perbarui tampilan dengan cara yang sesuai setelah penghapusan
+      // Contoh: mungkin Anda ingin melakukan navigasi atau merender ulang komponen
+      // yang memperlihatkan daftar keranjang yang sudah diperbarui.
     } catch (error) {
       console.log("Terjadi kesalahan:", error);
     }
   };
+  
+  
+  
 
   return (
     <div>
