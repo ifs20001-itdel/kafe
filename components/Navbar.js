@@ -143,7 +143,7 @@ const Navbar = ({ userRole }) => {
               }}>Profil</p>
             </Link>
             {/* Check if user is logged in */}
-            {userRole === 'user' ? (
+            {userRole === 'User' ? (
               <Link href="/login" style={{
                 textDecoration: "none",
                 color: "#000"
@@ -153,7 +153,7 @@ const Navbar = ({ userRole }) => {
             ) : (
               <button className="focus:outline-none cursor-pointer mt-4" onClick={handleLogout}>
                 <p style={{
-                  margin: "auto 100px"
+                  margin: "auto 150px"
                 }}>Logout</p>
               </button>
             )}
