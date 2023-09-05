@@ -194,24 +194,6 @@ const Index = ({ keranjangs }) => {
               </span>
             </p>
           </div>
-          {showConfirmationModal && (
-            <div className="confirmation-modal">
-              {showThankYouMessage ? (
-                <div>
-                  <h2>Terima Kasih!</h2>
-                  <p>Pesanan Anda telah berhasil ditempatkan.</p>
-                  <button onClick={() => setShowConfirmationModal(false)}>Tutup</button>
-                </div>
-              ) : (
-                <div>
-                  <h2>Konfirmasi Pembayaran</h2>
-                  {/* Isi dengan konten konfirmasi pembayaran */}
-                  <button onClick={() => setShowThankYouMessage(true)}>Konfirmasi Pembayaran</button>
-                </div>
-              )}
-            </div>
-          )}
-
           {keranjangs.map((keranjang) => (
             <div
               key={keranjang._id}
@@ -352,7 +334,7 @@ const Index = ({ keranjangs }) => {
       </div>
       <button
         type="submit"
-        onClick={handleOrder}
+        onClick={() => setShowPaymentModal(true)} // Tampilkan modal saat tombol diklik
         style={{
           borderRadius: "15px",
           background: "#DDCCAE",
@@ -407,8 +389,8 @@ const Index = ({ keranjangs }) => {
                 <button
                   onClick={() => {
                     alert("Pesanan kamu berhasil 😊");
-
-                    window.location.href = "/";
+                    handleOrder();
+                    window.location.reload();
                   }}
                 >
                   Konfirmasi Pembayaran
