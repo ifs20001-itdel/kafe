@@ -6,6 +6,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
+    "axios": "^1.5.0",
     "cli-table": "^0.3.11",
     "isomorphic-unfetch": "^4.0.2",
     "mongodb": "^6.0.0",

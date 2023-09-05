@@ -1,19 +1,21 @@
 import connect from "../../lib/dbConnect";
 import User from "../../models/schema";
 
-
-connect()
+connect();
 
 export default async function handler(req, res) {
     try {
         const user = await User.create(req.body);
         if (!user) {
-            return res.json({ code: 'User belum dibuat' });
+            const alertMessage = encodeURIComponent('User belum dibuat');
+            res.redirect(`/?alert=${alertMessage}`);
         } else {
-            // Redirect to the homepage when registration is successful
-            res.redirect('/');
+            // Redirect to the homepage with a success message
+            const successMessage = encodeURIComponent('Registrasi berhasil! Selamat datang di KEFI Cafe & Space.');
+            res.redirect(`/?alert=${successMessage}`);
         }
     } catch (error) {
-        res.status(400).json({ status: 'Buat user baru' });
+        const errorMessage = encodeURIComponent('Tolong buat akun anda terlebih dahulu');
+        res.redirect(`/?alert=${errorMessage}`);
     }
 }

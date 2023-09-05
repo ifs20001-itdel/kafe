@@ -1,7 +1,45 @@
-import Link from 'next/link'
-import { Button } from 'semantic-ui-react'
+import { useState, useEffect } from 'react';
+import { Button } from 'semantic-ui-react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { parse } from 'cookie';
 
 const Home = () => {
+  const router = useRouter();
+  const [alertMessage, setAlertMessage] = useState('');
+  const [isAlertVisible, setIsAlertVisible] = useState(false);
+
+  useEffect(() => {
+    const { alert } = router.query;
+    if (alert) {
+      setAlertMessage(decodeURIComponent(alert));
+      setIsAlertVisible(true);
+
+      setTimeout(() => {
+        setIsAlertVisible(false);
+        setAlertMessage('');
+        router.replace({ pathname: '/', query: {} }, undefined, { shallow: true });
+      }, 5000); // Hide the alert after 5 seconds
+    }
+  }, [router.query]);
+
+  // Retrieve user_token cookie
+  useEffect(() => {
+    const cookies = parse(document.cookie);
+    if (cookies.user_token) {
+      const userToken = JSON.parse(cookies.user_token);
+      if (userToken.isLoggedIn) {
+        setAlertMessage('Selamat Datang');
+        setIsAlertVisible(true);
+
+        setTimeout(() => {
+          setIsAlertVisible(false);
+          setAlertMessage('');
+        }, 5000); // Hide the alert after 5 seconds
+      }
+    }
+  }, []);
+
   const openMaps = () => {
     const width = 600
     const height = 600
@@ -29,6 +67,12 @@ const Home = () => {
             fontSize: `20px`
           }}
         >
+          {alertMessage && (
+            <div class="bg-orange-100 border-l-4 border-[#67442E] rounded text-[#67442E] text-center mb-2 p-4" role="alert">
+              {alertMessage}
+            </div>
+          )}<div>
+          </div>
           <p style={{
             color: "#FFFFFF",
             textAlign: "center",
@@ -54,8 +98,8 @@ const Home = () => {
             className='order-button relative px-3 py-2.5 overflow-hidden group bg-yellow-50 relative hover:bg-gradient-to-r hover:from-amber-500 hover:to-amber-400 text-amber-950 hover:ring-2 hover:ring-offset-2 hover:ring-amber-400 transition-all ease-out duration-300'
             style={{
               borderRadius: "20px",
-              textDecoration:"none",
-              color:"#000"
+              textDecoration: "none",
+              color: "#000"
             }}
           >
             <span className='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-20 group-hover:-translate-x-80 ease'></span>
@@ -114,9 +158,9 @@ const Home = () => {
                   lineHeight: "normal"
                 }}>
                   <Link style={{
-                      textDecoration:"none",
-                      color:"#A5895E"
-                    }} href="/makanan">
+                    textDecoration: "none",
+                    color: "#A5895E"
+                  }} href="/makanan">
                     See others
                   </Link>
                 </div>
@@ -163,6 +207,20 @@ const Home = () => {
                     <img src='/makanan5.JPG' class="w-full h-full" />
                   </div>
                 </div>
+                <div class="inline-block px-3">
+                  <div
+                    class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"
+                  >
+                    <img src='https://res.cloudinary.com/deddu5tcr/image/upload/v1690889681/Kefi/makanan/nasi_goreng_uzia2b.jpg' class="w-full h-full" />
+                  </div>
+                </div>
+                <div class="inline-block px-3">
+                  <div
+                    class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"
+                  >
+                    <img src='https://res.cloudinary.com/deddu5tcr/image/upload/v1690889664/Kefi/makanan/french_fresh_cseuxt.jpg' class="w-full h-full" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -195,9 +253,9 @@ const Home = () => {
                   lineHeight: "normal"
                 }}>
                   <Link style={{
-                      textDecoration:"none",
-                      color:"#A5895E"
-                    }} href="/minuman">
+                    textDecoration: "none",
+                    color: "#A5895E"
+                  }} href="/minuman">
                     See others
                   </Link>
                 </div>
@@ -244,6 +302,20 @@ const Home = () => {
                     <img src='/minuman.png' class="w-full h-full" />
                   </div>
                 </div>
+                <div class="inline-block px-3">
+                  <div
+                    class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"
+                  >
+                    <img src='https://res.cloudinary.com/deddu5tcr/image/upload/v1690884627/Kefi/minuman/taro_rv6skd.jpg' class="w-full h-full" />
+                  </div>
+                </div>
+                <div class="inline-block px-3">
+                  <div
+                    class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"
+                  >
+                    <img src='https://res.cloudinary.com/deddu5tcr/image/upload/v1690884613/Kefi/minuman/Honey_blacktea_szk99p.jpg' class="w-full h-full" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -277,8 +349,8 @@ const Home = () => {
                     lineHeight: "normal"
                   }}>
                     <Link style={{
-                      textDecoration:"none",
-                      color:"#A5895E"
+                      textDecoration: "none",
+                      color: "#A5895E"
                     }} href="/promo">
                       See others
                     </Link>
@@ -300,7 +372,7 @@ const Home = () => {
             }}>
 
               <img class='ml-3'
-                src="https://s3-alpha-sig.figma.com/img/2137/baaf/6216d4f413ae5c613992c0dc521567ed?Expires=1692576000&Signature=SHFRPQEa8ZY-pcwlDT2K7HpST1qvlgEKs86hjSPCpj0CrEqsNUBCH2R1TXlN~cWroSpPBiGBaDL3QGRJ~PLPoAkRDXZo-nkjCod~wxxHBH~HcaqKNZ7JV0hhcP68QHSsefbBj8LcQKY4MmqFMAghO87qD-1lXvYeNP7fwY0BQcYSjxCYIV1hj~tWymxeGHCOgb8mdEy1C9NupZk--uk~Yj7~B8xmIv6lG-A6J10jOmkrXikc3eGo9T8XdVBrmU1-FlN2duNtkX0tahO1-FzKqivwQIjWXdSM2UdLpKS0bpaJl1nc6YjbPu83cc0V9u7EP0AFozfTSTBnPXOrejSxLQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4" alt="Deskripsi Gambar" style={{
+                src="https://coreldrawdesign.com/resources/previews/preview-promo-banner-design-template-cdr-vector-1685532082.jpg" alt="Promo" style={{
                   width: "76.757px",
                   height: "79px",
                   borderRadius: "10px"
@@ -340,7 +412,7 @@ const Home = () => {
             }}>
 
               <img class='ml-3'
-                src="https://s3-alpha-sig.figma.com/img/2137/baaf/6216d4f413ae5c613992c0dc521567ed?Expires=1692576000&Signature=SHFRPQEa8ZY-pcwlDT2K7HpST1qvlgEKs86hjSPCpj0CrEqsNUBCH2R1TXlN~cWroSpPBiGBaDL3QGRJ~PLPoAkRDXZo-nkjCod~wxxHBH~HcaqKNZ7JV0hhcP68QHSsefbBj8LcQKY4MmqFMAghO87qD-1lXvYeNP7fwY0BQcYSjxCYIV1hj~tWymxeGHCOgb8mdEy1C9NupZk--uk~Yj7~B8xmIv6lG-A6J10jOmkrXikc3eGo9T8XdVBrmU1-FlN2duNtkX0tahO1-FzKqivwQIjWXdSM2UdLpKS0bpaJl1nc6YjbPu83cc0V9u7EP0AFozfTSTBnPXOrejSxLQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4" alt="Deskripsi Gambar" style={{
+                src="https://coreldrawdesign.com/templates/474.png" alt="Promo" style={{
                   width: "76.757px",
                   height: "79px",
                   borderRadius: "10px"

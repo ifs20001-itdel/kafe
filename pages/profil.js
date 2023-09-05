@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { parseCookies } from 'nookies';
 
 const Profil = () => {
+    const { user_token } = parseCookies();
+    const { isLoggedIn, user } = JSON.parse(user_token);
+
     return (
         <div className='container'>
             <div className="mb-6" style={{
@@ -35,9 +39,9 @@ const Profil = () => {
                 >Profile</h1>
             </div>
             <div style={{
-            margin:"auto 30px",
-            marginBottom:"20px"
-        }}>
+                margin: "auto 30px",
+                marginBottom: "12px"
+            }}>
                 <div class="max-w-xs">
                     <div class="bg-[#F3E0BF] shadow-xl rounded-lg" style={{
                         padding: "30px 15px",
@@ -47,7 +51,7 @@ const Profil = () => {
                         <div class="photo-wrapper p-2" style={{
                             marginBottom: "80px"
                         }}>
-                            <img class="w-32 h-32 rounded-full mx-auto" src="https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg" alt="Profil" />
+                            <img class="w-32 h-32 rounded-full mx-auto" style={{backgroundColor:"white"}} src="https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg" alt="Profil" />
                         </div>
                         <div class="p-2">
                             {/* <h3 class="text-center text-xl text-gray-900 font-medium leading-8">Joh Doe</h3>
@@ -61,17 +65,18 @@ const Profil = () => {
                                             color: "#000",
                                             fontSize: "13px",
                                             fontWeight: "600",
-                                            lineHeight: "20px"
+                                            lineHeight: "12px"
                                         }}>
                                             Nama
                                         </p>
                                         <p class="w-full py-2 px-3" style={{
                                             color: "#000",
-                                            fontSize: "20px",
+                                            fontSize: "12px",
                                             fontWeight: "600",
-                                            lineHeight: "20px",
+                                            lineHeight: "12px",
                                             borderBottom: "0.5px solid rgba(0, 0, 0, 0.50)"
                                         }}>
+                                            {user.name}
                                         </p>
                                     </div>
 
@@ -82,17 +87,18 @@ const Profil = () => {
                                             color: "#000",
                                             fontSize: "13px",
                                             fontWeight: "600",
-                                            lineHeight: "20px"
+                                            lineHeight: "12px"
                                         }}>
                                             Nomor WhatsApp
                                         </p>
                                         <p class="w-full py-2 px-3" style={{
                                             color: "#000",
-                                            fontSize: "20px",
+                                            fontSize: "12px",
                                             fontWeight: "600",
-                                            lineHeight: "20px",
+                                            lineHeight: "12px",
                                             borderBottom: "0.5px solid rgba(0, 0, 0, 0.50)"
                                         }}>
+                                            {user.nomorhp}
                                         </p>
                                     </div>
 
@@ -103,17 +109,18 @@ const Profil = () => {
                                             color: "#000",
                                             fontSize: "13px",
                                             fontWeight: "600",
-                                            lineHeight: "20px"
+                                            lineHeight: "12px"
                                         }}>
                                             Alamat
                                         </p>
                                         <p class="w-full py-2 px-3" style={{
                                             color: "#000",
-                                            fontSize: "20px",
+                                            fontSize: "12px",
                                             fontWeight: "600",
-                                            lineHeight: "20px",
+                                            lineHeight: "12px",
                                             borderBottom: "0.5px solid rgba(0, 0, 0, 0.50)"
                                         }}>
+                                            {user.alamat}
                                         </p>
                                     </div>
 
@@ -124,17 +131,18 @@ const Profil = () => {
                                             color: "#000",
                                             fontSize: "13px",
                                             fontWeight: "600",
-                                            lineHeight: "20px"
+                                            lineHeight: "12px"
                                         }}>
                                             Password
                                         </p>
                                         <p class="w-full py-2 px-3" style={{
                                             color: "#000",
-                                            fontSize: "20px",
+                                            fontSize: "12px",
                                             fontWeight: "600",
-                                            lineHeight: "20px",
+                                            lineHeight: "12px",
                                             borderBottom: "0.5px solid rgba(0, 0, 0, 0.50)"
                                         }}>
+                                            ********
                                         </p>
                                     </div>
                                 </div>

@@ -5,7 +5,7 @@ import fetch from "isomorphic-unfetch";
 const Index = ({ keranjangs }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [selectedItems, setSelectedItems] = useState([]);
-  
+  const [orders, setOrders] = useState([]); // Track orders separately
 
   useEffect(() => {
     const calculatedTotalPrice = selectedItems.reduce(
@@ -15,6 +15,51 @@ const Index = ({ keranjangs }) => {
     setTotalPrice(calculatedTotalPrice);
   }, [selectedItems]);
 
+  const handleOrder = async () => {
+    try {
+      const orderData = selectedItems.map((keranjang) => ({
+        title: keranjang.title || 'Untitled',
+        price: keranjang.price,
+        image: keranjang.image,
+      }));
+
+      console.log('Order Data:', orderData); // Debugging
+
+      const hasNullTitle = orderData.some((item) => item.title === null);
+      console.log('Has null title:', hasNullTitle); // Debugging
+
+      // Send the entire orderData array to the server
+      const response = await fetch("http://localhost:3000/api/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      });
+
+      if (response.ok) {
+        // Clear selected items after successful order
+        setSelectedItems([]);
+
+        // Clear the cart items from the database
+        for (const keranjang of selectedItems) {
+          await fetch(`http://localhost:3000/api/keranjangs/${keranjang._id}`, {
+            method: "DELETE",
+          });
+        }
+
+        // Show alert and refresh page on OK
+        const isConfirmed = window.confirm("Order successfully placed! Click OK to refresh the page.");
+        if (isConfirmed) {
+          window.location.reload();
+        }
+      } else {
+        alert("Failed to place order.");
+      }
+    } catch (error) {
+      console.log("Error placing order:", error);
+    }
+  };
 
 
   const handleCheckboxChange = (keranjang) => {
@@ -24,41 +69,39 @@ const Index = ({ keranjangs }) => {
         : [...prevSelected, keranjang]
     );
   };
-  
+
   const handleDelete = async (keranjang) => {
     try {
       // Konfirmasi sebelum penghapusan
       const isConfirmed = window.confirm("Apakah kamu yakin ingin menghapus?");
-      
+
       if (!isConfirmed) {
         return; // Jika tidak dikonfirmasi, berhenti di sini
       }
-  
+
       // Kirim permintaan DELETE ke server untuk menghapus item dari keranjang
-      await fetch(`http://localhost:3000/api/keranjangs/${keranjang._id}`, {
+      const res = await fetch(`http://localhost:3000/api/keranjangs/${keranjang._id}`, {
         method: "DELETE",
       });
-  
-      // Perbarui selectedItems dengan menghapus item yang dihapus
-      setSelectedItems((prevSelected) =>
-        prevSelected.filter((item) => item !== keranjang)
-      );
-  
-      // Perbarui state keranjangs dengan menyaring item yang dihapus
-      setKeranjangs((prevKeranjangs) =>
-        prevKeranjangs.filter((item) => item._id !== keranjang._id)
-      );
-      
-      // Perbarui tampilan dengan cara yang sesuai setelah penghapusan
-      // Contoh: mungkin Anda ingin melakukan navigasi atau merender ulang komponen
-      // yang memperlihatkan daftar keranjang yang sudah diperbarui.
+
+      if (res.ok) {
+        // Perbarui selectedItems dengan menghapus item yang dihapus
+        setSelectedItems((prevSelected) =>
+          prevSelected.filter((item) => item !== keranjang)
+        );
+
+        // Refresh the page after successful deletion
+        window.location.reload();
+      } else {
+        alert("Failed to delete item.");
+      }
     } catch (error) {
       console.log("Terjadi kesalahan:", error);
     }
   };
-  
-  
-  
+
+
+
 
   return (
     <div>
@@ -273,6 +316,7 @@ const Index = ({ keranjangs }) => {
       </div>
       <button
         type="submit"
+        onClick={handleOrder}
         style={{
           borderRadius: "15px",
           background: "#DDCCAE",
@@ -306,3 +350,4 @@ Index.getInitialProps = async () => {
 };
 
 export default Index;
+

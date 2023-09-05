@@ -88,9 +88,21 @@ const Navbar = ({ userRole }) => {
             }} className="mr-5 hover:text-gray-900">
               <p className="text-center">Keranjang</p>
             </Link>
+            <Link href="/status" style={{
+              textDecoration: "none",
+              color: "#000"
+            }} className="mr-5 hover:text-gray-900">
+              <p className="text-center">Status Pemesanan</p>
+            </Link>
             <div className="hover:text-gray-900 focus:outline-none cursor-pointer" onClick={toggleCreateMenu}>
               {userRole === 'admin' && (
                 <>
+                  <Link href="/menuAdmin" style={{
+                    textDecoration: "none",
+                    color: "#000"
+                  }} className="mr-5 hover:text-gray-900">
+                    <p className="text-center">EDIT MENU</p>
+                  </Link>
                   <p className="text-center">CREATE</p>
                   {isCreateMenuOpen && (
                     <div className="mt-4 bg-[#C8AE7D]">

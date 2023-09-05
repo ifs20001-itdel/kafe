@@ -83,7 +83,7 @@ const Index = ({ minumans, userRole }) => {
               <span class='mx-2 text-neutral-500 dark:text-neutral-400'>/</span>
             </li>
             <li class='text-neutral-500 dark:text-neutral-400 text-[#67442E]'>
-              Our Foods
+              Admin
             </li>
           </ol>
         </nav>
@@ -170,56 +170,19 @@ const Index = ({ minumans, userRole }) => {
                         }}>Rp. {minuman.price}</span>
                       </div>
                       <div className="mt-2 mb-6 text-left">
-                        {/* <Link href={`/${minuman._id}`}>
-                      <Button className="bg-transparent text-[#67442E] font-semibold py-2 px-4 border m-2 border-[#67442E] rounded">
-                        View
-                      </Button>
-                    </Link> */}
                         <Link style={{
                           textDecoration: "none",
                           color: "#000"
-                        }} href='/keranjang'>
-                          <div className="flex items-center justify-start">
-                            <div
-                              className="bg-transparent text-[#67442E] font-semibold py-2 px-auto"
-                              style={{
-                                borderRadius: "12.275px",
-                                border: "1.416px solid #67442E",
-                                display: "flex",
-                                padding: "4.83px 29.272px",
-                                alignItems: "flex-start",
-                                gap: "-3.45px",
-                              }}
-                              onClick={() => handleAddToCart(minuman)}
-                            >
-                              <p className="pr-2" style={{
-                                color: "#67442E",
-                                textAlign: "center",
-                                fontFeatureSettings: "'clig' off, 'liga' off",
-                                fontFamily: "DM Sans",
-                                fontSize: "14.164px",
-                                fontStyle: "normal",
-                                fontWeight: "500",
-                                lineHeight: "26.221px"
-                              }}>Tambah</p>
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor"
-                                className="w-6 h-6"
-                                style={{ paddingTop: "2px", paddingBottom: "2px" }}
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-                                />
-                              </svg>
-                            </div>
+                        }} href={`/${minuman._id}/editminuman`}>
+                          <div className="bg-transparent text-[#67442E] font-semibold py-2  px-auto" style={{ borderRadius: "12.275px", border: "1.416px solid #67442E", display: "flex", padding: "4.83px 29.272px", alignItems: "flex-start", gap: "-3.45px" }}>
+                          <p style={{ margin: "auto 33px" }}>Edit</p>
                           </div>
                         </Link>
+                        <div className="bg-transparent" onClick={() => handleDelete(minuman._id)}>
+                          <div className="bg-transparent text-[#67442E] font-semibold py-2 mt-2 px-auto" style={{ borderRadius: "12.275px", border: "1.416px solid #67442E", display: "flex", padding: "4.83px 29.272px", alignItems: "flex-start", gap: "-3.45px" }}>
+                          <p style={{ margin: "auto 23px" }}>Delete</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

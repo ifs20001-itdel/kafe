@@ -234,24 +234,6 @@ const Index = ({ makanans, userRole }) => {
                             }}>Logout</p>
                           </button>
                         )}
-
-                        <PrivateRoute>
-                          <div className="mt-2 mb-6 text-left">
-                            <Link style={{
-                              textDecoration: "none",
-                              color: "#000"
-                            }} href={`/${makanan._id}/editmakanan`}>
-                              <div className="bg-transparent text-[#67442E] font-semibold py-2  px-auto" style={{ borderRadius: "12.275px", border: "1.416px solid #67442E", display: "flex", padding: "4.83px 29.272px", alignItems: "flex-start", gap: "-3.45px" }}>
-                                Edit
-                              </div>
-                            </Link>
-                            <div className="bg-transparent" onClick={() => handleDelete(makanan._id)}>
-                              <div className="bg-transparent text-[#67442E] font-semibold py-2 mt-2 px-auto" style={{ borderRadius: "12.275px", border: "1.416px solid #67442E", display: "flex", padding: "4.83px 29.272px", alignItems: "flex-start", gap: "-3.45px" }}>
-                                Delete
-                              </div>
-                            </div>
-                          </div>
-                        </PrivateRoute>
                       </div>
                     </div>
                   </div>

@@ -1,22 +1,23 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
 import fetch from "isomorphic-unfetch";
-import { Button } from 'semantic-ui-react';
-import { useRouter } from 'next/router';
 import PrivateRoute from "../components/PrivateRoute";
 
-const Index = ({ minumans, userRole }) => {
 
-  const router = useRouter();
+const Index = ({ makanans }) => {
 
   useEffect(() => {
-    console.log(minumans); // Periksa data yang diterima
-  }, [minumans]);
+    console.log(makanans); // Periksa data yang diterima
+  }, [makanans]);
 
+  const userInfo = {
+    email: 'admin123@gmail.com', // Ganti dengan email yang sesuai
+    // ...informasi lainnya
+  };
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/minumans/${id}`, {
+      const res = await fetch(`http://localhost:3000/api/makanans/${id}`, {
         method: 'DELETE',
       });
 
@@ -32,7 +33,7 @@ const Index = ({ minumans, userRole }) => {
       console.log(error);
     }
   };
-  const handleAddToCart = async (minuman) => {
+  const handleAddToCart = async (makanan) => {
     try {
       const res = await fetch("http://localhost:3000/api/keranjangs", {
         method: "POST",
@@ -40,9 +41,9 @@ const Index = ({ minumans, userRole }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          title: minuman.title,
-          price: minuman.price,
-          image: minuman.image
+          title: makanan.title,
+          price: makanan.price,
+          image: makanan.image
         }),
       });
 
@@ -83,7 +84,7 @@ const Index = ({ minumans, userRole }) => {
               <span class='mx-2 text-neutral-500 dark:text-neutral-400'>/</span>
             </li>
             <li class='text-neutral-500 dark:text-neutral-400 text-[#67442E]'>
-              Our Foods
+              Admin
             </li>
           </ol>
         </nav>
@@ -123,16 +124,16 @@ const Index = ({ minumans, userRole }) => {
               >What do you want to food?</h1>
             </div>
             <div className="cards-container">
-              {minumans.map(minuman => {
+              {makanans.map(makanan => {
                 return (
-                  <div key={minuman._id} className="card-item" style={{ width: "156px" }}>
+                  <div key={makanan._id} className="card-item" style={{ width: "156px" }}>
                     <div>
                       <div>
                         <Link style={{
                           textDecoration: "none",
                           color: "#000"
-                        }} href={`/${minuman._id}/food`}>
-                          <img src={minuman.image} alt="image description" style={{
+                        }} href={`/${makanan._id}/food`}>
+                          <img src={makanan.image} alt="image description" style={{
                             width: "150.135px",
                             height: "150.135px",
                             borderRadius: "20px"
@@ -144,7 +145,7 @@ const Index = ({ minumans, userRole }) => {
                           <Link style={{
                             textDecoration: "none",
                             color: "#000"
-                          }} href={`/${minuman._id}`}>
+                          }} href={`/${makanan._id}`}>
                             <span style={{
                               color: "#000",
 
@@ -153,7 +154,7 @@ const Index = ({ minumans, userRole }) => {
                               fontWeight: "600",
                               lineHeight: "18.885px",
                               letterSpacing: "0.283px"
-                            }}>{minuman.title}</span>
+                            }}>{makanan.title}</span>
                           </Link>
                         </div>
                       </div>
@@ -167,59 +168,22 @@ const Index = ({ minumans, userRole }) => {
                           fontWeight: "500",
                           lineHeight: "15px",
                           letterSpacing: "0.26px"
-                        }}>Rp. {minuman.price}</span>
+                        }}>Rp. {makanan.price}</span>
                       </div>
                       <div className="mt-2 mb-6 text-left">
-                        {/* <Link href={`/${minuman._id}`}>
-                      <Button className="bg-transparent text-[#67442E] font-semibold py-2 px-4 border m-2 border-[#67442E] rounded">
-                        View
-                      </Button>
-                    </Link> */}
                         <Link style={{
                           textDecoration: "none",
                           color: "#000"
-                        }} href='/keranjang'>
-                          <div className="flex items-center justify-start">
-                            <div
-                              className="bg-transparent text-[#67442E] font-semibold py-2 px-auto"
-                              style={{
-                                borderRadius: "12.275px",
-                                border: "1.416px solid #67442E",
-                                display: "flex",
-                                padding: "4.83px 29.272px",
-                                alignItems: "flex-start",
-                                gap: "-3.45px",
-                              }}
-                              onClick={() => handleAddToCart(minuman)}
-                            >
-                              <p className="pr-2" style={{
-                                color: "#67442E",
-                                textAlign: "center",
-                                fontFeatureSettings: "'clig' off, 'liga' off",
-                                fontFamily: "DM Sans",
-                                fontSize: "14.164px",
-                                fontStyle: "normal",
-                                fontWeight: "500",
-                                lineHeight: "26.221px"
-                              }}>Tambah</p>
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor"
-                                className="w-6 h-6"
-                                style={{ paddingTop: "2px", paddingBottom: "2px" }}
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-                                />
-                              </svg>
-                            </div>
+                        }} href={`/${makanan._id}/editmakanan`}>
+                          <div className="bg-transparent text-[#67442E] font-semibold py-2  px-auto" style={{ borderRadius: "12.275px", border: "1.416px solid #67442E", display: "flex", padding: "4.83px 29.272px", alignItems: "flex-start", gap: "-3.45px" }}>
+                            <p style={{ margin: "auto 33px" }}>Edit</p>
                           </div>
                         </Link>
+                        <div className="bg-transparent" onClick={() => handleDelete(makanan._id)}>
+                          <div className="bg-transparent text-[#67442E] font-semibold py-2 mt-2 px-auto" style={{ borderRadius: "12.275px", border: "1.416px solid #67442E", display: "flex", padding: "4.83px 29.272px", alignItems: "flex-start", gap: "-3.45px" }}>
+                            <p style={{ margin: "auto 23px" }}>Delete</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -261,12 +225,12 @@ const Index = ({ minumans, userRole }) => {
 
 Index.getInitialProps = async () => {
   try {
-    const res = await fetch('http://localhost:3000/api/minumans');
+    const res = await fetch('http://localhost:3000/api/makanans');
     const { data } = await res.json();
-    return { minumans: data };
+    return { makanans: data };
   } catch (error) {
     console.log(error);
-    return { minumans: [] };
+    return { makanans: [] };
   }
 }
 
