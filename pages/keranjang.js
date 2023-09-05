@@ -6,6 +6,19 @@ const Index = ({ keranjangs }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [selectedItems, setSelectedItems] = useState([]);
   const [orders, setOrders] = useState([]); // Track orders separately
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
+
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [showThankYouMessage, setShowThankYouMessage] = useState(false);
+
+
+  // Tambahkan state untuk modal pembayaran
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+
+  const handlePaymentMethodSelection = (method) => {
+    setSelectedPaymentMethod(method);
+  };
+
 
   useEffect(() => {
     const calculatedTotalPrice = selectedItems.reduce(
@@ -28,6 +41,7 @@ const Index = ({ keranjangs }) => {
       const hasNullTitle = orderData.some((item) => item.title === null);
       console.log('Has null title:', hasNullTitle); // Debugging
 
+
       // Send the entire orderData array to the server
       const response = await fetch("http://localhost:3000/api/orders", {
         method: "POST",
@@ -47,18 +61,22 @@ const Index = ({ keranjangs }) => {
             method: "DELETE",
           });
         }
+        setShowConfirmationModal(true);
 
         // Show alert and refresh page on OK
-        const isConfirmed = window.confirm("Order successfully placed! Click OK to refresh the page.");
-        if (isConfirmed) {
-          window.location.reload();
-        }
-      } else {
-        alert("Failed to place order.");
+        // const isConfirmed = window.confirm("Order successfully placed! Click OK to refresh the page.");
+        // if (isConfirmed) {
+        //   window.location.reload();
+        // }
       }
+      // else {
+      //   alert("Failed to place order.");
+      // }
     } catch (error) {
       console.log("Error placing order:", error);
     }
+    setShowPaymentModal(true);
+
   };
 
 
@@ -176,6 +194,24 @@ const Index = ({ keranjangs }) => {
               </span>
             </p>
           </div>
+          {showConfirmationModal && (
+            <div className="confirmation-modal">
+              {showThankYouMessage ? (
+                <div>
+                  <h2>Terima Kasih!</h2>
+                  <p>Pesanan Anda telah berhasil ditempatkan.</p>
+                  <button onClick={() => setShowConfirmationModal(false)}>Tutup</button>
+                </div>
+              ) : (
+                <div>
+                  <h2>Konfirmasi Pembayaran</h2>
+                  {/* Isi dengan konten konfirmasi pembayaran */}
+                  <button onClick={() => setShowThankYouMessage(true)}>Konfirmasi Pembayaran</button>
+                </div>
+              )}
+            </div>
+          )}
+
           {keranjangs.map((keranjang) => (
             <div
               key={keranjang._id}
@@ -334,6 +370,82 @@ const Index = ({ keranjangs }) => {
       >
         Buat Pesanan
       </button>
+      {showPaymentModal && (
+        <div className="payment-modal">
+          <div className="payment-modal-content">
+            <button
+              className="cancel-button flex"
+              onClick={() => setShowPaymentModal(false)}
+            >
+              Cancel
+            </button>
+            {selectedPaymentMethod ? (
+              <div>
+                <h2>QR Code {selectedPaymentMethod}</h2>
+                {selectedPaymentMethod === "Dana" && (
+                  <img
+                    src="https://w7.pngwing.com/pngs/289/293/png-transparent-qr-code-business-cards-barcode-coupon-test-box-angle-text-rectangle.png"
+                    alt="Dana QR Code"
+                    width="200"
+                    height="200"
+                    style={{
+                      margin: "auto 80px"
+                    }}
+                  />
+                )}
+                {selectedPaymentMethod === "Ovo" && (
+                  <img
+                    src="https://w7.pngwing.com/pngs/289/293/png-transparent-qr-code-business-cards-barcode-coupon-test-box-angle-text-rectangle.png"
+                    alt="Ovo QR Code"
+                    width="200"
+                    height="200"
+                    style={{
+                      margin: "auto 80px"
+                    }}
+                  />
+                )}
+                <button
+                  onClick={() => {
+                    alert("Pesanan kamu berhasil 😊");
+
+                    window.location.href = "/";
+                  }}
+                >
+                  Konfirmasi Pembayaran
+                </button>
+              </div>
+            ) : (
+              <div>
+                <h2>Pilih Metode Pembayaran</h2>
+                <div className="payment-options" >
+                  <div
+                    className="payment-option m-2"
+                    onClick={() => handlePaymentMethodSelection("Dana")}
+                  >
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/2560px-Logo_dana_blue.svg.png" alt="Dana" />
+                  </div>
+                  <div
+                    className="payment-option m-2"
+                    onClick={() => handlePaymentMethodSelection("Ovo")}
+                  >
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/2560px-Logo_ovo_purple.svg.png" alt="Ovo" />
+                  </div>
+                  {/* Tambahkan lebih banyak pilihan pembayaran jika diperlukan */}
+                </div>
+                <button className="mt-3"
+                  onClick={() => {
+                    // Tambahkan logika konfirmasi pembayaran di sini
+                  }}
+                >
+                  Konfirmasi Pembayaran
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+
+      )}
+
     </div>
   );
 };

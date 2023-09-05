@@ -169,7 +169,6 @@ const Navbar = ({ userRole }) => {
                 <p className="text-center">Login</p>
               </Link>
             )}
-
           </div>
         </div>
       </nav>
