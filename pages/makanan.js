@@ -92,7 +92,9 @@ const Index = ({ makanans, userRole }) => {
               <span class='mx-2 text-neutral-500 dark:text-neutral-400'>/</span>
             </li>
             <li class='text-neutral-500 dark:text-neutral-400 text-[#67442E]'>
-              Our Foods
+              <Link style={{
+                textDecoration: "none",
+              }} href='/menu'>Our Foods</Link>
             </li>
           </ol>
         </nav>
