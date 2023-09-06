@@ -181,7 +181,7 @@ const HasilStatus = () => {
                     )}
                 </div>
                 <div className='container mb-3'>
-                    <h2>Hasil Status yang Dipilih:</h2>
+                    <h2>Status Pemesanan</h2>
                     <p>{selectedStatus}</p>
                 </div>
             </div>

@@ -1,11 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import { Button } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 import PrivateRoute from "../components/PrivateRoute";
 
+
 const Index = ({ minumans, userRole }) => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const handleCategoryFilter = (category) => {
+    console.log("Category Filtered:", category);
+    setSelectedCategory(category);
+    console.log("Selected Category:", category);
+  };
+
+
+  // Filter the minumans based on the selected category
+  const filteredMinumans = selectedCategory
+    ? minumans.filter((minuman) => minuman.kategori === selectedCategory)
+    : minumans;
+
 
   const router = useRouter();
 
@@ -122,8 +137,54 @@ const Index = ({ minumans, userRole }) => {
                 }}
               >What do you want to food?</h1>
             </div>
+            <div className="flex justify-between" style={{
+              gap: "10px",
+            }}>
+              <button
+                style={{
+                  display: "flex",
+                  padding: "7px 10px",
+                  alignItems: "flex-start",
+                  borderRadius: "10px",
+                  background:
+                    selectedCategory === "noncoffee" ? "#67442E" : "#F3E0BF", // Change background color when selected
+                  color: selectedCategory === "noncoffee" ? "#FFF" : "#000", // Change text color when selected
+                }}
+                onClick={() => handleCategoryFilter("noncoffee")} // Set the category filter
+              >
+                Non Coffee
+              </button>
+              <button
+                style={{
+                  display: "flex",
+                  padding: "7px 10px",
+                  alignItems: "flex-start",
+                  borderRadius: "10px",
+                  background:
+                    selectedCategory === "manualbrew" ? "#67442E" : "#F3E0BF", // Change background color when selected
+                  color: selectedCategory === "manualbrew" ? "#FFF" : "#000", // Change text color when selected
+                }}
+                onClick={() => handleCategoryFilter("manualbrew")} // Set the category filter
+              >
+                Manual Brew
+              </button>
+              <button
+                style={{
+                  display: "flex",
+                  padding: "7px 10px",
+                  alignItems: "flex-start",
+                  borderRadius: "10px",
+                  background:
+                    selectedCategory === "coffee" ? "#67442E" : "#F3E0BF", // Change background color when selected
+                  color: selectedCategory === "coffee" ? "#FFF" : "#000", // Change text color when selected
+                }}
+                onClick={() => handleCategoryFilter("coffee")} // Set the category filter
+              >
+                Coffee
+              </button>
+            </div>
             <div className="cards-container">
-              {minumans.map(minuman => {
+              {filteredMinumans.map((minuman) => {
                 return (
                   <div key={minuman._id} className="card-item" style={{ width: "156px" }}>
                     <div>

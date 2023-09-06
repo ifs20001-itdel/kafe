@@ -122,6 +122,31 @@ const Index = ({ minumans, userRole }) => {
                 }}
               >What do you want to food?</h1>
             </div>
+            <div className="flex justify-between" style={{
+              gap: "10px",
+            }}>
+              <button style={{
+                display: "flex",
+                padding: "7px 10px",
+                alignItems: "flex-start",
+                borderRadius: "10px",
+                background: "#F3E0BF"
+              }}>Espresso Based</button>
+              <button style={{
+                display: "flex",
+                padding: "7px 10px",
+                alignItems: "flex-start",
+                borderRadius: "10px",
+                background: "#F3E0BF"
+              }}>Manual Brew</button>
+              <button style={{
+                display: "flex",
+                padding: "7px 10px",
+                alignItems: "flex-start",
+                borderRadius: "10px",
+                background: "#F3E0BF"
+              }}>Non Coffee</button>
+            </div>
             <div className="cards-container">
               {minumans.map(minuman => {
                 return (
@@ -175,12 +200,12 @@ const Index = ({ minumans, userRole }) => {
                           color: "#000"
                         }} href={`/${minuman._id}/editminuman`}>
                           <div className="bg-transparent text-[#67442E] font-semibold py-2  px-auto" style={{ borderRadius: "12.275px", border: "1.416px solid #67442E", display: "flex", padding: "4.83px 29.272px", alignItems: "flex-start", gap: "-3.45px" }}>
-                          <p style={{ margin: "auto 33px" }}>Edit</p>
+                            <p style={{ margin: "auto 33px" }}>Edit</p>
                           </div>
                         </Link>
                         <div className="bg-transparent" onClick={() => handleDelete(minuman._id)}>
                           <div className="bg-transparent text-[#67442E] font-semibold py-2 mt-2 px-auto" style={{ borderRadius: "12.275px", border: "1.416px solid #67442E", display: "flex", padding: "4.83px 29.272px", alignItems: "flex-start", gap: "-3.45px" }}>
-                          <p style={{ margin: "auto 23px" }}>Delete</p>
+                            <p style={{ margin: "auto 23px" }}>Delete</p>
                           </div>
                         </div>
                       </div>

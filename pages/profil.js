@@ -51,7 +51,7 @@ const Profil = () => {
                         <div class="photo-wrapper p-2" style={{
                             marginBottom: "80px"
                         }}>
-                            <img class="w-32 h-32 rounded-full mx-auto" style={{backgroundColor:"white"}} src="https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg" alt="Profil" />
+                            <img class="w-32 h-32 rounded-full mx-auto" style={{ backgroundColor: "white" }} src="https://cdn1.vectorstock.com/i/1000x1000/54/90/administrator-avatar-icon-vector-32095490.jpg" alt="Profil" />
                         </div>
                         <div class="p-2">
                             {/* <h3 class="text-center text-xl text-gray-900 font-medium leading-8">Joh Doe</h3>
@@ -121,6 +121,28 @@ const Profil = () => {
                                             borderBottom: "0.5px solid rgba(0, 0, 0, 0.50)"
                                         }}>
                                             {user.alamat}
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div class="">
+                                    <div class="mb-4" width="282px">
+                                        <p class="block mb-2" style={{
+                                            color: "#000",
+                                            fontSize: "13px",
+                                            fontWeight: "600",
+                                            lineHeight: "12px"
+                                        }}>
+                                            Role
+                                        </p>
+                                        <p class="w-full py-2 px-3" style={{
+                                            color: "#000",
+                                            fontSize: "12px",
+                                            fontWeight: "600",
+                                            lineHeight: "12px",
+                                            borderBottom: "0.5px solid rgba(0, 0, 0, 0.50)"
+                                        }}>
+                                            {user.role}
                                         </p>
                                     </div>
 

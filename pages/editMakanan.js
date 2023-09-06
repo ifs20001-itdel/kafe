@@ -123,6 +123,31 @@ const Index = ({ makanans }) => {
                 }}
               >What do you want to food?</h1>
             </div>
+            <div className="flex justify-between" style={{
+              gap: "10px",
+            }}>
+              <button style={{
+                display: "flex",
+                padding: "7px 10px",
+                alignItems: "flex-start",
+                borderRadius: "10px",
+                background: "#F3E0BF"
+              }}>Special Breakfast</button>
+              <button style={{
+                display: "flex",
+                padding: "7px 10px",
+                alignItems: "flex-start",
+                borderRadius: "10px",
+                background: "#F3E0BF"
+              }}>Main Course</button>
+              <button style={{
+                display: "flex",
+                padding: "7px 10px",
+                alignItems: "flex-start",
+                borderRadius: "10px",
+                background: "#F3E0BF"
+              }}>Snacks</button>
+            </div>
             <div className="cards-container">
               {makanans.map(makanan => {
                 return (

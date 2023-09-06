@@ -1,11 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import { Button } from 'semantic-ui-react';
 import PrivateRoute from "../components/PrivateRoute";
 
 
+
+
 const Index = ({ makanans, userRole }) => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const handleCategoryFilter = (category) => {
+    setSelectedCategory(category);
+  };
 
   useEffect(() => {
     console.log(makanans); // Periksa data yang diterima
@@ -124,121 +131,173 @@ const Index = ({ makanans, userRole }) => {
                 }}
               >What do you want to food?</h1>
             </div>
+            <div className="flex justify-between" style={{ gap: "10px" }}>
+              <button
+                style={{
+                  display: "flex",
+                  padding: "7px 10px",
+                  alignItems: "flex-start",
+                  borderRadius: "10px",
+                  background:
+                    selectedCategory === "specialbreakfast"
+                      ? "#67442E"
+                      : "#F3E0BF",
+                  color:
+                    selectedCategory === "specialbreakfast" ? "#FFF" : "#000",
+                }}
+                onClick={() => handleCategoryFilter("specialbreakfast")}
+              >
+                Special Breakfast
+              </button>
+              <button
+                style={{
+                  display: "flex",
+                  padding: "7px 10px",
+                  alignItems: "flex-start",
+                  borderRadius: "10px",
+                  background:
+                    selectedCategory === "maincourse" ? "#67442E" : "#F3E0BF",
+                  color: selectedCategory === "maincourse" ? "#FFF" : "#000",
+                }}
+                onClick={() => handleCategoryFilter("maincourse")}
+              >
+                Main Course
+              </button>
+              <button
+                style={{
+                  display: "flex",
+                  padding: "7px 10px",
+                  alignItems: "flex-start",
+                  borderRadius: "10px",
+                  background:
+                    selectedCategory === "snacks" ? "#67442E" : "#F3E0BF",
+                  color: selectedCategory === "snacks" ? "#FFF" : "#000",
+                }}
+                onClick={() => handleCategoryFilter("snacks")}
+              >
+                Snacks
+              </button>
+            </div>
             <div className="cards-container">
-              {makanans.map(makanan => {
-                return (
-                  <div key={makanan._id} className="card-item" style={{ width: "156px" }}>
-                    <div>
+              {makanans
+                .filter(
+                  (makanan) =>
+                    !selectedCategory || makanan.kategori === selectedCategory
+                )
+                .map((makanan) => {
+                  return (
+                    <div key={makanan._id} className="card-item" style={{ width: "156px" }}>
                       <div>
-                        <Link style={{
-                          textDecoration: "none",
-                          color: "#000"
-                        }} href={`/${makanan._id}/food`}>
-                          <img src={makanan.image} alt="image description" style={{
-                            width: "150.135px",
-                            height: "150.135px",
-                            borderRadius: "20px"
-                          }} />
-                        </Link>
-                      </div>
-                      <div>
-                        <div className="mt-4 text-left">
+                        <div>
                           <Link style={{
                             textDecoration: "none",
                             color: "#000"
-                          }} href={`/${makanan._id}`}>
-                            <span style={{
-                              color: "#000",
-
-                              fontSize: "14.164px",
-                              fontStyle: "normal",
-                              fontWeight: "600",
-                              lineHeight: "18.885px",
-                              letterSpacing: "0.283px"
-                            }}>{makanan.title}</span>
+                          }} href={`/${makanan._id}/food`}>
+                            <img src={makanan.image} alt="image description" style={{
+                              width: "150.135px",
+                              height: "150.135px",
+                              borderRadius: "20px"
+                            }} />
                           </Link>
                         </div>
-                      </div>
-                      <div className="mt-1 text-left">
-                        <span style={{
-                          color: "rgba(0, 0, 0, 0.75)",
-                          textAlign: "center",
+                        <div>
+                          <div className="mt-4 text-left">
+                            <Link style={{
+                              textDecoration: "none",
+                              color: "#000"
+                            }} href={`/${makanan._id}`}>
+                              <span style={{
+                                color: "#000",
 
-                          fontSize: "13px",
-                          fontStyle: "normal",
-                          fontWeight: "500",
-                          lineHeight: "15px",
-                          letterSpacing: "0.26px"
-                        }}>Rp. {makanan.price}</span>
-                      </div>
-                      <div className="mt-2 mb-6 text-left">
-                        {/* <Link href={`/${makanan._id}`}>
+                                fontSize: "14.164px",
+                                fontStyle: "normal",
+                                fontWeight: "600",
+                                lineHeight: "18.885px",
+                                letterSpacing: "0.283px"
+                              }}>{makanan.title}</span>
+                            </Link>
+                          </div>
+                        </div>
+                        <div className="mt-1 text-left">
+                          <span style={{
+                            color: "rgba(0, 0, 0, 0.75)",
+                            textAlign: "center",
+
+                            fontSize: "13px",
+                            fontStyle: "normal",
+                            fontWeight: "500",
+                            lineHeight: "15px",
+                            letterSpacing: "0.26px"
+                          }}>Rp. {makanan.price}</span>
+                        </div>
+                        <div className="mt-2 mb-6 text-left">
+                          {/* <Link href={`/${makanan._id}`}>
                       <Button className="bg-transparent text-[#67442E] font-semibold py-2 px-4 border m-2 border-[#67442E] rounded">
                         View
                       </Button>
                     </Link> */}
-                        <Link style={{
-                          textDecoration: "none",
-                          color: "#000"
-                        }} href='/keranjang'>
-                          <div className="flex items-center justify-start">
-                            <div
-                              className="bg-transparent text-[#67442E] font-semibold py-2 px-auto"
-                              style={{
-                                borderRadius: "12.275px",
-                                border: "1.416px solid #67442E",
-                                display: "flex",
-                                padding: "4.83px 29.272px",
-                                alignItems: "flex-start",
-                                gap: "-3.45px",
-                              }}
-                              onClick={() => handleAddToCart(makanan)}
-                            >
-                              <p className="pr-2" style={{
-                                color: "#67442E",
-                                textAlign: "center",
-                                fontFeatureSettings: "'clig' off, 'liga' off",
-                                fontFamily: "DM Sans",
-                                fontSize: "14.164px",
-                                fontStyle: "normal",
-                                fontWeight: "500",
-                                lineHeight: "26.221px"
-                              }}>Tambah</p>
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor"
-                                className="w-6 h-6"
-                                style={{ paddingTop: "2px", paddingBottom: "2px" }}
+                          <Link style={{
+                            textDecoration: "none",
+                            color: "#000"
+                          }} href='/keranjang'>
+                            <div className="flex items-center justify-start">
+                              <div
+                                className="bg-transparent text-[#67442E] font-semibold py-2 px-auto"
+                                style={{
+                                  borderRadius: "12.275px",
+                                  border: "1.416px solid #67442E",
+                                  display: "flex",
+                                  padding: "4.83px 29.272px",
+                                  alignItems: "flex-start",
+                                  gap: "-3.45px",
+                                }}
+                                onClick={() => handleAddToCart(makanan)}
                               >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-                                />
-                              </svg>
+                                <p className="pr-2" style={{
+                                  color: "#67442E",
+                                  textAlign: "center",
+                                  fontFeatureSettings: "'clig' off, 'liga' off",
+                                  fontFamily: "DM Sans",
+                                  fontSize: "14.164px",
+                                  fontStyle: "normal",
+                                  fontWeight: "500",
+                                  lineHeight: "26.221px"
+                                }}>Tambah</p>
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  strokeWidth="1.5"
+                                  stroke="currentColor"
+                                  className="w-6 h-6"
+                                  style={{ paddingTop: "2px", paddingBottom: "2px" }}
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                                  />
+                                </svg>
+                              </div>
                             </div>
-                          </div>
-                        </Link>
-                        {/* {userRole === 'admin' || userRole === 'user' ? (
+                          </Link>
+                          {/* {userRole === 'admin' || userRole === 'user' ? (
                           <>
                           </>
 
                         )} */}
-                        {userRole === 'admin' && (
-                          <button className="focus:outline-none cursor-pointer mt-4">
-                            <p style={{
-                              margin: "auto 150px"
-                            }}>Logout</p>
-                          </button>
-                        )}
+                          {userRole === 'admin' && (
+                            <button className="focus:outline-none cursor-pointer mt-4">
+                              <p style={{
+                                margin: "auto 150px"
+                              }}>Logout</p>
+                            </button>
+                          )}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )
-              })}
+                  )
+                })}
             </div>
           </div>
 
@@ -268,8 +327,8 @@ const Index = ({ makanans, userRole }) => {
         }
       `}</style>
         </div >
-      </PrivateRoute>
-    </div>
+      </PrivateRoute >
+    </div >
   )
 }
 
