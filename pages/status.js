@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PrivateRoute from '../components/PrivateRoute';
 import { parseCookies } from 'nookies';
 import Layout from '../components/Layout';
+import { useRouter } from 'next/router';
+
 
 const Status = () => {
     const [orders, setOrders] = useState([]);
@@ -9,6 +11,8 @@ const Status = () => {
     const [isOrderDetailsVisible, setIsOrderDetailsVisible] = useState(false);
     const [selectedStatus, setSelectedStatus] = useState([]);
     const { user_token } = parseCookies();
+    const router = useRouter()
+
 
     useEffect(() => {
         const fetchOrders = async () => {
@@ -43,13 +47,28 @@ const Status = () => {
         setIsOrderDetailsVisible(!isOrderDetailsVisible);
     };
 
-    const handleCheckboxChange = (status) => {
-        if (selectedStatus.includes(status)) {
-            setSelectedStatus(selectedStatus.filter((s) => s !== status));
-        } else {
-            setSelectedStatus([...selectedStatus, status]);
+    useEffect(() => {
+        // Load selectedStatus dari localStorage saat komponen pertama kali di-mount
+        const storedSelectedStatus = localStorage.getItem('selectedStatus');
+        if (storedSelectedStatus) {
+            setSelectedStatus([storedSelectedStatus]);
         }
+    }, []);
+
+    const handleRadioChange = (status) => {
+        setSelectedStatus(status);
+        
+        // Simpan selectedStatus ke dalam localStorage
+        localStorage.setItem('selectedStatus', status);
+        
+        // Navigasi ke halaman "HasilStatus"
+        router.push('/hasil-status');
+
+        window.location.reload();
+
     };
+    
+    
 
     return (
         <PrivateRoute>
@@ -142,7 +161,7 @@ const Status = () => {
                     </div>
                 </div>
                 {selectedOrder && isOrderDetailsVisible && (
-                    <div className="menu-container">
+                    <div className="menu-container rounded" style={{ background: "#F6ECD1", padding: "10px" }}>
                         {orders.map((order) => (
                             <div key={order._id} className="menu-item container text-center">
                                 <div className="menu-item-image">
@@ -182,36 +201,40 @@ const Status = () => {
             <div className="space-y-4">
                 <label className="flex items-center space-x-2">
                     <input
-                        type="checkbox"
-                        className="form-checkbox text-indigo-600"
-                        onChange={() => handleCheckboxChange("Menunggu konfirmasi pesanan")}
+                        type="radio" // Ubah tipe input menjadi radio
+                        name="status" // Berikan nama yang sama untuk semua radio button
+                        className="form-radio text-indigo-600"
+                        onChange={() => handleRadioChange("Menunggu konfirmasi pesanan")}
                     />
                     <span>Menunggu konfirmasi pesanan</span>
                 </label>
 
                 <label className="flex items-center space-x-2">
                     <input
-                        type="checkbox"
-                        className="form-checkbox text-indigo-600"
-                        onChange={() => handleCheckboxChange("Sabar ya, pesanan kamu sedang dibuat")}
+                        type="radio" // Ubah tipe input menjadi radio
+                        name="status" // Berikan nama yang sama untuk semua radio button
+                        className="form-radio text-indigo-600"
+                        onChange={() => handleRadioChange("Sabar ya, pesanan kamu sedang dibuat")}
                     />
                     <span>Sabar ya, pesanan kamu sedang dibuat</span>
                 </label>
 
                 <label className="flex items-center space-x-2">
                     <input
-                        type="checkbox"
-                        className="form-checkbox text-indigo-600"
-                        onChange={() => handleCheckboxChange("Pesanan kamu sedang dalam perjalanan")}
+                        type="radio" // Ubah tipe input menjadi radio
+                        name="status" // Berikan nama yang sama untuk semua radio button
+                        className="form-radio text-indigo-600"
+                        onChange={() => handleRadioChange("Pesanan kamu sedang dalam perjalanan")}
                     />
                     <span>Pesanan kamu sedang dalam perjalanan</span>
                 </label>
 
                 <label className="flex items-center space-x-2">
                     <input
-                        type="checkbox"
-                        className="form-checkbox text-indigo-600"
-                        onChange={() => handleCheckboxChange("Pesanan telah diterima")}
+                        type="radio" // Ubah tipe input menjadi radio
+                        name="status" // Berikan nama yang sama untuk semua radio button
+                        className="form-radio text-indigo-600"
+                        onChange={() => handleRadioChange("Pesanan telah diterima")}
                     />
                     <span>Pesanan telah diterima</span>
                 </label>
@@ -225,7 +248,7 @@ const Status = () => {
                     </ul>
                 </div>
             </div>
-            
+
         </PrivateRoute>
     );
 };

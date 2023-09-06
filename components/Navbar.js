@@ -2,11 +2,13 @@ import 'tailwindcss/tailwind.css';
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from 'react';
-import { destroyCookie } from 'nookies';
+import { destroyCookie, parseCookies } from 'nookies'; // Added parseCookies
 import { useRouter } from 'next/router';
 
 const Navbar = ({ userRole }) => {
   const router = useRouter();
+  const cookies = parseCookies(); // Parse cookies
+
 
   const handleLogout = () => {
     // Remove the user_token cookie
@@ -42,6 +44,7 @@ const Navbar = ({ userRole }) => {
 
     }
   }, [])
+  const isLoggedIn = !!cookies.user_token;
 
 
   return (
@@ -70,12 +73,16 @@ const Navbar = ({ userRole }) => {
                 color: "#000"
               }}>Home Page</p>
             </Link>
-            <Link href="/menu" style={{
-              textDecoration: "none",
-              color: "#000"
-            }} className="mr-5 hover:text-gray-900">
-              <p className="text-center">Menu</p>
-            </Link>
+            {userRole === 'user' && (
+              <>
+                <Link href="/menu" style={{
+                  textDecoration: "none",
+                  color: "#000"
+                }} className="mr-5 hover:text-gray-900">
+                  <p className="text-center">Menu</p>
+                </Link>
+              </>
+            )}
             <Link href="/promo" style={{
               textDecoration: "none",
               color: "#000"
@@ -88,15 +95,25 @@ const Navbar = ({ userRole }) => {
             }} className="mr-5 hover:text-gray-900">
               <p className="text-center">Keranjang</p>
             </Link>
-            <Link href="/status" style={{
-              textDecoration: "none",
-              color: "#000"
-            }} className="mr-5 hover:text-gray-900">
-              <p className="text-center">Status Pemesanan</p>
-            </Link>
+            {userRole === 'user' && (
+              <>
+                <Link href="/hasil-status" style={{
+                  textDecoration: "none",
+                  color: "#000"
+                }} className="mr-5 hover:text-gray-900">
+                  <p className="text-center">Status Pemesanan</p>
+                </Link>
+              </>
+            )}
             <div className="hover:text-gray-900 focus:outline-none cursor-pointer" onClick={toggleCreateMenu}>
               {userRole === 'admin' && (
                 <>
+                  <Link href="/status" style={{
+                    textDecoration: "none",
+                    color: "#000"
+                  }} className="mr-5 hover:text-gray-900">
+                    <p className="text-center">Status Pemesanan</p>
+                  </Link>
                   <Link href="/menuAdmin" style={{
                     textDecoration: "none",
                     color: "#000"
@@ -155,20 +172,44 @@ const Navbar = ({ userRole }) => {
               }}>Profil</p>
             </Link>
             {/* Check if user is logged in */}
-            {userRole === 'admin' || userRole === 'user' ? (
-              <button className="focus:outline-none cursor-pointer mt-4" onClick={handleLogout}>
-                <p style={{
-                  margin: "auto 150px"
-                }}>Logout</p>
-              </button>
-            ) : (
+            {/* <div>
+              {isLoggedIn ? (
+                <button
+                  className="focus:outline-none cursor-pointer mt-4"
+                  onClick={handleLogout}
+                >
+                  <p style={{ margin: "auto 150px" }}>Logout</p>
+                </button>
+              ) : (
+                <Link
+                  href="/login"
+                  style={{
+                    textDecoration: "none",
+                    color: "#000",
+                  }}
+                  className="mr-5 hover:text-gray-900"
+                >
+                  <h3 className="text-center">Login</h3>
+                </Link>
+              )}
+            </div> */}
+            {/* Check if user is logged in */}
+            {userRole === 'user' ? (
               <Link href="/login" style={{
                 textDecoration: "none",
                 color: "#000"
               }} className="mr-5 hover:text-gray-900">
                 <p className="text-center">Login</p>
               </Link>
+            ) : (
+              <button className="focus:outline-none cursor-pointer mt-4" onClick={handleLogout}>
+                <p style={{
+                  margin: "auto 150px"
+                }}>Logout</p>
+              </button>
             )}
+
+
           </div>
         </div>
       </nav>

@@ -41,6 +41,11 @@ const Index = ({ keranjangs }) => {
       const hasNullTitle = orderData.some((item) => item.title === null);
       console.log('Has null title:', hasNullTitle); // Debugging
 
+      // Check if orderData is empty or if it contains items with null titles
+      if (orderData.length === 0 || hasNullTitle) {
+        alert("Pesanan gagal: Data tidak lengkap");
+        return;
+      }
 
       // Send the entire orderData array to the server
       const response = await fetch("http://localhost:3000/api/orders", {
@@ -63,21 +68,21 @@ const Index = ({ keranjangs }) => {
         }
         setShowConfirmationModal(true);
 
-        // Show alert and refresh page on OK
-        // const isConfirmed = window.confirm("Order successfully placed! Click OK to refresh the page.");
-        // if (isConfirmed) {
-        //   window.location.reload();
-        // }
+        //Show alert and refresh page on OK
+        const isConfirmed = window.confirm("Pesanan kamu berhasil 😊");
+        if (isConfirmed) {
+          window.location.reload();
+        }
+      } else {
+        alert("Pesanan kamu gagal, silahkan coba lagi 😔");
       }
-      // else {
-      //   alert("Failed to place order.");
-      // }
     } catch (error) {
       console.log("Error placing order:", error);
     }
     setShowPaymentModal(true);
-
   };
+
+
 
 
   const handleCheckboxChange = (keranjang) => {
@@ -364,6 +369,7 @@ const Index = ({ keranjangs }) => {
             {selectedPaymentMethod ? (
               <div>
                 <h2>QR Code {selectedPaymentMethod}</h2>
+                <h1>Total : Rp.{totalPrice}</h1>
                 {selectedPaymentMethod === "Dana" && (
                   <img
                     src="https://w7.pngwing.com/pngs/289/293/png-transparent-qr-code-business-cards-barcode-coupon-test-box-angle-text-rectangle.png"
@@ -388,9 +394,7 @@ const Index = ({ keranjangs }) => {
                 )}
                 <button
                   onClick={() => {
-                    alert("Pesanan kamu berhasil 😊");
                     handleOrder();
-                    window.location.reload();
                   }}
                 >
                   Konfirmasi Pembayaran
