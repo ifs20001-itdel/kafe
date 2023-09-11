@@ -4,7 +4,6 @@ const ItemSchema = new mongoose.Schema({
     title: {
         type: String,
         required: [true, 'Please add a title'],
-        unique: false,
         maxlength: [40, 'Title cannot be more than 40 characters']
     },
     price: {

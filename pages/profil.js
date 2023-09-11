@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { parseCookies } from 'nookies';
+import Link from 'next/link';
+
 
 const Profil = () => {
     const { user_token } = parseCookies();
@@ -169,6 +171,10 @@ const Profil = () => {
                                     </div>
                                 </div>
                             </div>
+                            <Link href="/edit-profile">
+                                <p>Edit Profil</p>
+                            </Link>
+
                         </div>
                     </div>
                 </div>

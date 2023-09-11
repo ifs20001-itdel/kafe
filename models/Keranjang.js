@@ -4,7 +4,6 @@ const KeranjangSchema = new mongoose.Schema({
     title: {
         type: String,
         required: [true, 'Please add a title'],
-        unique: true,
         maxlength: [100, 'Title cannot be more than 100 characters']
     },
     price: {

@@ -448,11 +448,40 @@ const Home = () => {
 
       {/* TESTIMONI */}
       <div className='text-gray-600 body-font'>
-        {/* <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-            <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-                <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Our Story</h1>
-                <p className="mb-8 leading-relaxed">Kefi Coffee And Space is a restaurant located in Medan. This restaurant serves various drinks and rice menus at affordable prices.</p>
-            </div> */}
+        <div class='text-center mb-10 px-3'>
+          <div class='flex items-center justify-between' style={{
+            width: "314px",
+            height: "47px",
+          }}>
+            <p class='' style={{
+              color: "#000",
+              fontSize: "20px",
+              fontStyle: "normal",
+              fontWeight: "600",
+              lineHeight: "normal"
+            }}>
+              Testimonials
+            </p>
+            <div style={{ position: `relative` }}>
+              <div class='text-center'>
+                <div style={{
+                  color: "#A5895E",
+                  fontSize: "15px",
+                  fontStyle: "normal",
+                  fontWeight: "600",
+                  lineHeight: "normal"
+                }}>
+                  {/* <Link style={{
+                      textDecoration: "none",
+                      color: "#A5895E"
+                    }} href="/promo">
+                      See others
+                    </Link> */}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className='w-full'>
           <img className='w-full' alt='testimoni' src='/Testimonials.png' />
         </div>

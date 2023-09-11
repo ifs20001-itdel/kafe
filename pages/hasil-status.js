@@ -55,7 +55,7 @@ const HasilStatus = () => {
     return (
         <PrivateRoute>
             <div>
-                <div className="p-4">
+                <div className="">
                     <div style={{ textAlign: "center", marginTop: "20px" }}>
                         <div className="flex flex-wrap justify-center mt-4" style={{
                             color: "#000",
@@ -63,11 +63,11 @@ const HasilStatus = () => {
                             fontWeight: "600"
                         }}>
                             <div
-                                className="p-4 mb-12 border-b-2 flex justify items-center"
+                                className="p-2 mb-12 border-b-2 flex justify items-center"
                                 style={{
                                     width: "350px",
                                     color: "#000",
-                                    fontSize: "13px",
+                                    fontSize: "25px",
                                     fontStyle: "normal",
                                     fontWeight: "600",
                                     lineHeight: "20px",
@@ -180,10 +180,13 @@ const HasilStatus = () => {
                         </div>
                     )}
                 </div>
-                <div className='container mb-3'>
-                    <h2>Status Pemesanan</h2>
-                    <p>{selectedStatus}</p>
+                <div className='container mb-6'>
+                    <h2 className='text-xl font-semibold text-gray-800'>Status Pemesanan</h2>
+                    <div className='bg-[#F6ECD1] text-[#A5895E] rounded-lg py-2 px-4 mt-2'>
+                        <p className='text-lg'>{selectedStatus}</p>
+                    </div>
                 </div>
+
             </div>
         </PrivateRoute>
     );

@@ -87,7 +87,12 @@ const Footer = () => (
           <div className='title-font font-medium text-white-900 mb-10' style={{
             letterSpacing: "2px"
           }}>
-            email@gmail.com
+            <Link style={{
+              textDecoration: "none",
+              color: "#000"
+            }} href="https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Fkefi.cafeandspace%2F&source=direct">
+              kefi@gmail.com
+            </Link>
           </div>
 
           <div className='title-font font-bold text-white-900 mb-3' style={{

@@ -30,22 +30,23 @@ const Index = ({ keranjangs }) => {
 
   const handleOrder = async () => {
     try {
+      // Check if any item in keranjang has a null title
+      const hasNullTitleInKeranjang = selectedItems.some((keranjang) => keranjang.title === null);
+      console.log('Has null title in keranjang:', hasNullTitleInKeranjang); // Debugging
+
+      // Check if selectedItems is empty or if it contains items with null titles
+      if (selectedItems.length === 0 || hasNullTitleInKeranjang) {
+        alert("Pesanan gagal: Data tidak lengkap");
+        return;
+      }
+
       const orderData = selectedItems.map((keranjang) => ({
-        title: keranjang.title || 'Untitled',
+        title: keranjang.title || "Unknown Title", // Provide a default title if it's null
         price: keranjang.price,
         image: keranjang.image,
       }));
 
       console.log('Order Data:', orderData); // Debugging
-
-      const hasNullTitle = orderData.some((item) => item.title === null);
-      console.log('Has null title:', hasNullTitle); // Debugging
-
-      // Check if orderData is empty or if it contains items with null titles
-      if (orderData.length === 0 || hasNullTitle) {
-        alert("Pesanan gagal: Data tidak lengkap");
-        return;
-      }
 
       // Send the entire orderData array to the server
       const response = await fetch("http://localhost:3000/api/orders", {
@@ -68,7 +69,7 @@ const Index = ({ keranjangs }) => {
         }
         setShowConfirmationModal(true);
 
-        //Show alert and refresh page on OK
+        // Show alert and refresh page on OK
         const isConfirmed = window.confirm("Pesanan kamu berhasil 😊");
         if (isConfirmed) {
           window.location.reload();
@@ -81,6 +82,8 @@ const Index = ({ keranjangs }) => {
     }
     setShowPaymentModal(true);
   };
+
+
 
 
 
@@ -357,80 +360,113 @@ const Index = ({ keranjangs }) => {
       >
         Buat Pesanan
       </button>
+
       {showPaymentModal && (
-        <div className="payment-modal">
-          <div className="payment-modal-content">
-            <button
-              className="cancel-button flex"
-              onClick={() => setShowPaymentModal(false)}
-            >
-              Cancel
-            </button>
-            {selectedPaymentMethod ? (
-              <div>
-                <h2>QR Code {selectedPaymentMethod}</h2>
-                <h1>Total : Rp.{totalPrice}</h1>
-                {selectedPaymentMethod === "Dana" && (
-                  <img
-                    src="https://w7.pngwing.com/pngs/289/293/png-transparent-qr-code-business-cards-barcode-coupon-test-box-angle-text-rectangle.png"
-                    alt="Dana QR Code"
-                    width="200"
-                    height="200"
-                    style={{
-                      margin: "auto 80px"
-                    }}
-                  />
-                )}
-                {selectedPaymentMethod === "Ovo" && (
-                  <img
-                    src="https://w7.pngwing.com/pngs/289/293/png-transparent-qr-code-business-cards-barcode-coupon-test-box-angle-text-rectangle.png"
-                    alt="Ovo QR Code"
-                    width="200"
-                    height="200"
-                    style={{
-                      margin: "auto 80px"
-                    }}
-                  />
-                )}
-                <button
-                  onClick={() => {
-                    handleOrder();
-                  }}
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-white w-96 rounded-lg shadow-lg">
+            <div className="p-4">
+              <button
+                className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+                onClick={() => setShowPaymentModal(false)}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
-                  Konfirmasi Pembayaran
-                </button>
-              </div>
-            ) : (
-              <div>
-                <h2>Pilih Metode Pembayaran</h2>
-                <div className="payment-options" >
-                  <div
-                    className="payment-option m-2"
-                    onClick={() => handlePaymentMethodSelection("Dana")}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+              {selectedPaymentMethod ? (
+                <div>
+                  <h2 className="text-xl font-bold mb-4">
+                    QR Code {selectedPaymentMethod}
+                  </h2>
+                  <h1 className="text-2xl font-bold">
+                    Total : Rp.{totalPrice}
+                  </h1>
+                  {selectedPaymentMethod === "Dana" && (
+                    <img
+                      src="https://w7.pngwing.com/pngs/289/293/png-transparent-qr-code-business-cards-barcode-coupon-test-box-angle-text-rectangle.png"
+                      alt="Dana QR Code"
+                      width="200"
+                      height="200"
+                      className="mx-auto mt-4"
+                    />
+                  )}
+                  {selectedPaymentMethod === "Ovo" && (
+                    <img
+                      src="https://w7.pngwing.com/pngs/289/293/png-transparent-qr-code-business-cards-barcode-coupon-test-box-angle-text-rectangle.png"
+                      alt="Ovo QR Code"
+                      width="200"
+                      height="200"
+                      className="mx-auto mt-4"
+                    />
+                  )}
+                  <button
+                    className="bg-[#A5895E] text-white px-4 py-2 rounded-lg mt-4 hover:bg-blue-600"
+                    onClick={() => {
+                      handleOrder();
+                    }}
                   >
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/2560px-Logo_dana_blue.svg.png" alt="Dana" />
-                  </div>
-                  <div
-                    className="payment-option m-2"
-                    onClick={() => handlePaymentMethodSelection("Ovo")}
-                  >
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/2560px-Logo_ovo_purple.svg.png" alt="Ovo" />
-                  </div>
-                  {/* Tambahkan lebih banyak pilihan pembayaran jika diperlukan */}
+                    Konfirmasi Pembayaran
+                  </button>
                 </div>
-                <button className="mt-3"
-                  onClick={() => {
-                    // Tambahkan logika konfirmasi pembayaran di sini
-                  }}
-                >
-                  Konfirmasi Pembayaran
-                </button>
-              </div>
-            )}
+              ) : (
+                <div>
+                  <h2 className="text-xl font-bold mb-6">Pilih Metode Pembayaran</h2>
+                  <div className="flex justify-center space-x-4 mb-6">
+                    <div
+                      className="payment-option cursor-pointer"
+                      onClick={() => handlePaymentMethodSelection("Dana")}
+                    >
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/2560px-Logo_dana_blue.svg.png"
+                        alt="Dana"
+                        className="w-32 h-16"
+                      />
+                    </div>
+                    <div
+                      className="payment-option cursor-pointer"
+                      onClick={() => handlePaymentMethodSelection("Ovo")}
+                    >
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/2560px-Logo_ovo_purple.svg.png"
+                        alt="Ovo"
+                        className="w-32 h-16"
+                      />
+                    </div>
+                    {/* Tambahkan lebih banyak pilihan pembayaran jika diperlukan */}
+                  </div>
+                  <button
+                    className="bg-[#A5895E] text-white px-4 py-2 rounded-lg mt-4 hover:bg-blue-600 mt-6"
+                    onClick={() => {
+                      // Tambahkan logika konfirmasi pembayaran di sini
+                    }}
+                  >
+                    Konfirmasi Pembayaran
+                  </button>
+                </div>
+              )}
+              {/* Tombol Cancel di sini */}
+              <button
+                className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg mt-4 hover:bg-gray-400"
+                onClick={() => setShowPaymentModal(false)}
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
-
       )}
+
 
     </div>
   );

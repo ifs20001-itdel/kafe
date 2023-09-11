@@ -72,19 +72,19 @@ const Status = () => {
 
     return (
         <PrivateRoute>
-            <div className="p-4">
-                <div style={{ textAlign: "center", marginTop: "20px" }}>
+            <div className="">
+                <div style={{ textAlign: "center"}}>
                     <div className="flex flex-wrap justify-center mt-4" style={{
                         color: "#000",
                         fontSize: "13px",
                         fontWeight: "600"
                     }}>
                         <div
-                            className="p-4 mb-12 border-b-2 flex justify items-center"
+                            className="p-2 mb-12 border-b-2 flex justify items-center"
                             style={{
                                 width: "350px",
                                 color: "#000",
-                                fontSize: "13px",
+                                fontSize: "25px",
                                 fontStyle: "normal",
                                 fontWeight: "600",
                                 lineHeight: "20px",
@@ -229,7 +229,7 @@ const Status = () => {
                     <span>Pesanan kamu sedang dalam perjalanan</span>
                 </label>
 
-                <label className="flex items-center space-x-2">
+                <label className="flex items-center space-x-2 mb-4">
                     <input
                         type="radio" // Ubah tipe input menjadi radio
                         name="status" // Berikan nama yang sama untuk semua radio button
@@ -238,15 +238,6 @@ const Status = () => {
                     />
                     <span>Pesanan telah diterima</span>
                 </label>
-
-                <div>
-                    <h2>Hasil Status yang Dipilih:</h2>
-                    <ul>
-                        {selectedStatus.map((status, index) => (
-                            <li key={index}>{status}</li>
-                        ))}
-                    </ul>
-                </div>
             </div>
 
         </PrivateRoute>
