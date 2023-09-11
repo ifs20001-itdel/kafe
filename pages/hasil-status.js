@@ -91,8 +91,11 @@ const HasilStatus = () => {
                             {orders.map((order) => (
                                 <div
                                     key={order._id}
-                                    className="flex justify items-center"
-                                    style={{ width: "350px" }}
+                                    className="flex justify items-center mb-6"
+                                    style={{
+                                        width: "350px",
+                                        borderBottom: "2px solid rgba(0, 0, 0, 0.1)"
+                                    }}
                                 >
                                     <div className='text-gray-600 body-font mb-2'>
                                         <div className='mx-auto'>
@@ -145,48 +148,46 @@ const HasilStatus = () => {
                         </div>
                     </div>
                     {selectedOrder && isOrderDetailsVisible && (
-                        <div className="menu-container rounded" style={{ background: "#F6ECD1", padding: "10px" }}>
+                        <div className="menu-container rounded" style={{ background: "", padding: "10px" }}>
                             {orders.map((order) => (
-                                <div key={order._id} className="menu-item container text-center">
-                                    <div className="menu-item-image">
+                                <div key={order._id} className="menu-item container mx-auto my-8 p-4 bg-white rounded-lg shadow-lg">
+                                    <div className="menu-item-header text-2xl font-semibold mb-4">
+                                        Menu
+                                    </div>
+                                    <div className="menu-item-grid grid grid-cols-1 md:grid-cols-2 gap-6">
                                         {order.items.map((item, index) => (
-                                            <div key={index} className="menu-item-image-container">
+                                            <div key={index} className="menu-item-card bg-gray-100 p-4 rounded-lg shadow-md">
                                                 <img
                                                     src={item.image}
                                                     alt={`Deskripsi Gambar ${index}`}
-                                                    style={{
-                                                        width: "200px", height: "200px", borderRadius: "10px",
-                                                        margin: "auto 60px"
-                                                    }}
+                                                    className="w-full h-40 object-cover rounded-md"
                                                 />
-                                                <h1>{item.title}</h1>
-                                                <p className='mb-3'>Price: {item.price}</p>
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <div className="menu-item-details">
-                                        {order.items.map((item, index) => (
-                                            <div key={index} className="menu-item-info">
+                                                <h1 className="text-lg font-semibold mt-2">{item.title}</h1>
+                                                <p className="text-gray-600 text-sm">Price: {item.price}</p>
+                                                <div className="menu-item-actions mt-2">
+                                                    {/* Add buttons for customization or ordering here */}
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
                                     {isOrderDetailsVisible && (
-                                        <div className="menu-item-order-details">
-                                            <p>Total: {order.total}</p>
+                                        <div className="menu-item-order-details mt-4">
+                                            <p className="text-lg font-semibold">Total: {order.total}</p>
                                         </div>
                                     )}
                                 </div>
+
                             ))}
                         </div>
                     )}
                 </div>
+                
                 <div className='container mb-6'>
-                    <h2 className='text-xl font-semibold text-gray-800'>Status Pemesanan</h2>
-                    <div className='bg-[#F6ECD1] text-[#A5895E] rounded-lg py-2 px-4 mt-2'>
-                        <p className='text-lg'>{selectedStatus}</p>
+                    <h2 className='text-xl font-semibold text-gray-800 mb-2'>Order Status</h2>
+                    <div className='notification-box bg-blue-100 border-l-4 border-blue-500 p-4 rounded-lg shadow-md'>
+                        <p className='text-lg text-blue-800'>{selectedStatus}</p>
                     </div>
                 </div>
-
             </div>
         </PrivateRoute>
     );

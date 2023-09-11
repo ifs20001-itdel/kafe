@@ -62,10 +62,7 @@ const Status = () => {
         localStorage.setItem('selectedStatus', status);
         
         // Navigasi ke halaman "HasilStatus"
-        router.push('/hasil-status');
-
-        window.location.reload();
-
+        router.push('/status');
     };
     
     

@@ -7,6 +7,25 @@ const Index = ({ keranjangs }) => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [orders, setOrders] = useState([]); // Track orders separately
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
+  const [itemQuantities, setItemQuantities] = useState({});
+  const [subtotal, setSubtotal] = useState(0);
+
+  useEffect(() => {
+    const calculatedTotalPrice = selectedItems.reduce(
+      (total, keranjang) => total + keranjang.price * (itemQuantities[keranjang._id] || 0),
+      0
+    );
+    setTotalPrice(calculatedTotalPrice);
+
+    const calculatedSubtotal = keranjangs.reduce(
+      (total, keranjang) => total + keranjang.price * (itemQuantities[keranjang._id] || 0),
+      0
+    );
+    setSubtotal(calculatedSubtotal);
+  }, [selectedItems, itemQuantities, keranjangs]);
+
+
+
 
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [showThankYouMessage, setShowThankYouMessage] = useState(false);
@@ -20,13 +39,22 @@ const Index = ({ keranjangs }) => {
   };
 
 
+  // useEffect(() => {
+  //   const calculatedTotalPrice = selectedItems.reduce(
+  //     (total, keranjang) => total + keranjang.price,
+  //     0
+  //   );
+  //   setTotalPrice(calculatedTotalPrice);
+  // }, [selectedItems]);
+
   useEffect(() => {
     const calculatedTotalPrice = selectedItems.reduce(
-      (total, keranjang) => total + keranjang.price,
+      (total, keranjang) => total + keranjang.price * (itemQuantities[keranjang._id] || 0),
       0
     );
     setTotalPrice(calculatedTotalPrice);
-  }, [selectedItems]);
+  }, [selectedItems, itemQuantities]);
+
 
   const handleOrder = async () => {
     try {
@@ -44,6 +72,7 @@ const Index = ({ keranjangs }) => {
         title: keranjang.title || "Unknown Title", // Provide a default title if it's null
         price: keranjang.price,
         image: keranjang.image,
+        quantity: itemQuantities[keranjang._id] || 0,
       }));
 
       console.log('Order Data:', orderData); // Debugging
@@ -81,6 +110,20 @@ const Index = ({ keranjangs }) => {
       console.log("Error placing order:", error);
     }
     setShowPaymentModal(true);
+  };
+
+  const handleQuantityChange = (itemId, action) => {
+    if (action === 'increase') {
+      setItemQuantities(prevQuantities => ({
+        ...prevQuantities,
+        [itemId]: (prevQuantities[itemId] || 0) + 1,
+      }));
+    } else if (action === 'decrease' && itemQuantities[itemId] > 0) {
+      setItemQuantities(prevQuantities => ({
+        ...prevQuantities,
+        [itemId]: prevQuantities[itemId] - 1,
+      }));
+    }
   };
 
 
@@ -125,8 +168,6 @@ const Index = ({ keranjangs }) => {
       console.log("Terjadi kesalahan:", error);
     }
   };
-
-
 
 
   return (
@@ -187,7 +228,7 @@ const Index = ({ keranjangs }) => {
               lineHeight: "20px",
             }}
           >
-            <p className="mr-auto">
+            <p className="mr-auto mb-2 text-black text-lg font-semibold leading-5">
               Keranjang{" "}
               <span
                 style={{
@@ -244,39 +285,47 @@ const Index = ({ keranjangs }) => {
 
                       <div class='text-start ml-6 flex flex-col justify-items-end'>
                         <h1
-                          className="mb-2" style={{
-                            color: "#000",
-                            fontSize: "15px",
-                            fontWeight: "500",
-                            lineHeight: "20px",
-                          }}>
+                          className="mb-2 text-black text-lg font-semibold leading-5"
+                        >
                           {keranjang.title}
                           <input
-                            className="ml-2"
+                            className="ml-2 opacity-100"
                             type="checkbox"
                             checked={selectedItems.includes(keranjang)}
                             onChange={() => handleCheckboxChange(keranjang)}
-                            style={{ opacity: 0 }}
+                            style={{ opacity: 1 }}
                           />
                         </h1>
-                        <div style={{
-                          color: "rgba(0, 0, 0, 0.75)",
-                          fontSize: "13px",
-                          fontWeight: "500",
-                          lineHeight: "20px"
-                        }}>
-
+                        <div className="text-gray-600 text-sm font-semibold leading-5">
                           <p>
-                            {keranjang.price}
+                            {keranjang.price * (itemQuantities[keranjang._id] || 1)}
                           </p>
                         </div>
+                        <div className="flex items-center mt-2">
+                          <button
+                            onClick={() => handleQuantityChange(keranjang._id, 'decrease')}
+                            className="bg-gray-200 text-gray-600 px-2 py-1 rounded-md"
+                          >
+                            -
+                          </button>
+                          <p className="mx-2">{itemQuantities[keranjang._id] || 1}</p>
+                          <button
+                            onClick={() => handleQuantityChange(keranjang._id, 'increase')}
+                            className="bg-gray-200 text-gray-600 px-2 py-1 rounded-md"
+                          >
+                            +
+                          </button>
+                        </div>
                       </div>
+
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           ))}
+
+
           <div className="">
 
           </div>
@@ -304,7 +353,7 @@ const Index = ({ keranjangs }) => {
                   fontWeight: "600",
                   lineHeight: "normal"
                 }}>
-                  {totalPrice}
+                  {subtotal}
                 </div>
               </div>
             </div>
@@ -339,6 +388,7 @@ const Index = ({ keranjangs }) => {
             </div>
           </div>
         </div>
+
       </div>
       <button
         type="submit"
