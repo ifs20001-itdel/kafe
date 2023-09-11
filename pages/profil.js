@@ -2,10 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { parseCookies } from 'nookies';
 import Link from 'next/link';
 
-
 const Profil = () => {
-    const { user_token } = parseCookies();
-    const { isLoggedIn, user } = JSON.parse(user_token);
+    const [user, setUser] = useState({
+        name: '',
+        nomorhp: '',
+        alamat: '',
+        role: '',
+    });
+
+    useEffect(() => {
+        const { user_token } = parseCookies();
+
+        if (user_token) {
+            try {
+                const { isLoggedIn, user: userData } = JSON.parse(user_token);
+                setUser(userData);
+            } catch (error) {
+                console.error("Error parsing user_token:", error);
+            }
+        } else {
+        }
+    }, []);
 
     return (
         <div className='container'>

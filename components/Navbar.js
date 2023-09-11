@@ -208,8 +208,6 @@ const Navbar = ({ userRole }) => {
                 }}>Logout</p>
               </button>
             )}
-
-
           </div>
         </div>
       </nav>
