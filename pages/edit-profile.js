@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { setCookie, parseCookies } from 'nookies';
 
-export default function EditProfile() {
-    const initialUserData = {
+export default function ResetPassword() {
+    const [userData, setUserData] = useState({
         email: "",
         password: "",
         confirmPassword: "",
@@ -11,10 +11,9 @@ export default function EditProfile() {
         nomorhp: "",
         alamat: "",
         role: "",
-    };
+    });
 
-    const [userData, setUserData] = useState(initialUserData);
-    const [showPassword, setShowPassword] = useState(false); // Tambahkan state untuk melihat/menyembunyikan password
+    const [showPassword, setShowPassword] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
@@ -51,6 +50,7 @@ export default function EditProfile() {
         }
 
         try {
+            // Kirim data pengguna yang diubah ke server
             const response = await fetch("/api/reset-password", {
                 method: "POST",
                 headers: {
@@ -60,19 +60,25 @@ export default function EditProfile() {
             });
 
             if (response.ok) {
-                // Setelah berhasil mereset password atau mengedit data, perbarui data di penyimpanan data (cookie)
-                setCookie(null, 'user_data', JSON.stringify(userData), {
-                    maxAge: 30 * 24 * 60 * 60,
+                // Setelah berhasil mereset password, perbarui data di penyimpanan data (cookie)
+                const userDataToStore = {
+                    email: userData.email, // Gunakan email yang baru
+                    name: userData.name,
+                    nomorhp: userData.nomorhp,
+                    alamat: userData.alamat,
+                    role: userData.role,
+                    // Tambahkan data pengguna lainnya jika ada
+                };
+
+                setCookie(null, 'user_data', JSON.stringify(userDataToStore), {
+                    maxAge: 30 * 24 * 60 * 60, // Durasi cookie dalam detik (30 hari)
                     path: '/',
                 });
 
-                // Tampilkan pesan alert sebelum mengarahkan pengguna ke halaman login
-                alert("Selamat, data Anda sudah diperbarui!");
-
-                // Setelah pesan alert ditampilkan, arahkan pengguna ke halaman login
+                // Setelah berhasil mereset password, arahkan pengguna ke halaman login
                 router.push("/login");
             } else {
-                console.error("Gagal mereset password atau mengedit data.");
+                console.error("Gagal mereset password.");
             }
         } catch (error) {
             console.error("Terjadi kesalahan:", error);
@@ -91,19 +97,20 @@ export default function EditProfile() {
                                 type="email"
                                 id="email"
                                 name="email"
-                                value={userData.email}
+                                defaultValue={userData.email}
                                 onChange={handleChange}
                                 required
                                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                             />
                         </div>
+                        {/* Lanjutkan dengan elemen input lainnya dengan cara yang sama */}
                         <div>
                             <label htmlFor="name" className="block text-gray-600">Name:</label>
                             <input
                                 type="text"
                                 id="name"
                                 name="name"
-                                value={userData.name}
+                                defaultValue={userData.name}
                                 onChange={handleChange}
                                 required
                                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
@@ -115,7 +122,7 @@ export default function EditProfile() {
                                 type="text"
                                 id="alamat"
                                 name="alamat"
-                                value={userData.alamat}
+                                defaultValue={userData.alamat}
                                 onChange={handleChange}
                                 required
                                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
@@ -127,20 +134,21 @@ export default function EditProfile() {
                                 type="text"
                                 id="nomorhp"
                                 name="nomorhp"
-                                value={userData.nomorhp}
+                                defaultValue={userData.nomorhp}
                                 onChange={handleChange}
                                 required
                                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                             />
                         </div>
+
                         <div>
-                            <label htmlFor="password" className="block text-gray-600">Password:</label>
+                            <label htmlFor="password" className="block text-gray-600">New Password:</label>
                             <div className="relative">
                                 <input
                                     type={showPassword ? "text" : "password"}
                                     id="password"
                                     name="password"
-                                    value={userData.password}
+                                    defaultValue={userData.password}
                                     onChange={handleChange}
                                     required
                                     className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
@@ -160,7 +168,7 @@ export default function EditProfile() {
                                     type={showPassword ? "text" : "password"}
                                     id="confirmPassword"
                                     name="confirmPassword"
-                                    value={userData.confirmPassword}
+                                    defaultValue={userData.confirmPassword}
                                     onChange={handleChange}
                                     required
                                     className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
@@ -177,7 +185,7 @@ export default function EditProfile() {
                             type="submit"
                             className="w-full bg-[#67442E] text-white py-2 rounded-md hover:bg-[#AA8F63] transition duration-300"
                         >
-                            Update Profile
+                            Edit Profile
                         </button>
                     </div>
                 </form>

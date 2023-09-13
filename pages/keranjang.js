@@ -298,7 +298,7 @@ const Index = ({ keranjangs }) => {
                         </h1>
                         <div className="text-gray-600 text-sm font-semibold leading-5">
                           <p>
-                            {keranjang.price * (itemQuantities[keranjang._id] || 1)}
+                            {keranjang.price * (itemQuantities[keranjang._id] || 0)}
                           </p>
                         </div>
                         <div className="flex items-center mt-2">
@@ -308,7 +308,7 @@ const Index = ({ keranjangs }) => {
                           >
                             -
                           </button>
-                          <p className="mx-2">{itemQuantities[keranjang._id] || 1}</p>
+                          <p className="mx-2">{itemQuantities[keranjang._id] || 0}</p>
                           <button
                             onClick={() => handleQuantityChange(keranjang._id, 'increase')}
                             className="bg-gray-200 text-gray-600 px-2 py-1 rounded-md"
