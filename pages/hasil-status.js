@@ -13,7 +13,22 @@ const HasilStatus = () => {
     const { user_token } = parseCookies();
     const router = useRouter()
 
-    const handleDeleteOrder = async (orderId) => {
+    const handleDeleteOrder = (orderId) => {
+        // Tampilkan pesan konfirmasi
+        const confirmation = window.confirm("Apakah Pesanan Anda Sudah Sampai?");
+
+        if (confirmation) {
+            // Pengguna menekan "Sudah", maka hapus pesanan
+            deleteOrder(orderId);
+
+            // Tampilkan pesan "Selamat Menikmati" setelah penghapusan pesanan
+            alert("Selamat Menikmati!");
+        }
+    };
+
+
+
+    const deleteOrder = async (orderId) => {
         try {
             const response = await fetch(`/api/orders/${orderId}`, {
                 method: 'DELETE',
@@ -26,6 +41,9 @@ const HasilStatus = () => {
                 // Pesanan berhasil dihapus, perbarui daftar pesanan
                 const updatedOrders = orders.filter(order => order._id !== orderId);
                 setOrders(updatedOrders);
+                // Tampilkan pesan sukses
+                setShowAlert(true);
+                setAlertMessage('Pesanan berhasil dihapus.');
             } else {
                 throw new Error('Failed to delete order');
             }
@@ -34,28 +52,6 @@ const HasilStatus = () => {
         }
     };
 
-    const handleConfirmOrder = () => {
-        // Tampilkan pesan konfirmasi
-        setShowAlert(true);
-        setAlertMessage('Apakah Pesanan sudah sampai?');
-    };
-
-    const handleOrderReceived = () => {
-        // Tampilkan pesan terima kasih
-        setAlertMessage('Terima kasih!');
-    };
-
-    const handleOrderNotReceived = () => {
-        // Tampilkan pesan tunggu ya
-        setAlertMessage('Tunggu ya');
-    };
-
-    const handleCloseAlert = () => {
-        // Tutup pesan alert
-        setShowAlert(false);
-        // Reset pesan menjadi kosong
-        setAlertMessage('');
-    };
 
     useEffect(() => {
         const fetchOrders = async () => {
@@ -189,8 +185,8 @@ const HasilStatus = () => {
                                                                 <button onClick={() => handleShowOrderDetails(order)}>
                                                                     {isOrderDetailsVisible ? "Sembunyikan" : "dan lainnya"}
                                                                 </button>
-                                                                <button onClick={handleConfirmOrder}>Konfirmasi</button>
-                                                                <button onClick={() => handleDeleteOrder(order._id)}>Hapus</button>
+                                                                <br></br>
+                                                                <button className='mt-1' onClick={() => handleDeleteOrder(order._id)}>Konfirmasi</button>
                                                             </div>
 
                                                         </div>
@@ -264,9 +260,6 @@ const HasilStatus = () => {
                             </button>
                         </>
                     )}
-                    <button className="alert-button" onClick={handleCloseAlert}>
-                        Tutup
-                    </button>
                 </div>
             )}
         </PrivateRoute>

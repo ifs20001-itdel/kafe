@@ -92,6 +92,7 @@ const Index = ({ keranjangs }) => {
         }),
       });
 
+
       if (response.ok) {
         // Clear selected items after successful order
         setSelectedItems([]);
