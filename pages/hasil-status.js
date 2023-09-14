@@ -8,8 +8,54 @@ const HasilStatus = () => {
     const [orders, setOrders] = useState([]);
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [isOrderDetailsVisible, setIsOrderDetailsVisible] = useState(false);
+    const [showAlert, setShowAlert] = useState(false); // Tambahkan state showAlert
+    const [alertMessage, setAlertMessage] = useState(''); // Tambahkan state alertMessage
     const { user_token } = parseCookies();
     const router = useRouter()
+
+    const handleDeleteOrder = async (orderId) => {
+        try {
+            const response = await fetch(`/api/orders/${orderId}`, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${user_token}`,
+                },
+            });
+
+            if (response.ok) {
+                // Pesanan berhasil dihapus, perbarui daftar pesanan
+                const updatedOrders = orders.filter(order => order._id !== orderId);
+                setOrders(updatedOrders);
+            } else {
+                throw new Error('Failed to delete order');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const handleConfirmOrder = () => {
+        // Tampilkan pesan konfirmasi
+        setShowAlert(true);
+        setAlertMessage('Apakah Pesanan sudah sampai?');
+    };
+
+    const handleOrderReceived = () => {
+        // Tampilkan pesan terima kasih
+        setAlertMessage('Terima kasih!');
+    };
+
+    const handleOrderNotReceived = () => {
+        // Tampilkan pesan tunggu ya
+        setAlertMessage('Tunggu ya');
+    };
+
+    const handleCloseAlert = () => {
+        // Tutup pesan alert
+        setShowAlert(false);
+        // Reset pesan menjadi kosong
+        setAlertMessage('');
+    };
 
     useEffect(() => {
         const fetchOrders = async () => {
@@ -134,9 +180,19 @@ const HasilStatus = () => {
                                                             fontWeight: "500",
                                                             lineHeight: "20px"
                                                         }}>
-                                                            <button onClick={() => handleShowOrderDetails(order)}>
-                                                                {isOrderDetailsVisible ? "Sembunyikan" : "dan lainnya"}
-                                                            </button>
+                                                            <div style={{
+                                                                color: "rgba(0, 0, 0, 0.75)",
+                                                                fontSize: "13px",
+                                                                fontWeight: "500",
+                                                                lineHeight: "20px"
+                                                            }}>
+                                                                <button onClick={() => handleShowOrderDetails(order)}>
+                                                                    {isOrderDetailsVisible ? "Sembunyikan" : "dan lainnya"}
+                                                                </button>
+                                                                <button onClick={handleConfirmOrder}>Konfirmasi</button>
+                                                                <button onClick={() => handleDeleteOrder(order._id)}>Hapus</button>
+                                                            </div>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -181,7 +237,7 @@ const HasilStatus = () => {
                         </div>
                     )}
                 </div>
-                
+
                 <div className='container mb-6'>
                     <h2 className='text-xl font-semibold text-gray-800 mb-2'>Order Status</h2>
                     <div className='notification-box bg-blue-100 border-l-4 border-blue-500 p-4 rounded-lg shadow-md'>
@@ -189,6 +245,30 @@ const HasilStatus = () => {
                     </div>
                 </div>
             </div>
+            {showAlert && (
+                <div className="alert-box">
+                    <p className="alert-message">{alertMessage}</p>
+                    {alertMessage === 'Apakah Pesanan sudah sampai?' && (
+                        <>
+                            <button
+                                className="alert-button"
+                                onClick={handleOrderReceived}
+                            >
+                                Sudah
+                            </button>
+                            <button
+                                className="alert-button"
+                                onClick={handleOrderNotReceived}
+                            >
+                                Belum Sampai
+                            </button>
+                        </>
+                    )}
+                    <button className="alert-button" onClick={handleCloseAlert}>
+                        Tutup
+                    </button>
+                </div>
+            )}
         </PrivateRoute>
     );
 };

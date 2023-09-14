@@ -150,16 +150,20 @@ const Status = () => {
                                                             {isOrderDetailsVisible ? "Sembunyikan" : "dan lainnya"}
                                                         </button>
                                                         {isOrderDetailsVisible && (
-                                                            <p className='mt-1'>
-                                                                Alamat:{" "}
-                                                                <a
-                                                                    href={`https://www.google.com/maps/dir/${encodeURIComponent(lokasiAwal)}/${encodeURIComponent(selectedOrder.items[0].lokasi)}`}
-                                                                    target="_blank"
-                                                                    rel="noopener noreferrer"
-                                                                >
-                                                                    {selectedOrder.items[0].lokasi}
-                                                                </a>
-                                                            </p>
+                                                            <div>
+                                                                {order.items.map((item, index) => (
+                                                                    <p key={index}>
+                                                                        Alamat {index + 1}:{" "}
+                                                                        <a
+                                                                            href={`https://www.google.com/maps/dir/${encodeURIComponent(lokasiAwal)}/${encodeURIComponent(item.lokasi)}`}
+                                                                            target="_blank"
+                                                                            rel="noopener noreferrer"
+                                                                        >
+                                                                            {item.lokasi}
+                                                                        </a>
+                                                                    </p>
+                                                                ))}
+                                                            </div>
                                                         )}
                                                     </div>
                                                 </div>
