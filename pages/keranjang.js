@@ -9,6 +9,8 @@ const Index = ({ keranjangs }) => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
   const [itemQuantities, setItemQuantities] = useState({});
   const [subtotal, setSubtotal] = useState(0);
+  const [lokasi, setLokasi] = useState(""); // State untuk inputan lokasi
+
 
   useEffect(() => {
     const calculatedTotalPrice = selectedItems.reduce(
@@ -73,6 +75,7 @@ const Index = ({ keranjangs }) => {
         price: keranjang.price,
         image: keranjang.image,
         quantity: itemQuantities[keranjang._id] || 0,
+        lokasi: lokasi,
       }));
 
       console.log('Order Data:', orderData); // Debugging
@@ -83,7 +86,10 @@ const Index = ({ keranjangs }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(orderData),
+        body: JSON.stringify({
+          orders: orderData,
+          lokasi: lokasi, 
+        }),
       });
 
       if (response.ok) {
@@ -110,6 +116,7 @@ const Index = ({ keranjangs }) => {
       console.log("Error placing order:", error);
     }
     setShowPaymentModal(true);
+
   };
 
   const handleQuantityChange = (itemId, action) => {
@@ -125,11 +132,6 @@ const Index = ({ keranjangs }) => {
       }));
     }
   };
-
-
-
-
-
 
   const handleCheckboxChange = (keranjang) => {
     setSelectedItems((prevSelected) =>
@@ -326,9 +328,20 @@ const Index = ({ keranjangs }) => {
           ))}
 
 
-          <div className="">
-
+          <div className="mb-4">
+            <label htmlFor="lokasi" className="block text-gray-700 text-sm font-bold mb-2">
+              Lokasi
+            </label>
+            <input
+              type="text"
+              id="lokasi"
+              className="w-full px-3 py-2 border rounded-md"
+              placeholder="Masukkan lokasi"
+              value={lokasi}
+              onChange={(e) => setLokasi(e.target.value)}
+            />
           </div>
+
         </div>
         <div className="mt-2 flex items-center border-t-2 justify-center">
           <div class='flex items-center justify-between' style={{

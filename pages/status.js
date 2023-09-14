@@ -3,6 +3,8 @@ import PrivateRoute from '../components/PrivateRoute';
 import { parseCookies } from 'nookies';
 import Layout from '../components/Layout';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+
 
 
 const Status = () => {
@@ -12,6 +14,8 @@ const Status = () => {
     const [selectedStatus, setSelectedStatus] = useState([]);
     const { user_token } = parseCookies();
     const router = useRouter()
+    const lokasiAwal = 'KEFI CAFE AND SPACE, KOMPLEK, Jl. Classic II Jl. Abdul Hakim, Tj. Sari, Kec. Medan Selayang, Kota Medan, Sumatera Utara 20131';
+
 
 
     useEffect(() => {
@@ -57,20 +61,20 @@ const Status = () => {
 
     const handleRadioChange = (status) => {
         setSelectedStatus(status);
-        
+
         // Simpan selectedStatus ke dalam localStorage
         localStorage.setItem('selectedStatus', status);
-        
+
         // Navigasi ke halaman "HasilStatus"
         router.push('/status');
     };
-    
-    
+
+
 
     return (
         <PrivateRoute>
             <div className="">
-                <div style={{ textAlign: "center"}}>
+                <div style={{ textAlign: "center" }}>
                     <div className="flex flex-wrap justify-center mt-4" style={{
                         color: "#000",
                         fontSize: "13px",
@@ -119,7 +123,6 @@ const Status = () => {
                                                 borderRadius: "10px",
                                                 background: "#F6ECD1"
                                             }}>
-
                                                 <img className='ml-3'
                                                     src={order.items[0].image}
                                                     alt="Deskripsi Gambar" style={{
@@ -127,7 +130,6 @@ const Status = () => {
                                                         height: "79px",
                                                         borderRadius: "10px"
                                                     }} />
-
                                                 <div className='text-start ml-6 flex flex-col justify-items-end'>
                                                     <h1
                                                         className="mb-2" style={{
@@ -147,6 +149,18 @@ const Status = () => {
                                                         <button onClick={() => handleShowOrderDetails(order)}>
                                                             {isOrderDetailsVisible ? "Sembunyikan" : "dan lainnya"}
                                                         </button>
+                                                        {isOrderDetailsVisible && (
+                                                            <p className='mt-1'>
+                                                                Alamat:{" "}
+                                                                <a
+                                                                    href={`https://www.google.com/maps/dir/${encodeURIComponent(lokasiAwal)}/${encodeURIComponent(selectedOrder.items[0].lokasi)}`}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                >
+                                                                    {selectedOrder.items[0].lokasi}
+                                                                </a>
+                                                            </p>
+                                                        )}
                                                     </div>
                                                 </div>
                                             </div>
@@ -155,46 +169,49 @@ const Status = () => {
                                 </div>
                             </div>
                         ))}
+
                     </div>
                 </div>
-                {selectedOrder && isOrderDetailsVisible && (
-                    <div className="menu-container rounded" style={{ background: "#F6ECD1", padding: "10px" }}>
-                        {orders.map((order) => (
-                            <div key={order._id} className="menu-item container text-center">
+                <div>
+                    {selectedOrder && isOrderDetailsVisible && (
+                        <div className="menu-container rounded" style={{ background: "#F6ECD1", padding: "10px" }}>
+                            <div key={selectedOrder._id} className="menu-item container text-center">
                                 <div className="menu-item-image">
-                                    {order.items.map((item, index) => (
+                                    {selectedOrder.items.map((item, index) => (
                                         <div key={index} className="menu-item-image-container">
                                             <img
                                                 src={item.image}
                                                 alt={`Deskripsi Gambar ${index}`}
                                                 style={{
-                                                    width: "200px", height: "200px", borderRadius: "10px",
+                                                    width: "200px",
+                                                    height: "200px",
+                                                    borderRadius: "10px",
                                                     margin: "auto 60px"
                                                 }}
                                             />
                                             <h1>{item.title}</h1>
                                             <p className='mb-3'>Price: {item.price}</p>
-
                                         </div>
                                     ))}
                                 </div>
                                 <div className="menu-item-details">
-                                    {order.items.map((item, index) => (
+                                    {selectedOrder.items.map((item, index) => (
                                         <div key={index} className="menu-item-info">
                                         </div>
                                     ))}
                                 </div>
                                 {isOrderDetailsVisible && (
                                     <div className="menu-item-order-details">
-                                        <p>Total: {order.total}</p>
+                                        <p>Total: {selectedOrder.total}</p>
                                     </div>
                                 )}
                             </div>
-                        ))}
-                    </div>
-                )}
-            </div>
+                        </div>
+                    )}
+                </div>
 
+
+            </div>
             <div className="space-y-4">
                 <label className="flex items-center space-x-2">
                     <input

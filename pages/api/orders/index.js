@@ -9,13 +9,13 @@ export default async (req, res) => {
   switch (method) {
     case "POST":
       try {
-        const orderDataArray = req.body; // Array of items
+        const { orders, lokasi } = req.body; // Ambil data pesanan (orders) dan lokasi dari req.body
 
-        // Calculate total price based on the orderDataArray
-        const totalPrice = orderDataArray.reduce((total, item) => total + item.price, 0);
+        // Calculate total price based on the orders
+        const totalPrice = orders.reduce((total, item) => total + item.price, 0);
 
         // Create a new order document in the database
-        const order = await Order.create({ items: orderDataArray, total: totalPrice });
+        const order = await Order.create({ items: orders, total: totalPrice, lokasi: lokasi });
 
         res.status(201).json({ success: true, data: order });
       } catch (error) {

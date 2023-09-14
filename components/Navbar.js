@@ -89,12 +89,16 @@ const Navbar = ({ userRole }) => {
             }} className="mr-5 hover:text-gray-900">
               <p className="text-center">Promo</p>
             </Link>
-            <Link href="/keranjang" style={{
-              textDecoration: "none",
-              color: "#000"
-            }} className="mr-5 hover:text-gray-900">
-              <p className="text-center">Keranjang</p>
-            </Link>
+            {userRole === 'user' && (
+              <>
+                <Link href="/keranjang" style={{
+                  textDecoration: "none",
+                  color: "#000"
+                }} className="mr-5 hover:text-gray-900">
+                  <p className="text-center">Keranjang</p>
+                </Link>
+              </>
+            )}
             {userRole === 'user' && (
               <>
                 <Link href="/hasil-status" style={{

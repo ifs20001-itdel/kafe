@@ -15,12 +15,18 @@ const ItemSchema = new mongoose.Schema({
         type: String,
         required: true,
         maxlength: [1000, 'Image cannot be more than 1000 characters']
+    },
+    lokasi: {
+        type: String,
+        required: true,
+        maxlength: [1000, 'Image cannot be more than 1000 characters']
     }
 });
 
 const OrderSchema = new mongoose.Schema({
   items: [ItemSchema],
   total: Number, 
+  lokasi: String,
 });
 
 module.exports = mongoose.models.Order || mongoose.model('Order', OrderSchema);
