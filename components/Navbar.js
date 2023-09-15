@@ -83,12 +83,36 @@ const Navbar = ({ userRole }) => {
                 </Link>
               </>
             )}
-            <Link href="/promo" style={{
-              textDecoration: "none",
-              color: "#000"
-            }} className="mr-5 hover:text-gray-900">
-              <p className="text-center">Promo</p>
-            </Link>
+            {userRole === 'user' && (
+              <>
+                <Link href="/promo" style={{
+                  textDecoration: "none",
+                  color: "#000"
+                }} className="mr-5 hover:text-gray-900">
+                  <p className="text-center">Promo</p>
+                </Link>
+              </>
+            )}
+            {userRole === 'admin' && (
+              <>
+                <Link href="/promoAdmin" style={{
+                  textDecoration: "none",
+                  color: "#000"
+                }} className="mr-5 hover:text-gray-900">
+                  <p className="text-center">Promo Admin</p>
+                </Link>
+              </>
+            )}
+            {userRole === 'admin' && (
+              <>
+                <Link href="/editTestimoni" style={{
+                  textDecoration: "none",
+                  color: "#000"
+                }} className="mr-5 hover:text-gray-900">
+                  <p className="text-center">Testimoni</p>
+                </Link>
+              </>
+            )}
             {userRole === 'user' && (
               <>
                 <Link href="/keranjang" style={{

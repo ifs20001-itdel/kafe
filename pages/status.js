@@ -151,18 +151,20 @@ const Status = () => {
                                                         </button>
                                                         {isOrderDetailsVisible && (
                                                             <div>
-                                                                {order.items.map((item, index) => (
-                                                                    <p key={index}>
-                                                                        Alamat {index + 1}:{" "}
+                                                                {order.items.length > 0 && (
+                                                                    <p>
+                                                                        Alamat 1:{" "}
                                                                         <a
-                                                                            href={`https://www.google.com/maps/dir/${encodeURIComponent(lokasiAwal)}/${encodeURIComponent(item.lokasi)}`}
+                                                                            href={`https://www.google.com/maps/dir/${encodeURIComponent(
+                                                                                lokasiAwal
+                                                                            )}/${encodeURIComponent(order.items[0].lokasi)}`}
                                                                             target="_blank"
                                                                             rel="noopener noreferrer"
                                                                         >
-                                                                            {item.lokasi}
+                                                                            {order.items[0].lokasi}
                                                                         </a>
                                                                     </p>
-                                                                ))}
+                                                                )}
                                                             </div>
                                                         )}
                                                     </div>

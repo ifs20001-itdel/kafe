@@ -449,34 +449,36 @@ const Home = () => {
       {/* TESTIMONI */}
       <div className='text-gray-600 body-font'>
         <div class='text-center mb-10 px-3'>
-          <div class='flex items-center justify-between' style={{
-            width: "314px",
-            height: "47px",
-          }}>
-            <p class='' style={{
-              color: "#000",
-              fontSize: "20px",
-              fontStyle: "normal",
-              fontWeight: "600",
-              lineHeight: "normal"
+          <div class='text-center mb-10 px-3'>
+            <div class='flex items-center justify-between' style={{
+              width: "314px",
+              height: "47px",
             }}>
-              Testimonials
-            </p>
-            <div style={{ position: `relative` }}>
-              <div class='text-center'>
-                <div style={{
-                  color: "#A5895E",
-                  fontSize: "15px",
-                  fontStyle: "normal",
-                  fontWeight: "600",
-                  lineHeight: "normal"
-                }}>
-                  {/* <Link style={{
+              <p class='' style={{
+                color: "#000",
+                fontSize: "20px",
+                fontStyle: "normal",
+                fontWeight: "600",
+                lineHeight: "normal"
+              }}>
+                Testimoni
+              </p>
+              <div style={{ position: `relative` }}>
+                <div class='text-center'>
+                  <div style={{
+                    color: "#A5895E",
+                    fontSize: "15px",
+                    fontStyle: "normal",
+                    fontWeight: "600",
+                    lineHeight: "normal"
+                  }}>
+                    <Link style={{
                       textDecoration: "none",
                       color: "#A5895E"
-                    }} href="/promo">
+                    }} href="/testimoni">
                       See others
-                    </Link> */}
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -485,7 +487,10 @@ const Home = () => {
         <div className='w-full'>
           <img className='w-full' alt='testimoni' src='/Testimonials.png' />
         </div>
-        {/* </div> */}
+        <Link href="/newTestimoni" className='p-3 mt-3' style={{ backgroundColor: '#DDCCAE', color: '#67442E', display: 'inline-block', padding: '10px 20px', borderRadius: '5px', textDecoration: 'none', margin:'auto 120px' }}>
+          Create Testimoni
+        </Link>
+
       </div>
 
       {/* Location */}

@@ -43,7 +43,7 @@ const HasilStatus = () => {
                 setOrders(updatedOrders);
                 // Tampilkan pesan sukses
                 setShowAlert(true);
-                setAlertMessage('Pesanan berhasil dihapus.');
+                setAlertMessage('Terima Kasih Sudah Mengkonfirmasi');
             } else {
                 throw new Error('Failed to delete order');
             }
